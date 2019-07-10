@@ -26,4 +26,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //di
+    implementation 'com.google.dagger:dagger:2.17'
+    implementation 'com.google.dagger:dagger-compiler:2.17'
+    implementation 'com.google.dagger:dagger-android:2.17'
+    implementation 'com.google.dagger:dagger-android-support:2.17'
+    implementation 'com.google.dagger:dagger-android-processor:2.17'
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife-compiler:8.8.1'
 }
