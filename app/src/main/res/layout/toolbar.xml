@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--支持响应滚动手势的 bar-->
 <android.support.design.widget.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,10 +29,9 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textSize="18sp"
+            android:text="你好"
             android:textColor="@color/white"
            />
-
-
     </android.support.v7.widget.Toolbar>
 
 </android.support.design.widget.AppBarLayout>

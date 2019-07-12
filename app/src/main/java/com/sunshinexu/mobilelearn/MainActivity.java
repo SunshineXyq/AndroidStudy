@@ -16,10 +16,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        System.out.println("main");
     }
     protected int getLayoutId(){
         return R.layout.activity_main;
+    }
+
+
+    @Override
+    protected void initToolbar() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initEventAndData() {
+
     }
 
 
@@ -66,10 +82,5 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void handleLogoutSuccess() {
 
-    }
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return null;
     }
 }

@@ -3,9 +3,12 @@ package com.sunshinexu.mobilelearn.base.presenter;
 import com.sunshinexu.mobilelearn.base.view.IView;
 
 public class BasePresenter<T extends IView> implements IPresenter<T> {
+
+    protected T mView;
     @Override
     public void attachView(T view) {
-
+        this.mView = view;
+        registerEventBus();
     }
 
     @Override
@@ -20,7 +23,7 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
 
     @Override
     public void registerEventBus() {
-
+        System.out.println("子类重写了");
     }
 
     @Override

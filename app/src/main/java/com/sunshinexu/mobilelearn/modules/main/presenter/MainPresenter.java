@@ -19,4 +19,9 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     public boolean isNightMode() {
         return false;
     }
+
+    @Override
+    public void registerEventBus() {
+        System.out.println("子类重写的re");
+    }
 }
