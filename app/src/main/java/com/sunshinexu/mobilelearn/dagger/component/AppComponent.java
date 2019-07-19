@@ -1,11 +1,13 @@
 package com.sunshinexu.mobilelearn.dagger.component;
 
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
+import com.sunshinexu.mobilelearn.dagger.module.AllActivityModule;
 import com.sunshinexu.mobilelearn.dagger.module.AppModule;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
@@ -15,7 +17,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {AppModule.class,
-        AndroidSupportInjectionModule.class})
+        AndroidSupportInjectionModule.class,
+        AndroidInjectionModule.class,
+        AllActivityModule.class})         //
 public interface AppComponent {
     void inject(MobileLearnApp mobileLearnApp);
 }

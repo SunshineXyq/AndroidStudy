@@ -1,16 +1,15 @@
-package com.sunshinexu.mobilelearn.core;
+package com.sunshinexu.mobilelearn.pre;
 
-import com.sunshinexu.mobilelearn.core.http.HttpHelper;
-import com.sunshinexu.mobilelearn.pre.PreHelper;
+import android.content.Context;
+import android.content.SharedPreferences;
 
-public class DataManager implements HttpHelper, PreHelper {
+import com.sunshinexu.mobilelearn.app.MobileLearnApp;
+import com.sunshinexu.mobilelearn.core.constant.Constants;
 
-    private HttpHelper mHttpHelper;
-    private PreHelper mPreHelper;
-
-    public DataManager(HttpHelper httpHelper,PreHelper preHelper){
-        mHttpHelper = httpHelper;
-        mPreHelper = preHelper;
+public class PreHelperImpl implements PreHelper {
+    private final SharedPreferences sp;
+    PreHelperImpl(){
+        sp = MobileLearnApp.getContext().getSharedPreferences(Constants.MY_SP, Context.MODE_PRIVATE);
     }
     @Override
     public void setLoginStatus(boolean isLogin) {

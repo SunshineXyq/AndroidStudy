@@ -1,15 +1,11 @@
 package com.sunshinexu.mobilelearn;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
 import com.sunshinexu.mobilelearn.modules.main.presenter.MainPresenter;
 
-import dagger.android.AndroidInjector;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 

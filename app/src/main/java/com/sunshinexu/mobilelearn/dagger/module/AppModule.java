@@ -1,8 +1,10 @@
 package com.sunshinexu.mobilelearn.dagger.module;
 
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
+import com.sunshinexu.mobilelearn.core.DataManager;
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.core.http.HttpHelperImpl;
+import com.sunshinexu.mobilelearn.pre.PreHelper;
 
 import javax.inject.Singleton;
 import dagger.Module;
@@ -34,4 +36,9 @@ public class AppModule {
         return httpHelperImpl;
     }
 
+    @Provides
+    @Singleton
+    DataManager provideDataManager(HttpHelper httpHelper, PreHelper preHelper){
+        return new DataManager(httpHelper,preHelper);
+    }
 }

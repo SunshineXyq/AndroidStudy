@@ -1,13 +1,10 @@
 package com.sunshinexu.mobilelearn.base.activity;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.PersistableBundle;
 
+import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.sunshinexu.mobilelearn.BuildConfig;
 import com.sunshinexu.mobilelearn.R;
 
 import butterknife.ButterKnife;
