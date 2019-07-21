@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
 
+import javax.inject.Inject;
+
 public class PreHelperImpl implements PreHelper {
     private final SharedPreferences sp;
+    @Inject
     PreHelperImpl(){
         sp = MobileLearnApp.getContext().getSharedPreferences(Constants.MY_SP, Context.MODE_PRIVATE);
     }

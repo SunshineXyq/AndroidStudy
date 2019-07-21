@@ -5,6 +5,7 @@ import com.sunshinexu.mobilelearn.core.DataManager;
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.core.http.HttpHelperImpl;
 import com.sunshinexu.mobilelearn.pre.PreHelper;
+import com.sunshinexu.mobilelearn.pre.PreHelperImpl;
 
 import javax.inject.Singleton;
 import dagger.Module;
@@ -34,6 +35,12 @@ public class AppModule {
     @Singleton
     HttpHelper provideHttpHelper(HttpHelperImpl httpHelperImpl){
         return httpHelperImpl;
+    }
+
+    @Provides
+    @Singleton
+    PreHelper providePreferenceHelper(PreHelperImpl preHelper){
+        return preHelper;
     }
 
     @Provides

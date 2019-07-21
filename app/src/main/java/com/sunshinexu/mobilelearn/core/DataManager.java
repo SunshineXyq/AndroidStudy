@@ -1,7 +1,11 @@
 package com.sunshinexu.mobilelearn.core;
 
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
+import com.sunshinexu.mobilelearn.http.BaseResponse;
+import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.pre.PreHelper;
+
+import io.reactivex.Observable;
 
 public class DataManager implements HttpHelper, PreHelper {
 
@@ -40,5 +44,10 @@ public class DataManager implements HttpHelper, PreHelper {
     @Override
     public boolean isNightMode() {
         return false;
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getArticleList(int num) {
+        return mHttpHelper.getArticleList(num);
     }
 }
