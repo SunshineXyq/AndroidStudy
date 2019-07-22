@@ -10,5 +10,5 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class AllActivityModule {
     //ContributesAndroidInjector 解决每个类都需要xxx.inject(this),以及类需要知道注入器
     @ContributesAndroidInjector(modules = MainActivityModule.class)
-    abstract MainActivity mainActivityInjector();
+    abstract MainActivity contributesMainActivityInjector();
 }

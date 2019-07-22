@@ -27,9 +27,9 @@ public class MobileLearnApp extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build().inject(this);
+//        DaggerAppComponent.builder()
+//                .appModule(new AppModule(this))
+//                .build().inject(this);
 
         //夜间模式切换
         if (mDataManager.isNightMode()) {
