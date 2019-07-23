@@ -1,10 +1,11 @@
 package com.sunshinexu.mobilelearn.http.api;
 
-import android.database.Observable;
+
 
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 

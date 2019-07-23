@@ -28,11 +28,13 @@ import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
-@Component(modules = {AndroidInjectionModule.class,
-        AndroidSupportInjectionModule.class,       //第一步添加类，解决每个类需要inject(this),代码重复问题
-        AllActivityModule.class,
+@Component(modules = {
+//        AndroidInjectionModule.class,
+//        AndroidSupportInjectionModule.class,       //第一步添加类，解决每个类需要inject(this),代码重复问题
+//        AllActivityModule.class,
         AppModule.class,
-        HttpModule.class})
+        HttpModule.class
+})
 public interface AppComponent {
     void inject(MobileLearnApp mobileLearnApp);
 }

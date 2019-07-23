@@ -13,12 +13,13 @@ public class HttpHelperImpl implements HttpHelper {
     private ApiService mApiService;
 
     @Inject
-    public HttpHelperImpl(ApiService mApiService) {
-        this.mApiService = mApiService;
+    HttpHelperImpl(ApiService apiService) {
+        mApiService = apiService;
     }
 
     @Override
     public Observable<BaseResponse<ArticleListData>> getArticleList(int num) {
+        //return mApiService.getArticleList(num);
         return null;
     }
 }

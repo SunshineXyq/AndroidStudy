@@ -16,6 +16,7 @@ import dagger.Provides;
  * Provides 用来生成类的实例
  * Name 存在相同依赖，告知 Component 到底提供哪一个依赖对象，值只能是字符串
  * Singleton 局部单例，可以保证注入的相应类中是单例
+ * 需要参数的依赖对象，也要提供参数的方法
  */
 @Module
 public class AppModule {
@@ -45,7 +46,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    DataManager provideDataManager(HttpHelper httpHelper, PreHelper preHelper){
+    DataManager provideDataManager(HttpHelperImpl httpHelper,PreHelper preHelper){
         return new DataManager(httpHelper,preHelper);
     }
 }
