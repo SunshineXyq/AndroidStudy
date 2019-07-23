@@ -22,7 +22,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
     @Inject
     protected T mPresenter;
     @Inject
-    DispatchingAndroidInjector<Fragment> myDispatchingAndroidInjector;
+    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +39,6 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
 
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
-        return myDispatchingAndroidInjector;
+        return dispatchingAndroidInjector;
     }
 }

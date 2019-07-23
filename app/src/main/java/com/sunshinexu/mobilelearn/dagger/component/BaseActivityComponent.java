@@ -9,8 +9,8 @@ import dagger.android.AndroidInjector;
 /**
  * 每一个继承于 BaseActivity 的 Activity 都继承于同一个子组件
  */
-//与 appComponent 中 AndroidInjectionModule.class 对应使用
-@Subcomponent(modules = {AndroidInjectionModule.class})    //此类可以帮助将Android四大组件及fragment绑定
+//注解是为了 appComponent 中 AndroidInjectionModule.class 对应使用
+@Subcomponent(modules = {AndroidInjectionModule.class})
 public interface BaseActivityComponent extends AndroidInjector<BaseActivity> {
     @Subcomponent.Builder
     abstract class Builder extends AndroidInjector.Builder<BaseActivity>{}

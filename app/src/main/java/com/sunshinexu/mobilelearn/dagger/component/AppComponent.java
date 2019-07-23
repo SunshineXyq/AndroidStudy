@@ -29,9 +29,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
-//        AndroidInjectionModule.class,
-//        AndroidSupportInjectionModule.class,       //第一步添加类，解决每个类需要inject(this),代码重复问题
-//        AllActivityModule.class,
+        AndroidInjectionModule.class,              //支持四大组件绑定
+        AndroidSupportInjectionModule.class,       //第一步添加类，解决每个类需要inject(this),代码重复问题
+        AllActivityModule.class,                   //统一管理，依赖于 AppComponent 的 module
         AppModule.class,
         HttpModule.class
 })
