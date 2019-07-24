@@ -2,6 +2,8 @@ package com.sunshinexu.mobilelearn.base.activity;
 
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -14,16 +16,18 @@ import me.yokeyword.fragmentation.SupportActivity;
 public abstract class AbstractSimpleActivity extends SupportActivity {
 
     private Unbinder unbinder;
+    private static final String TAG = "AbstractSimpleActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //暂时不起作用
+        //沉浸式状态栏
         ImmersionBar.with(this)
-                .statusBarView(findViewById(R.id.status_bar))
+                .statusBarView(findViewById(R.id.status_bar)) //解决状态栏与布局重叠问题
                 .keyboardEnable(true)
                 .init();
         unbinder = ButterKnife.bind(this);
+        Log.d(TAG, "onCreate: ");
         onViewCreate();
         initToolbar();
         initView();

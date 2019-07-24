@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
@@ -9,10 +10,12 @@ import com.sunshinexu.mobilelearn.modules.main.presenter.MainPresenter;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("main");
+        Log.d(TAG, "onCreate: ");
     }
     protected int getLayoutId(){
         return R.layout.activity_main;

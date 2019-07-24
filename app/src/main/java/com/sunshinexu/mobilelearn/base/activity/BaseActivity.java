@@ -2,6 +2,7 @@ package com.sunshinexu.mobilelearn.base.activity;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 
 public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleActivity
         implements HasSupportFragmentInjector, IView {
+    private static final String TAG = "BaseActivity";
 
     @Inject
     protected T mPresenter;
@@ -28,10 +30,18 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
     }
 
+    /**
+     * 父类onCreate调用onViewCreate
+     * 先执行父类onCreate，在执行子类实现的 onViewCreate
+     * 最后执行子类的 onCreate
+     */
     @Override
     protected void onViewCreate() {
+        Log.d(TAG, "onViewCreate: onViewCreate");
+        //this 是 MainActivity，mPresenter 是 MainPresenter
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }

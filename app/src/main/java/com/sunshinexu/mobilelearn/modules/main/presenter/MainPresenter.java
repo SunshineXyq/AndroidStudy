@@ -6,10 +6,9 @@ import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
 import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
-
     @Inject
     MainPresenter(){
-
+        System.out.println("MainPresenter构造方法");
     }
 
     @Override
