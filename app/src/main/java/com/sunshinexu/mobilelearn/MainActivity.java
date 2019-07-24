@@ -2,15 +2,26 @@ package com.sunshinexu.mobilelearn;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
 import com.sunshinexu.mobilelearn.modules.main.presenter.MainPresenter;
 
+import butterknife.BindView;
+
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
     private static final String TAG = "MainActivity";
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.toolbar_title)
+    TextView barTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +35,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initToolbar() {
-
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            barTitle.setText(R.string.home_page);
+        }
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.sunshinexu.mobilelearn.modules.main.presenter;
 import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
 import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
@@ -28,6 +30,11 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void registerEventBus() {
-        System.out.println("子类重写的re");
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
     }
 }
