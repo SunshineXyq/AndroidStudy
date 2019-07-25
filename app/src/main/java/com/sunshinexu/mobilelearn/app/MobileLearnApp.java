@@ -3,8 +3,8 @@ package com.sunshinexu.mobilelearn.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.app.AppCompatDelegate;
 
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.sunshinexu.mobilelearn.core.DataManager;
 import com.sunshinexu.mobilelearn.dagger.component.DaggerAppComponent;

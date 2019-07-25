@@ -1,11 +1,9 @@
 package com.sunshinexu.mobilelearn.base.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.sunshinexu.mobilelearn.base.presenter.IPresenter;
 import com.sunshinexu.mobilelearn.base.view.IView;
@@ -16,6 +14,7 @@ import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import android.support.v4.app.Fragment;
 
 public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleActivity
         implements HasSupportFragmentInjector, IView {

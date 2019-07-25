@@ -2,9 +2,9 @@ package com.sunshinexu.mobilelearn.base.activity;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.sunshinexu.mobilelearn.R;
