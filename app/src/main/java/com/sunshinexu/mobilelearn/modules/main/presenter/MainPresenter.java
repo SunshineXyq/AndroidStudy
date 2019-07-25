@@ -3,7 +3,9 @@ package com.sunshinexu.mobilelearn.modules.main.presenter;
 import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
 import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
 
-import org.greenrobot.eventbus.EventBus;
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
@@ -36,5 +38,9 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void unregisterEventBus() {
         EventBus.getDefault().unregister(this);
+    }
+
+    @Subscriber()
+    public void loginSuccessEvent() {
     }
 }

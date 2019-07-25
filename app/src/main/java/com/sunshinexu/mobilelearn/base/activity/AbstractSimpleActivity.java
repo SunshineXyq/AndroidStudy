@@ -21,6 +21,7 @@ public abstract class AbstractSimpleActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         //沉浸式状态栏
         ImmersionBar.with(this)
                 .statusBarView(findViewById(R.id.status_bar)) //解决状态栏与布局重叠问题
