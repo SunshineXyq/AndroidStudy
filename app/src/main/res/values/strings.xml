@@ -2,4 +2,13 @@
     <string name="app_name">AndroidStudy</string>
     <string name="home_page">主页</string>
     <string name="down_up_btn_show" translatable="false">com.sunshinexu.mobilelearn.utils.behavior.BottomNavigationBehavior</string>
+    <string name="knowledge">知识体系</string>
+    <string name="navigation">学习导航</string>
+    <string name="public_num">公众号</string>
+    <string name="project">项目</string>
+    <string name="login">登录</string>
+    <string name="nav_item_my_collect">我的收藏</string>
+    <string name="nav_item_set">设置</string>
+    <string name="nav_item_about">关于我们</string>
+    <string name="nav_item_logout">注销</string>
 </resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tab_home_pager"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_pager"
+        android:title="@string/home_page"
+        app:showAsAction="ifRoom">  <!--如果有足够的空间会显示-->
+
+    </item>
+
+    <item
+        android:id="@+id/tab_navigation"
+        android:enabled="true"
+        android:title="@string/navigation"
+        android:icon="@drawable/ic_navigation"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/tab_knowledge"
+        android:enabled="true"
+        android:title="@string/knowledge"
+        android:icon="@drawable/ic_knowledge"
+        app:showAsAction="ifRoom">
+    </item>
+
+
+    <item
+        android:id="@+id/tab_public_num"
+        android:enabled="true"
+        android:title="@string/public_num"
+        android:icon="@drawable/ic_public_num"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/tab_project"
+        android:enabled="true"
+        android:title="@string/project"
+        android:icon="@drawable/ic_project"
+        app:showAsAction="ifRoom">
+    </item>
+
+
+</menu>
