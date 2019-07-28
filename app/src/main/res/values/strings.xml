@@ -11,4 +11,16 @@
     <string name="nav_item_set">设置</string>
     <string name="nav_item_about">关于我们</string>
     <string name="nav_item_logout">注销</string>
+    <string name="open_drawer">打开</string>
+    <string name="close_drawer">关闭</string>
+
+
+    <!-- collect -->
+    <string name="collect">收藏</string>
+    <string name="cancel_collect">已取消收藏</string>
+    <string name="failed_to_get_collect_list">获取收藏文章失败</string>
+    <string name="failed_to_cancel_collect">取消收藏失败</string>
+    <string name="collect_success">收藏成功</string>
+    <string name="collect_failed">收藏失败</string>
+
 </resources>

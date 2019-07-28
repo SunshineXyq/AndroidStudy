@@ -21,4 +21,14 @@ public class HttpHelperImpl implements HttpHelper {
     public Observable<BaseResponse<ArticleListData>> getArticleList(int num) {
         return mApiService.getArticleList(num);
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> addArticleCollect(int id) {
+        return mApiService.addArticleCollect(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelAddArticleCollect(int id) {
+        return mApiService.cancelAddArticleCollect(id);
+    }
 }

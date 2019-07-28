@@ -46,8 +46,23 @@ public class DataManager implements PreHelper,HttpHelper{
         return false;
     }
 
+
     @Override
     public Observable<BaseResponse<ArticleListData>> getArticleList(int num) {
         return mHttpHelper.getArticleList(num);
     }
+
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> addArticleCollect(int id) {
+        return mHttpHelper.addArticleCollect(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelAddArticleCollect(int id) {
+        return mHttpHelper.cancelAddArticleCollect(id);
+    }
+
+
 }
+

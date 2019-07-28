@@ -1,12 +1,10 @@
-package com.sunshinexu.mobilelearn.modules.main.ui;
+package com.sunshinexu.mobilelearn.activity.main.ui;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
 import android.widget.RelativeLayout;
 
 import com.sunshinexu.mobilelearn.MainActivity;

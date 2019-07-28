@@ -1,6 +1,4 @@
-package com.sunshinexu.mobilelearn.modules.main.contract;
-
-import android.view.View;
+package com.sunshinexu.mobilelearn.activity.main.contract;
 
 import com.sunshinexu.mobilelearn.base.presenter.IPresenter;
 import com.sunshinexu.mobilelearn.base.view.IView;

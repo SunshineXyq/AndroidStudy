@@ -1,6 +1,12 @@
 package com.sunshinexu.mobilelearn.base.presenter;
 
 import com.sunshinexu.mobilelearn.base.view.IView;
+import com.sunshinexu.mobilelearn.core.DataManager;
+
+import javax.inject.Inject;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * BasePresenter 是对Presenter的封装
@@ -10,6 +16,10 @@ import com.sunshinexu.mobilelearn.base.view.IView;
 public class BasePresenter<T extends IView> implements IPresenter<T>{
 
     protected T mView;
+    private CompositeDisposable compositeDisposable;
+
+    @Inject
+    public DataManager dataManager;
 
     public void attachView(T view) {
         this.mView = view;
@@ -18,7 +28,10 @@ public class BasePresenter<T extends IView> implements IPresenter<T>{
 
     @Override
     public void detachView() {
-
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
+        unregisterEventBus();
     }
 
     @Override
@@ -53,5 +66,12 @@ public class BasePresenter<T extends IView> implements IPresenter<T>{
     @Override
     public void setLoginAccount(String account) {
 
+    }
+
+    protected void addSubscribe(Disposable disposable){
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
     }
 }

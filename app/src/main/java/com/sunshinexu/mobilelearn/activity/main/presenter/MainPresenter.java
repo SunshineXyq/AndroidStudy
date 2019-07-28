@@ -1,7 +1,7 @@
-package com.sunshinexu.mobilelearn.modules.main.presenter;
+package com.sunshinexu.mobilelearn.activity.main.presenter;
 
 import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
-import com.sunshinexu.mobilelearn.modules.main.contract.MainContract;
+import com.sunshinexu.mobilelearn.activity.main.contract.MainContract;
 
 
 import org.simple.eventbus.EventBus;

@@ -23,29 +23,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpModule {
     @Singleton
     @Provides
-    ApiService provideApiService(Retrofit retrofit){
+    ApiService provideApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
-    }
-    @Singleton
-    @Provides
-    Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client){
-        return createRetrofit(builder,client,ApiService.BASE_URL);
     }
 
     @Singleton
     @Provides
-    Retrofit.Builder provideRetrofitBuilder(){
+    Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, ApiService.BASE_URL);
+    }
+
+    @Singleton
+    @Provides
+    Retrofit.Builder provideRetrofitBuilder() {
         return new Retrofit.Builder();
     }
+
     //OkHttpClient 创建
     @Singleton
     @Provides
-    OkHttpClient.Builder provideOkHttpBuilder(){
+    OkHttpClient.Builder provideOkHttpBuilder() {
         return new OkHttpClient.Builder();
     }
+
     @Singleton
     @Provides
-    OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder){
+    OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder) {
         if (BuildConfig.DEBUG) {
             //消息拦截器，可看到接口返回的所有内容  BASIC 级别是请求/响应行
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
@@ -54,14 +57,14 @@ public class HttpModule {
         }
         //设置网络缓存
         File cacheFile = new File(CacheUtils.getCacheDir());
-        System.out.println("HttpModule 设置缓存路径" + cacheFile );
+        System.out.println("HttpModule 设置缓存路径" + cacheFile);
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);//100M
         builder.addNetworkInterceptor(new NetCacheInterceptor());
         builder.cache(cache);
         //设置超时时间
         builder.connectTimeout(8, TimeUnit.SECONDS);
-        builder.readTimeout(15,TimeUnit.SECONDS);
-        builder.writeTimeout(15,TimeUnit.SECONDS);
+        builder.readTimeout(15, TimeUnit.SECONDS);
+        builder.writeTimeout(15, TimeUnit.SECONDS);
         //设置重新连接
         builder.retryOnConnectionFailure(true);
         return builder.build();
@@ -72,7 +75,7 @@ public class HttpModule {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())     //把retrofit的请求转化为RxJava的Observable
                 .build();
     }
 
