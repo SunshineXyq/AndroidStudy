@@ -38,10 +38,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private int lastFgIndex = -1;
 
     private HomePageFragment homePagerFragment;
-    private NavigationFragment navigationFragment;
-    private KnowledgeFragment knowledgeFragment;
-    private PublicNumFragment publicNumFragment;
-    private ProjectFragment projectFragment;
+//    private NavigationFragment navigationFragment;
+//    private KnowledgeFragment knowledgeFragment;
+//    private PublicNumFragment publicNumFragment;
+//    private ProjectFragment projectFragment;
 
 
     @Override
@@ -92,26 +92,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     transaction.hide(homePagerFragment);
                 }
                 break;
-            case Constants.FRAGMENT_NAIVIGATION:
-                if (navigationFragment != null) {
-                    transaction.hide(navigationFragment);
-                }
-                break;
-            case Constants.FRAGMENT_KNOWLEDGE:
-                if (knowledgeFragment != null) {
-                    transaction.hide(knowledgeFragment);
-                }
-                break;
-            case Constants.FRAGMENT_PUBLIC_NUM:
-                if (publicNumFragment != null) {
-                    transaction.hide(publicNumFragment);
-                }
-                break;
-            case Constants.FRAGMENT_PRPJECT:
-                if (projectFragment != null) {
-                    transaction.hide(projectFragment);
-                }
-                break;
+//            case Constants.FRAGMENT_NAIVIGATION:
+//                if (navigationFragment != null) {
+//                    transaction.hide(navigationFragment);
+//                }
+//                break;
+//            case Constants.FRAGMENT_KNOWLEDGE:
+//                if (knowledgeFragment != null) {
+//                    transaction.hide(knowledgeFragment);
+//                }
+//                break;
+//            case Constants.FRAGMENT_PUBLIC_NUM:
+//                if (publicNumFragment != null) {
+//                    transaction.hide(publicNumFragment);
+//                }
+//                break;
+//            case Constants.FRAGMENT_PRPJECT:
+//                if (projectFragment != null) {
+//                    transaction.hide(projectFragment);
+//                }
+//                break;
             default:
                 break;
         }

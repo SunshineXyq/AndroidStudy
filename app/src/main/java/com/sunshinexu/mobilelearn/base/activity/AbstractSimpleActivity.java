@@ -25,6 +25,7 @@ public abstract class AbstractSimpleActivity extends SupportActivity {
         //沉浸式状态栏
         ImmersionBar.with(this)
                 .statusBarView(findViewById(R.id.status_bar)) //解决状态栏与布局重叠问题
+                .statusBarDarkFont(true)
                 .keyboardEnable(true)
                 .init();
         unbinder = ButterKnife.bind(this);

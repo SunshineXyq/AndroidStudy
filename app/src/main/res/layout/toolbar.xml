@@ -11,14 +11,14 @@
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@color/Grey200"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolBarStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/Grey200"
         app:layout_scrollFlags="scroll|enterAlways|snap">
 
         <TextView
@@ -29,7 +29,6 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textSize="18sp"
-            android:text="你好"
             android:textColor="#333333"
            />
     </android.support.v7.widget.Toolbar>
