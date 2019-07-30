@@ -45,7 +45,7 @@
         android:background="@color/Grey100"
         app:headerLayout="@layout/navigation_header"
         app:itemIconTint="@color/navigation_item_ic_color"
-        app:itemTextColor="@color/navigation_item_color"
+        app:itemTextColor="@color/black"
         app:menu="@menu/navigation_view">
     </android.support.design.widget.NavigationView>
 

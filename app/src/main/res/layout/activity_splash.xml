@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:textSize="18sp"
-        android:textColor="@color/splash_tv"
+        android:textColor="@color/black"
         android:text="欢迎来到移动学习系统"/>
 
 </RelativeLayout>
