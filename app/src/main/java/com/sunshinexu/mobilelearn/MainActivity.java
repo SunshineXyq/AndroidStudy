@@ -11,10 +11,6 @@ import android.widget.TextView;
 
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.ui.HomePageFragment;
-import com.sunshinexu.mobilelearn.activity.fragment.knowledge.ui.KnowledgeFragment;
-import com.sunshinexu.mobilelearn.activity.fragment.navigation.ui.NavigationFragment;
-import com.sunshinexu.mobilelearn.activity.fragment.project.ui.ProjectFragment;
-import com.sunshinexu.mobilelearn.activity.fragment.publicnum.ui.PublicNumFragment;
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
 import com.sunshinexu.mobilelearn.activity.main.contract.MainContract;

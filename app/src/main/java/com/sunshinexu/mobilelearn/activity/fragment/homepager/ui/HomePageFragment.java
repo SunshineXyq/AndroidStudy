@@ -16,14 +16,13 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     @Override
     protected int getLayoutId() {
-
         return R.layout.fragment_homepage;
     }
 
     @Override
     protected void initView() {
-        ArrayList<ArticleItemData> list = new ArrayList<>();
-      //  ArticleListAdapter adapter = new ArticleListAdapter(R.layout.item_article,list);
+        List<ArticleItemData> articleList = new ArrayList<>();
+        ArticleListAdapter adapter = new ArticleListAdapter(R.layout.item_article,articleList);
     }
 
     @Override
