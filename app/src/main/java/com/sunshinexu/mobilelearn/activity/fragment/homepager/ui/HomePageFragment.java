@@ -1,8 +1,12 @@
 package com.sunshinexu.mobilelearn.activity.fragment.homepager.ui;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageContract;
@@ -10,13 +14,20 @@ import com.sunshinexu.mobilelearn.activity.fragment.homepager.presenter.Homepage
 import com.sunshinexu.mobilelearn.base.fragment.BaseFragment;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
+import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 
 public class HomePageFragment extends BaseFragment<HomepagePresenter> implements HomepageContract.View {
 
+    @BindView(R.id.hp_recycler_view)
+    RecyclerView hpRecyclerView;
+    @BindView(R.id.hp_refresh_layout)
+    SmartRefreshLayout hpSmartRefreshLayout;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_homepage;
@@ -25,13 +36,48 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     @Override
     protected void initView() {
         List<ArticleItemData> articleList = new ArrayList<>();
-        ArticleListAdapter adapter = new ArticleListAdapter(R.layout.item_article,articleList);
+        ArticleListAdapter adapter = new ArticleListAdapter(R.layout.item_article, articleList);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                openArticleDetail(view,position);
+                openArticleDetail(view, position);
             }
         });
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                childOnClick(view, position);
+            }
+        });
+        hpRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
+        hpRecyclerView.setHasFixedSize(true);
+        LinearLayout mGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.head_banner, null);
+        Banner banner = mGroup.findViewById(R.id.head_banner);
+        mGroup.removeView(banner);
+        adapter.setHeaderView(banner);
+        hpRecyclerView.setAdapter(adapter);
+    }
+
+    private void childOnClick(View view, int position) {
+        switch (view.getId()) {
+            case R.id.tv_article_chapterName:
+                break;
+            case R.id.tv_article_tag:
+                break;
+            case R.id.iv_article_like:
+                collectArticle(position);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 收藏文章
+     * @param position 传入点击的位置
+     */
+    private void collectArticle(int position) {
+
     }
 
     private void openArticleDetail(View view, int position) {

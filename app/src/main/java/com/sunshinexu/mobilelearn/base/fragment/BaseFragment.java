@@ -17,7 +17,7 @@ import dagger.android.support.AndroidSupportInjection;
 public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleFragment implements IView {
 
     @Inject
-    protected T presenter;
+    protected T Presenter;
 
     @Override
     public void onAttach(Activity activity) {
@@ -28,24 +28,24 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (presenter != null) {
-            presenter.attachView(this);
+        if (Presenter != null) {
+            Presenter.attachView(this);
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        if (presenter != null) {
-            presenter = null;
+        if (Presenter != null) {
+            Presenter = null;
         }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (presenter != null) {
-            presenter.detachView();
+        if (Presenter != null) {
+            Presenter.detachView();
         }
     }
 
