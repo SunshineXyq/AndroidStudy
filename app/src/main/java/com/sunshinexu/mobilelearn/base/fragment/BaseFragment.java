@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.sunshinexu.mobilelearn.base.presenter.IPresenter;
@@ -16,17 +17,21 @@ import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleFragment implements IView {
 
+    private static final String TAG = "BaseFragment";
+
     @Inject
     protected T Presenter;
 
     @Override
     public void onAttach(Activity activity) {
-        AndroidSupportInjection.inject(this);
+        Log.d(TAG, "onAttach: ");
+        AndroidSupportInjection.inject(this);     //必须在 onAttach 中完成
         super.onAttach(activity);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
         if (Presenter != null) {
             Presenter.attachView(this);

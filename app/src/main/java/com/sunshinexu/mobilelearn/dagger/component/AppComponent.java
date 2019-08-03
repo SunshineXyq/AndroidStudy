@@ -18,6 +18,7 @@ package com.sunshinexu.mobilelearn.dagger.component;
 
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.dagger.module.AllActivityModule;
+import com.sunshinexu.mobilelearn.dagger.module.AllFragmentModule;
 import com.sunshinexu.mobilelearn.dagger.module.AppModule;
 import com.sunshinexu.mobilelearn.dagger.module.HttpModule;
 
@@ -29,9 +30,10 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
-        AndroidInjectionModule.class,              //支持四大组件绑定
+        AndroidInjectionModule.class,              //支持四大组件都可以被绑定
         AndroidSupportInjectionModule.class,       //第一步添加类，解决每个类需要inject(this),代码重复问题
         AllActivityModule.class,                   //统一管理，依赖于 AppComponent 的 module
+        AllFragmentModule.class,
         AppModule.class,
         HttpModule.class
 })

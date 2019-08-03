@@ -27,7 +27,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleA
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
+        AndroidInjection.inject(this);     //实现 Activity 的注入
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
     }

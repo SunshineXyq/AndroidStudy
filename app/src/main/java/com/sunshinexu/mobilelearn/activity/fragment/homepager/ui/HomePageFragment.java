@@ -1,7 +1,9 @@
 package com.sunshinexu.mobilelearn.activity.fragment.homepager.ui;
 
+import android.support.design.widget.NavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -24,10 +26,19 @@ import butterknife.BindView;
 
 public class HomePageFragment extends BaseFragment<HomepagePresenter> implements HomepageContract.View {
 
+    private static final String TAG = "HomePageFragment";
+
     @BindView(R.id.hp_recycler_view)
     RecyclerView hpRecyclerView;
     @BindView(R.id.hp_refresh_layout)
     SmartRefreshLayout hpSmartRefreshLayout;
+
+
+    public static HomePageFragment newInstance(){
+        HomePageFragment homePageFragment = new HomePageFragment();
+        return homePageFragment;
+
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_homepage;
