@@ -7,7 +7,7 @@ import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 
 /**
- * 每个继承 BaseFragment 的 Fragment 都继承同一个组件
+ * 引入appComponent中的AndroidInjectionModule，每个继承 BaseFragment 的 Fragment 都继承同一个组件
  * 下一步创建 AllFragmentModule
  */
 

@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-20'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-20'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
     //base
 //    implementation 'com.android.support:preference-v7:29.0.0'
 //    implementation 'com.android.support:preference-v7:29.0.0'
