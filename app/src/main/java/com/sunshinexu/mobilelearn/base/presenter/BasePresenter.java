@@ -1,5 +1,7 @@
 package com.sunshinexu.mobilelearn.base.presenter;
 
+import android.util.Log;
+
 import com.sunshinexu.mobilelearn.base.view.IView;
 import com.sunshinexu.mobilelearn.core.DataManager;
 
@@ -15,6 +17,8 @@ import io.reactivex.disposables.Disposable;
 
 public class BasePresenter<T extends IView> implements IPresenter<T>{
 
+    private static final String TAG = "BasePresenter";
+
     protected T mView;
     private CompositeDisposable compositeDisposable;
 
@@ -22,6 +26,7 @@ public class BasePresenter<T extends IView> implements IPresenter<T>{
     public DataManager dataManager;
 
     public void attachView(T view) {
+        Log.d(TAG, "attachView: ");
         this.mView = view;
         registerEventBus();
     }

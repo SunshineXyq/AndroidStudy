@@ -2,8 +2,11 @@ package com.sunshinexu.mobilelearn.core;
 
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
+import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.pre.PreHelper;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -63,6 +66,10 @@ public class DataManager implements PreHelper,HttpHelper{
         return mHttpHelper.cancelAddArticleCollect(id);
     }
 
+    @Override
+    public Observable<BaseResponse<List<ArticleItemData>>> getUpArticles() {
+        return null;
+    }
 
 }
 

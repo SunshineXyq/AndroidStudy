@@ -1,5 +1,6 @@
 package com.sunshinexu.mobilelearn.activity.fragment.homepager.ui;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,8 @@ import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageContract;
@@ -97,7 +100,17 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     @Override
     protected void initData() {
+        initRefreshLayout();
 
+    }
+
+    private void initRefreshLayout() {
+        hpSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                presenter.refreshLayout(true);
+            }
+        });
     }
 
     @Override

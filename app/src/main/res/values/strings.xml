@@ -23,7 +23,7 @@
     <string name="failed_to_cancel_collect">取消收藏失败</string>
     <string name="collect_success">收藏成功</string>
     <string name="collect_failed">收藏失败</string>
-
+    <string name="failed_to_get_article">获取文章列表失败</string>
 
 
 </resources>

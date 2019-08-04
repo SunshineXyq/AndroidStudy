@@ -1,5 +1,6 @@
 package com.sunshinexu.mobilelearn.base.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,13 +21,20 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
     private Unbinder unbinder;
     private static final String TAG = "AbstractSimpleFragment";
 
+    @Override
+    public void onAttach(Activity activity) {
+        Log.d(TAG, "onAttach: ");
+        super.onAttach(activity);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(),container,false);
-        Log.d(TAG, "onCreateView: ");
+        Log.d(TAG, "onCreateView1: ");
         unbinder = ButterKnife.bind(this,view);
         initView();
+        Log.d(TAG, "onCreateView: ");
         return view;
     }
 

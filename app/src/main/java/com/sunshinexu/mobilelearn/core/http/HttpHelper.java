@@ -2,7 +2,10 @@ package com.sunshinexu.mobilelearn.core.http;
 
 
 import com.sunshinexu.mobilelearn.http.BaseResponse;
+import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -19,6 +22,8 @@ public interface HttpHelper {
     Observable<BaseResponse<ArticleListData>> addArticleCollect(int id);
 
     Observable<BaseResponse<ArticleListData>> cancelAddArticleCollect(int id);
+
+    Observable<BaseResponse<List<ArticleItemData>>> getUpArticles();
 
 
 }

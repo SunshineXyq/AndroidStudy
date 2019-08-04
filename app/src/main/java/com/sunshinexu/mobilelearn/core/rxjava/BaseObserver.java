@@ -45,5 +45,5 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     }
 
-    public abstract void success();
+    public abstract void success(T t);
 }

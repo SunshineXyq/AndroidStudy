@@ -20,7 +20,7 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     private static final String TAG = "BaseFragment";
 
     @Inject
-    protected T Presenter;
+    protected T presenter;
 
     @Override
     public void onAttach(Activity activity) {
@@ -33,24 +33,24 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
-        if (Presenter != null) {
-            Presenter.attachView(this);
+        if (presenter != null) {
+            presenter.attachView(this);
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        if (Presenter != null) {
-            Presenter = null;
+        if (presenter != null) {
+            presenter = null;
         }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (Presenter != null) {
-            Presenter.detachView();
+        if (presenter != null) {
+            presenter.detachView();
         }
     }
 
