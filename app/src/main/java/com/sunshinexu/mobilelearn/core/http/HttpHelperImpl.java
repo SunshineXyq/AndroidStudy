@@ -2,7 +2,10 @@ package com.sunshinexu.mobilelearn.core.http;
 
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.api.ApiService;
+import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,5 +33,10 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<ArticleListData>> cancelAddArticleCollect(int id) {
         return mApiService.cancelAddArticleCollect(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ArticleItemData>>> getUpArticles() {
+        return mApiService.getUpArticles();
     }
 }

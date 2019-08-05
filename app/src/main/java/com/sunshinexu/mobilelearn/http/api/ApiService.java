@@ -3,7 +3,10 @@ package com.sunshinexu.mobilelearn.http.api;
 
 
 import com.sunshinexu.mobilelearn.http.BaseResponse;
+import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -24,4 +27,8 @@ public interface ApiService {
     //取消文章收藏
     @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResponse<ArticleListData>> cancelAddArticleCollect(@Path("id") int id);
+
+    //获取置顶文章列表
+    @GET("article/top/json")
+    Observable<BaseResponse<List<ArticleItemData>>> getUpArticles();
 }

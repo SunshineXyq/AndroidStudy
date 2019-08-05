@@ -26,12 +26,22 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
 
     @Override
     public void getArticleData(boolean isShowStatusView) {
-
+        addSubscribe(dataManager.getArticleList(currentPage)
+                .compose(RxJavaUtil.SchedulerTransformer())
+                .filter(articleListData -> mView != null)
+                .subscribeWith(new BaseObserver<ArticleListData>(mView, MobileLearnApp
+                        .getContext().getString(R.string.failed_to_get_article), isShowStatusView) {
+                    @Override
+                    public void success(ArticleListData articleListData) {
+                        mView.showList(articleListData, isRefresh);
+                    }
+                }));
     }
 
     /**
      * zip() 一个函数组合多个 Observable 发射的数据集合，可将多个请求结合
      * lambda 接收两个参数
+     *
      * @param isShowStatusView
      */
 
@@ -39,17 +49,18 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
     public void getBannerData(boolean isShowStatusView) {
         addSubscribe(Observable.zip(dataManager.getUpArticles(), dataManager.getArticleList(0),
                 (upArticlesResponse, articleListResponse) -> {
-                    articleListResponse.getData().getDatas().addAll(0, upArticlesResponse.getData());
+                    articleListResponse.getData().getDatas().addAll(0,
+                            upArticlesResponse.getData());
                     return articleListResponse;
                 })
                 .compose(RxJavaUtil.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView, MobileLearnApp
-                        .getContext().getString(R.string.failed_to_get_article),isShowStatusView) {
+                        .getContext().getString(R.string.failed_to_get_article), isShowStatusView) {
 
                     @Override
                     public void success(ArticleListData articleListData) {
-                        mView.showList(articleListData,isRefresh);
+                        mView.showList(articleListData, isRefresh);
                     }
                 }));
     }
@@ -67,7 +78,9 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
     }
 
     @Override
-    public void loadMore(boolean isShowStatusView) {
-
+    public void loadMore() {
+        isRefresh = true;
+        currentPage++;
+        getArticleData(false);
     }
 }

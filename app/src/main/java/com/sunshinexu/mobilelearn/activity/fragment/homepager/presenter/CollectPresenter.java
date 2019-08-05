@@ -18,8 +18,9 @@ public class CollectPresenter<V extends CollectContract.View> extends BasePresen
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         MobileLearnApp.getContext().getString(R.string.failed_to_cancel_collect),
                         false) {
+
                     @Override
-                    public void success() {
+                    public void success(ArticleListData articleListData) {
                         mView.showCollectSuccess(position);
                     }
                 }));
@@ -32,8 +33,9 @@ public class CollectPresenter<V extends CollectContract.View> extends BasePresen
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
                         MobileLearnApp.getContext().getString(R.string.failed_to_cancel_collect)) {
+
                     @Override
-                    public void success() {
+                    public void success(ArticleListData articleListData) {
                         mView.showCancelCollect(position);
                     }
                 }));

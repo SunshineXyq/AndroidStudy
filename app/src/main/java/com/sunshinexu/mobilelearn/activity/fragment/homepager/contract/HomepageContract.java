@@ -21,6 +21,6 @@ public interface HomepageContract {
 
         void refreshLayout(boolean isShowStatusView);
 
-        void loadMore(boolean isShowStatusView);
+        void loadMore();
     }
 }
