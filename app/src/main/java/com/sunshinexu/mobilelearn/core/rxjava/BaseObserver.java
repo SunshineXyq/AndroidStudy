@@ -1,5 +1,7 @@
 package com.sunshinexu.mobilelearn.core.rxjava;
 
+import android.support.annotation.CallSuper;
+
 import com.sunshinexu.mobilelearn.base.view.IView;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 
@@ -31,8 +33,27 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
     }
 
     @Override
-    public void onNext(BaseResponse<T> tBaseResponse) {
+    protected void onStart() {
+        if (isShowStatusView) {
+            view.showLoading();
+        }
+    }
 
+    @Override
+    public void onNext(BaseResponse<T> tBaseResponse) {
+        if (tBaseResponse.getErrorCode() == BaseResponse.Success) {
+            if (isShowStatusView) {
+                view.hideLoading();
+                view.showContent();
+            }
+            success(tBaseResponse.getData());
+        } else {
+            if (isShowStatusView) {
+                view.hideLoading();
+                view.showContent();
+            }
+            onFailure(tBaseResponse.getErrorCode(),tBaseResponse.getErrorMsg());
+        }
     }
 
     @Override
@@ -46,4 +67,10 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
     }
 
     public abstract void success(T t);
+
+    @CallSuper
+    public void onFailure(int code, String message) {
+        view.showErrorMessage(message);
+    }
+
 }

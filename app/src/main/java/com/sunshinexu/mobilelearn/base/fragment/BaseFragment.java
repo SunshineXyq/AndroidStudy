@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
+import com.classic.common.MultipleStatusView;
+import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.base.presenter.IPresenter;
 import com.sunshinexu.mobilelearn.base.view.IView;
 
@@ -21,6 +23,7 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     @Inject
     protected T presenter;
+    private MultipleStatusView custom_multiple_view;
 
     @Override
     public void onAttach(Activity activity) {
@@ -33,6 +36,7 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
+        custom_multiple_view = view.findViewById(R.id.custom_multiple_view);
         if (presenter != null) {
             presenter.attachView(this);
         }
@@ -61,7 +65,11 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     @Override
     public void showLoading() {
-
+        if (custom_multiple_view == null) {
+            return;
+        } else {
+            custom_multiple_view.showLoading();
+        }
     }
 
     @Override

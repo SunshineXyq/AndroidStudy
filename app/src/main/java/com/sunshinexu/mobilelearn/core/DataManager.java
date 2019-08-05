@@ -68,7 +68,7 @@ public class DataManager implements PreHelper,HttpHelper{
 
     @Override
     public Observable<BaseResponse<List<ArticleItemData>>> getUpArticles() {
-        return null;
+        return mHttpHelper.getUpArticles();
     }
 
 }

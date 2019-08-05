@@ -102,7 +102,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     @Override
     protected void initData() {
         initRefreshLayout();
-
+        presenter.refreshLayout(true);
     }
 
     private void initRefreshLayout() {
@@ -125,7 +125,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     @Override
     public void showList(ArticleListData listData, boolean isRefresh) {
-
+        System.out.println(listData.toString());
     }
 
     @Override

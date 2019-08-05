@@ -1,5 +1,5 @@
 <resources
-    xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">AndroidStudy</string>
     <string name="home_page">主页</string>
     <string name="down_up_btn_show" translatable="false">com.sunshinexu.mobilelearn.utils.behavior.BottomNavigationBehavior</string>

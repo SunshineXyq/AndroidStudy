@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiService {
-    String BASE_URL = "https://www.android.com/";
+    String BASE_URL = "https://www.wanandroid.com/";
 
     //获取文章列表
     @GET("article/list/{pageNum}/json")
