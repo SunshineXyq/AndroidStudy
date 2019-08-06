@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 
-import com.sunshinexu.mobilelearn.base.presenter.IPresenter;
-import com.sunshinexu.mobilelearn.base.view.IView;
+import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
+import com.sunshinexu.mobilelearn.base.view.BaseView;
 
 import javax.inject.Inject;
 
@@ -16,8 +16,8 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import android.support.v4.app.Fragment;
 
-public abstract class BaseActivity<T extends IPresenter> extends AbstractSimpleActivity
-        implements HasSupportFragmentInjector, IView {
+public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimpleActivity
+        implements HasSupportFragmentInjector, BaseView {
     private static final String TAG = "BaseActivity";
 
     @Inject

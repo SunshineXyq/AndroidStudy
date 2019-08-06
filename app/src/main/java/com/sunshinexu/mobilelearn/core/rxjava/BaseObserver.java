@@ -1,32 +1,34 @@
 package com.sunshinexu.mobilelearn.core.rxjava;
 
 import android.support.annotation.CallSuper;
+import android.util.Log;
 
-import com.sunshinexu.mobilelearn.base.view.IView;
+import com.sunshinexu.mobilelearn.base.view.BaseView;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 
 import io.reactivex.observers.ResourceObserver;
 
 public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> {
-    private IView view;
+    private BaseView view;
     private String error;
     private boolean isShowStatusView;
+    private static final String TAG = "BaseObserver";
 
-    protected BaseObserver(IView view){
+    protected BaseObserver(BaseView view){
         this.view = view;
     }
 
-    protected BaseObserver(IView view,String error){
+    protected BaseObserver(BaseView view, String error){
         this.view = view;
         this.error = error;
     }
 
-    protected BaseObserver(IView view,boolean isShowStatusView){
+    protected BaseObserver(BaseView view, boolean isShowStatusView){
         this.view = view;
         this.isShowStatusView = isShowStatusView;
     }
 
-    protected BaseObserver(IView view,String error,boolean isShowStatusView){
+    protected BaseObserver(BaseView view, String error, boolean isShowStatusView){
         this.view = view;
         this.error = error;
         this.isShowStatusView = isShowStatusView;
@@ -34,6 +36,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart: ");
         if (isShowStatusView) {
             view.showLoading();
         }
@@ -41,6 +44,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     public void onNext(BaseResponse<T> tBaseResponse) {
+        Log.d(TAG, "onNext: ");
         if (tBaseResponse.getErrorCode() == BaseResponse.Success) {
             if (isShowStatusView) {
                 view.hideLoading();
@@ -63,7 +67,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     public void onComplete() {
-
+        Log.d(TAG, "onComplete: ");
     }
 
     public abstract void success(T t);

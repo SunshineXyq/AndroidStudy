@@ -1,5 +1,4 @@
-<resources
-    xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">AndroidStudy</string>
     <string name="home_page">主页</string>
     <string name="down_up_btn_show" translatable="false">com.sunshinexu.mobilelearn.utils.behavior.BottomNavigationBehavior</string>
@@ -19,11 +18,13 @@
     <!-- collect -->
     <string name="collect">收藏</string>
     <string name="cancel_collect">已取消收藏</string>
-    <string name="failed_to_get_collect_list">获取收藏文章失败</string>
+    <string name="failed_to_get_collect_list">收藏文章失败</string>
     <string name="failed_to_cancel_collect">取消收藏失败</string>
     <string name="collect_success">收藏成功</string>
     <string name="collect_failed">收藏失败</string>
+    <!--article-->
     <string name="failed_to_get_article">获取文章列表失败</string>
+    <string name="failed_to_get_banner">获取首页推广栏内容失败</string>
 
 
 </resources>

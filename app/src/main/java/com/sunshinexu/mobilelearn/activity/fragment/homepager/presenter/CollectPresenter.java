@@ -3,12 +3,12 @@ package com.sunshinexu.mobilelearn.activity.fragment.homepager.presenter;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.CollectContract;
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
-import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
+import com.sunshinexu.mobilelearn.base.presenter.Presenter;
 import com.sunshinexu.mobilelearn.core.rxjava.BaseObserver;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.utils.RxJavaUtil;
 
-public class CollectPresenter<V extends CollectContract.View> extends BasePresenter<V>
+public class CollectPresenter<V extends CollectContract.View> extends Presenter<V>
         implements CollectContract.Presenter<V> {
     @Override
     public void addCollectArticle(int position, int id) {

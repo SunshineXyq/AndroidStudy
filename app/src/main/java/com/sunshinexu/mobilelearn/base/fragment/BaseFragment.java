@@ -9,15 +9,15 @@ import android.view.View;
 
 import com.classic.common.MultipleStatusView;
 import com.sunshinexu.mobilelearn.R;
-import com.sunshinexu.mobilelearn.base.presenter.IPresenter;
-import com.sunshinexu.mobilelearn.base.view.IView;
+import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
+import com.sunshinexu.mobilelearn.base.view.BaseView;
 
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
 
-public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleFragment implements IView {
+public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimpleFragment implements BaseView {
 
     private static final String TAG = "BaseFragment";
 
@@ -94,7 +94,11 @@ public abstract class BaseFragment<T extends IPresenter> extends AbstractSimpleF
 
     @Override
     public void showContent() {
-
+        if (custom_multiple_view == null) {
+            return;
+        } else {
+            custom_multiple_view.showContent();
+        }
     }
 
     @Override

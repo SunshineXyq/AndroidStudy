@@ -1,6 +1,6 @@
 package com.sunshinexu.mobilelearn.base.view;
 
-public interface IView {
+public interface BaseView {
     void showErrorMessage(String message);
     void showLoading();
     void hideLoading();

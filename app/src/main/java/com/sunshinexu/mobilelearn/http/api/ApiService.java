@@ -2,6 +2,7 @@ package com.sunshinexu.mobilelearn.http.api;
 
 
 
+import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
@@ -31,4 +32,7 @@ public interface ApiService {
     //获取置顶文章列表
     @GET("article/top/json")
     Observable<BaseResponse<List<ArticleItemData>>> getUpArticles();
+
+    @GET("banner/json")
+    Observable<BaseResponse<List<BannerData>>> getBannerData();
 }

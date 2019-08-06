@@ -1,5 +1,6 @@
 package com.sunshinexu.mobilelearn.activity.fragment.homepager.ui;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,12 +16,18 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
+import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.GlideImageLoader;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageContract;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.presenter.HomepagePresenter;
+import com.sunshinexu.mobilelearn.activity.main.ui.ArticleDetailActivity;
 import com.sunshinexu.mobilelearn.base.fragment.BaseFragment;
+import com.sunshinexu.mobilelearn.core.constant.Constants;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +43,15 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     RecyclerView hpRecyclerView;
     @BindView(R.id.hp_refresh_layout)
     SmartRefreshLayout hpSmartRefreshLayout;
+    private Banner banner;
 
 
-    public static HomePageFragment newInstance(){
+    public static HomePageFragment newInstance() {
         HomePageFragment homePageFragment = new HomePageFragment();
         return homePageFragment;
 
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_homepage;
@@ -66,8 +75,9 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
         });
         hpRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         hpRecyclerView.setHasFixedSize(true);
+        //添加头布局 Banner 支持轮播效果
         LinearLayout mGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.head_banner, null);
-        Banner banner = mGroup.findViewById(R.id.head_banner);
+        banner = mGroup.findViewById(R.id.head_banner);
         mGroup.removeView(banner);
         adapter.setHeaderView(banner);
         hpRecyclerView.setAdapter(adapter);
@@ -89,6 +99,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     /**
      * 收藏文章
+     *
      * @param position 传入点击的位置
      */
     private void collectArticle(int position) {
@@ -130,7 +141,39 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     @Override
     public void showBannerData(List<BannerData> bannerDataList) {
-
+        ArrayList<String> imageList = new ArrayList<>();
+        ArrayList<String> titleList = new ArrayList<>();
+        ArrayList<String> urlList = new ArrayList<>();
+        ArrayList<Integer> articleIdList = new ArrayList<>();
+        for (BannerData bannerData : bannerDataList) {
+            imageList.add(bannerData.getImagePath());
+            titleList.add(bannerData.getTitle());
+            urlList.add(bannerData.getUrl());
+            articleIdList.add(bannerData.getId());
+        }
+        //显示圆形指示器和标题
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        banner.setImageLoader(new GlideImageLoader());
+        banner.setImages(imageList);
+        banner.setBannerAnimation(Transformer.FlipVertical);
+        banner.setBannerTitles(titleList);
+        banner.isAutoPlay(true);
+        banner.setDelayTime(2800);
+        banner.setIndicatorGravity(BannerConfig.CENTER);
+        banner.start();
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent intent = new Intent(_mActivity, ArticleDetailActivity.class);
+                intent.putExtra(Constants.ARTICLE_LINK,urlList.get(position));
+                intent.putExtra(Constants.ARTICLE_TITLE,titleList.get(position));
+                intent.putExtra(Constants.ARTICLE_ID,articleIdList.get(position));
+                intent.putExtra(Constants.IS_COLLECTED,false);
+                intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,false);
+                intent.putExtra(Constants.ARTICLE_ITEM_POSITION,-1);
+                intent.putExtra(Constants.EVENT_BUS_TAG,Constants.TAG_DEFAULT);
+            }
+        });
     }
 
     @Override

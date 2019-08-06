@@ -1,11 +1,11 @@
 package com.sunshinexu.mobilelearn.activity.fragment.project.presenter;
 
 import com.sunshinexu.mobilelearn.activity.fragment.project.contract.ProjectContract;
-import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
+import com.sunshinexu.mobilelearn.base.presenter.Presenter;
 
 import javax.inject.Inject;
 
-public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter {
+public class ProjectPresenter extends Presenter<ProjectContract.View> implements ProjectContract.Presenter {
     @Inject
     public ProjectPresenter() {
     }

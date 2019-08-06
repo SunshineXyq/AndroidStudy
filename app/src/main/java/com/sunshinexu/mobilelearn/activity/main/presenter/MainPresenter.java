@@ -1,13 +1,13 @@
 package com.sunshinexu.mobilelearn.activity.main.presenter;
 
-import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
+import com.sunshinexu.mobilelearn.base.presenter.Presenter;
 import com.sunshinexu.mobilelearn.activity.main.contract.MainContract;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 import javax.inject.Inject;
 
-public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
+public class MainPresenter extends Presenter<MainContract.View> implements MainContract.Presenter {
     @Inject
     MainPresenter(){
 

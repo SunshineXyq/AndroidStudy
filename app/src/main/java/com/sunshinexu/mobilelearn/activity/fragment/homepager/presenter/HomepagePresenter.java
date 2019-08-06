@@ -2,12 +2,15 @@ package com.sunshinexu.mobilelearn.activity.fragment.homepager.presenter;
 
 
 import com.sunshinexu.mobilelearn.R;
+import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageContract;
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.core.rxjava.BaseObserver;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.utils.RxJavaUtil;
 
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,14 +42,34 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
     }
 
     /**
-     * zip() 一个函数组合多个 Observable 发射的数据集合，可将多个请求结合
-     * lambda 接收两个参数
-     *
+     * 获取首页的 Banner 数据
      * @param isShowStatusView
      */
 
     @Override
     public void getBannerData(boolean isShowStatusView) {
+        addSubscribe(dataManager.getBannerData()
+                .compose(RxJavaUtil.SchedulerTransformer())
+                .filter(articleBannerData -> mView != null)
+                .subscribeWith(new BaseObserver<List<BannerData>>(mView,
+                        MobileLearnApp.getContext().getString(R.string.failed_to_get_banner),
+                        isShowStatusView) {
+                    @Override
+                    public void success(List<BannerData> bannerData) {
+                        mView.showBannerData(bannerData);
+                    }
+                }));
+    }
+
+    /**
+     * zip() 一个函数组合多个 Observable 发射的数据集合，可将多个请求结合
+     * lambda 接收两个参数
+     * subscribeWith  一般使用 Rx 请求接口的这种情况会用
+     * @param isShowStatusView
+     */
+    @Override
+    public void getHomepageData(boolean isShowStatusView) {
+        getBannerData(isShowStatusView);
         addSubscribe(Observable.zip(dataManager.getUpArticles(), dataManager.getArticleList(0),
                 (upArticlesResponse, articleListResponse) -> {
                     articleListResponse.getData().getDatas().addAll(0,
@@ -63,11 +86,6 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
                         mView.showList(articleListData, isRefresh);
                     }
                 }));
-    }
-
-    @Override
-    public void getHomepageData(boolean isShowStatusView) {
-        getBannerData(isShowStatusView);
     }
 
     @Override

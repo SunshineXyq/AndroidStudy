@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.core.http;
 
 
+import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
@@ -24,6 +25,8 @@ public interface HttpHelper {
     Observable<BaseResponse<ArticleListData>> cancelAddArticleCollect(int id);
 
     Observable<BaseResponse<List<ArticleItemData>>> getUpArticles();
+
+    Observable<BaseResponse<List<BannerData>>> getBannerData();
 
 
 }
