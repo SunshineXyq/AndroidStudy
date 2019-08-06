@@ -97,7 +97,7 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
 
     @Override
     public void loadMore() {
-        isRefresh = true;
+        isRefresh = false;
         currentPage++;
         getArticleData(false);
     }

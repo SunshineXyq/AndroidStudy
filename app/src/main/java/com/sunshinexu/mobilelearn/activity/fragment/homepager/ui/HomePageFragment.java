@@ -44,6 +44,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     @BindView(R.id.hp_refresh_layout)
     SmartRefreshLayout hpSmartRefreshLayout;
     private Banner banner;
+    private ArticleListAdapter adapter;
 
 
     public static HomePageFragment newInstance() {
@@ -60,7 +61,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     @Override
     protected void initView() {
         List<ArticleItemData> articleList = new ArrayList<>();
-        ArticleListAdapter adapter = new ArticleListAdapter(R.layout.item_article, articleList);
+        adapter = new ArticleListAdapter(R.layout.item_article, articleList);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -122,6 +123,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 presenter.refreshLayout(true);
+                refreshLayout.finishRefresh();
             }
         });
         //上拉加载更多
@@ -136,7 +138,11 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     @Override
     public void showList(ArticleListData listData, boolean isRefresh) {
-        System.out.println(listData.toString());
+        if (isRefresh) {
+            adapter.replaceData(listData.getDatas());
+        } else {
+            adapter.addData(listData.getDatas());
+        }
     }
 
     @Override
@@ -155,7 +161,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         banner.setImageLoader(new GlideImageLoader());
         banner.setImages(imageList);
-        banner.setBannerAnimation(Transformer.FlipVertical);
+        banner.setBannerAnimation(Transformer.ZoomOutSlide);
         banner.setBannerTitles(titleList);
         banner.isAutoPlay(true);
         banner.setDelayTime(2800);
@@ -172,6 +178,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
                 intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,false);
                 intent.putExtra(Constants.ARTICLE_ITEM_POSITION,-1);
                 intent.putExtra(Constants.EVENT_BUS_TAG,Constants.TAG_DEFAULT);
+                startActivity(intent);
             }
         });
     }

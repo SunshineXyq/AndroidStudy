@@ -21,21 +21,29 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleItemData, BaseVi
 
     @Override
     protected void convert(BaseViewHolder helper, ArticleItemData item) {
-        helper.setText(R.id.tv_article_title, item.getTitle()).setText(R.id.tv_article_author, item.getAuthor())
+        helper.setText(R.id.tv_article_title, item.getTitle()).setText(R.id.tv_article_author, "作者：" + item.getAuthor())
                 .setImageResource(R.id.iv_article_like, item.isCollect() ? R.drawable.ic_collect :
                         R.drawable.ic_collect_not);
 
-        if (TextUtils.isEmpty(item.getNiceDate())) {
-            helper.setText(R.id.tv_article_niceDate,item.getNiceDate());
+
+//        if (item.getZan() > 0) {
+//            helper.getView(R.id.iv_article_zan).setVisibility(View.VISIBLE);
+//            helper.setText(R.id.tv_article_zan,item.getZan() + "人觉得很赞");
+//        } else {
+//            helper.getView(R.id.iv_article_zan).setVisibility(View.GONE);
+//        }
+
+        if (!TextUtils.isEmpty(item.getNiceDate())) {
+            helper.setText(R.id.tv_article_public_date,item.getNiceDate());
         }
         if (!TextUtils.isEmpty(item.getChapterName())) {
             String classifyName = item.getSuperChapterName() + " / " + item.getChapterName();
             helper.setText(R.id.tv_article_chapterName, classifyName);
         }
         //是否置顶
-        helper.getView(R.id.tv_article_top).setVisibility(item.getType() == 1 ? View.VISIBLE : View.GONE);
-
-        helper.getView(R.id.tv_article_fresh).setVisibility(item.isFresh() ? View.VISIBLE : View.GONE);
+        helper.getView(R.id.iv_article_top).setVisibility(item.getType() == 1 ? View.VISIBLE : View.GONE);
+        //是否是最新
+        helper.getView(R.id.iv_article_fresh).setVisibility(item.isFresh() ? View.VISIBLE : View.GONE);
 
         if (item.getTags().size() > 0) {
             helper.setText(R.id.tv_article_tag, item.getTags().get(0).getName()).
