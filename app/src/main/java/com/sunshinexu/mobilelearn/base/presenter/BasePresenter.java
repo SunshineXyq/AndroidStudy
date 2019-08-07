@@ -11,7 +11,7 @@ public interface BasePresenter<T extends BaseView> {
     void unregisterEventBus();
 
     void setLoginStatus(boolean loginStatus);
-    void getLoginStatus();
+    boolean getLoginStatus();
     String getLoginAccount();
     void setLoginAccount(String account);
 

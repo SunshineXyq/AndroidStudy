@@ -82,7 +82,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @Override
     protected void initToolbar() {
         getIntentData();
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -94,7 +94,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("点击了");
+
             }
         }) ;
 
@@ -226,9 +226,10 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_collect:
-                mPresenter.checkSharePermission(new RxPermissions(this));
+                dealCollect();
                 break;
             case R.id.item_share:
+                mPresenter.checkSharePermission(new RxPermissions(this));
                 break;
             case R.id.item_open_browser:
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(articleLink));
@@ -238,6 +239,19 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void dealCollect() {
+        if (mPresenter.getLoginStatus()) {
+            if (isCollected) {
+                mPresenter.cancelAddCollectArticle(articleItemPosition,articleId);
+            } else {
+                mPresenter.addCollectArticle(articleItemPosition,articleId);
+            }
+        } else {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override

@@ -5,9 +5,11 @@ public interface BaseView {
     void showLoading();
     void hideLoading();
     void showError();
+
     void showNoNetwork();
     void showEmpty();
     void showContent();
     void handleLoginSuccess();
+
     void handleLogoutSuccess();
 }

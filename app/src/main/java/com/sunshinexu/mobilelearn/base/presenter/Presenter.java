@@ -58,8 +58,8 @@ public class Presenter<T extends BaseView> implements BasePresenter<T> {
     }
 
     @Override
-    public void getLoginStatus() {
-
+    public boolean getLoginStatus() {
+        return dataManager.getLoginStatus();
     }
 
     @Override

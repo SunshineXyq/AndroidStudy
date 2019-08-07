@@ -40,7 +40,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
     @Override
     protected void onViewCreate() {
         Log.d(TAG, "onViewCreate: onViewCreate");
-        //this 是 MainActivity，mPresenter 是 MainPresenter
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
@@ -50,4 +49,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return dispatchingAndroidInjector;
     }
+
+
 }
