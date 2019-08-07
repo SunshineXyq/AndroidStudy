@@ -28,5 +28,11 @@
     <string name="failed_to_get_article">获取文章列表失败</string>
     <string name="failed_to_get_banner">获取首页推广栏内容失败</string>
 
+    <string name="share_type_url" translatable="false">%1$sShare【%2$s】special top：%3$s</string>
+
+    <!--menu-->
+    <string name="item_collect">收藏</string>
+    <string name="item_share">分享</string>
+    <string name="item_open_browser">其他浏览器打开</string>
 
 </resources>

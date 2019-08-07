@@ -1,15 +1,33 @@
 package com.sunshinexu.mobilelearn.activity.main.ui;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+
+import com.just.agentweb.AgentWeb;
+import com.just.agentweb.DefaultWebClient;
+import com.just.agentweb.NestedScrollAgentWebView;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.main.contract.ArticleDetailContract;
 import com.sunshinexu.mobilelearn.activity.main.presenter.ArticleDetailPresenter;
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import java.lang.reflect.Method;
 
 import butterknife.BindView;
 
@@ -28,10 +46,17 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
+    @BindView(R.id.cl_content)
+     CoordinatorLayout cl_content;
+    private AgentWeb agentWeb;
+
 
     @Override
-    public void shareActivity() {
-
+    public void shareArticle() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.share_type_url, getString(R.string.app_name), title, articleLink));
+        intent.setType("text/plain");
+        startActivity(intent);
     }
 
     @Override
@@ -66,6 +91,13 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
             toolbarTitle.setText(Html.fromHtml(title));
             toolbarTitle.setSelected(true);
         }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("点击了");
+            }
+        }) ;
+
     }
 
     private void getIntentData() {
@@ -86,6 +118,28 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     @Override
     protected void initEventAndData() {
+        //集合了影响浏览器的事件到来时的回调方法
+        WebChromeClient webChromeClient = new WebChromeClient(){
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+               // toolbar.setTitle(Html.fromHtml(title));
+            }
+        };
+        CoordinatorLayout.LayoutParams layoutParams = new CoordinatorLayout.LayoutParams(-1, -1);
+        layoutParams.setBehavior(new AppBarLayout.ScrollingViewBehavior());
+        NestedScrollAgentWebView nestedScrollAgentWebView = new NestedScrollAgentWebView(this);
+        //AgentWeb 是对 WebView 的封装
+        agentWeb = AgentWeb.with(this)
+                .setAgentWebParent(cl_content,layoutParams)
+                .useDefaultIndicator()
+                .setWebView(nestedScrollAgentWebView)
+                .setWebChromeClient(webChromeClient)
+                .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
+                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
+                .createAgentWeb()
+                .ready()
+                .go(articleLink);
 
     }
 
@@ -132,5 +186,82 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @Override
     public void handleLogoutSuccess() {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.article_detail_menu,menu);
+        MenuItem item = menu.findItem(R.id.item_collect);
+        item.setVisible(isShowCollectIcon);
+        item.setIcon(isCollected ? R.drawable.ic_collect : R.drawable.ic_collect_not);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    /**
+     * 可以让打开的菜单同时显示图标和文字
+     * @param featureId
+     * @param menu
+     * @return
+     */
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if (menu != null) {
+            if ("MenuBuilder".equalsIgnoreCase(menu.getClass().getSimpleName())) {
+                try {
+                    @SuppressLint("PrivateApi")
+                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    method.setAccessible(true);
+                    method.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_collect:
+                mPresenter.checkSharePermission(new RxPermissions(this));
+                break;
+            case R.id.item_share:
+                break;
+            case R.id.item_open_browser:
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(articleLink));
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        if (!agentWeb.back()) {
+            super.onBackPressedSupport();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        agentWeb.getWebLifeCycle().onResume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        agentWeb.getWebLifeCycle().onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        agentWeb.getWebLifeCycle().onDestroy();
+        super.onDestroy();
     }
 }

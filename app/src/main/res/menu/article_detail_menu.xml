@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_collect"
+        android:title="@string/item_collect"
+        android:icon="@drawable/ic_collect_not"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/item_share"
+        android:title="@string/item_share"
+        android:icon="@drawable/ic_share"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/item_open_browser"
+        android:title="@string/item_open_browser"
+        android:icon="@drawable/ic_browser"
+        app:showAsAction="never"
+        />
+</menu>

@@ -7,7 +7,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 public interface ArticleDetailContract {
     interface View extends CollectContract.View {
-        void shareActivity();
+        void shareArticle();
         void shareFailed();
     }
 
