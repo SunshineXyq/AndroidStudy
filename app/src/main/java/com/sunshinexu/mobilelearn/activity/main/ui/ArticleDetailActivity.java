@@ -203,7 +203,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     @Override
     public void shareFailed() {
-
+        Toast.makeText(this,R.string.failed_to_share_failed,Toast.LENGTH_SHORT).show();
     }
 
     @Override

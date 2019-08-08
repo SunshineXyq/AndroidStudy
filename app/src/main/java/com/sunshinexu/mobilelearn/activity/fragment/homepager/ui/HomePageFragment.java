@@ -86,10 +86,6 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     private void childOnClick(View view, int position) {
         switch (view.getId()) {
-            case R.id.tv_article_chapterName:
-                break;
-            case R.id.tv_article_tag:
-                break;
             case R.id.iv_article_like:
                 collectArticle(position);
                 break;
@@ -105,6 +101,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
      */
     private void collectArticle(int position) {
 
+
     }
 
     private void openArticleDetail(View view, int position) {
@@ -113,9 +110,9 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
         intent.putExtra(Constants.ARTICLE_TITLE,adapter.getData().get(position).getTitle());
         intent.putExtra(Constants.ARTICLE_ID,adapter.getData().get(position).getId());
         intent.putExtra(Constants.IS_COLLECTED,adapter.getData().get(position).isCollect());
-        intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,false);
-        intent.putExtra(Constants.ARTICLE_ITEM_POSITION,-1);
-        intent.putExtra(Constants.EVENT_BUS_TAG,Constants.TAG_DEFAULT);
+        intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,true);
+        intent.putExtra(Constants.ARTICLE_ITEM_POSITION,position);
+        intent.putExtra(Constants.EVENT_BUS_TAG,"homepage");
         startActivity(intent);
     }
 
