@@ -16,6 +16,7 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
@@ -25,7 +26,11 @@ import com.sunshinexu.mobilelearn.activity.main.contract.ArticleDetailContract;
 import com.sunshinexu.mobilelearn.activity.main.presenter.ArticleDetailPresenter;
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
+import com.sunshinexu.mobilelearn.core.eventbus.CollectEvent;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+
+import org.simple.eventbus.EventBus;
 
 import java.lang.reflect.Method;
 
@@ -49,30 +54,8 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @BindView(R.id.cl_content)
      CoordinatorLayout cl_content;
     private AgentWeb agentWeb;
+    private MenuItem collectItem;
 
-
-    @Override
-    public void shareArticle() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.share_type_url, getString(R.string.app_name), title, articleLink));
-        intent.setType("text/plain");
-        startActivity(intent);
-    }
-
-    @Override
-    public void shareFailed() {
-
-    }
-
-    @Override
-    public void showCollectSuccess(int position) {
-
-    }
-
-    @Override
-    public void showCancelCollect(int position) {
-
-    }
 
     @Override
     protected int getLayoutId() {
@@ -82,7 +65,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @Override
     protected void initToolbar() {
         getIntentData();
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -94,7 +77,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                onBackPressedSupport();
             }
         }) ;
 
@@ -143,57 +126,13 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     }
 
-    @Override
-    public void showErrorMessage(String message) {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void showNoNetwork() {
-
-    }
-
-    @Override
-    public void showEmpty() {
-
-    }
-
-    @Override
-    public void showContent() {
-
-    }
-
-    @Override
-    public void handleLoginSuccess() {
-
-    }
-
-    @Override
-    public void handleLogoutSuccess() {
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.article_detail_menu,menu);
-        MenuItem item = menu.findItem(R.id.item_collect);
-        item.setVisible(isShowCollectIcon);
-        item.setIcon(isCollected ? R.drawable.ic_collect : R.drawable.ic_collect_not);
+        collectItem = menu.findItem(R.id.item_collect);
+        collectItem.setVisible(isShowCollectIcon);
+        collectItem.setIcon(isCollected ? R.drawable.ic_collect : R.drawable.ic_collect_not);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -251,6 +190,41 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         } else {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void shareArticle() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.share_type_url, "MobileLearn", title, articleLink));
+        intent.setType("text/plain");
+        startActivity(intent);
+    }
+
+    @Override
+    public void shareFailed() {
+
+    }
+
+    @Override
+    public void showCollectSuccess(int position) {
+        isCollected = true;
+        collectItem.setIcon(R.drawable.ic_collect);
+        if (position < 0 ) {
+            Toast.makeText(this,R.string.collect_success,Toast.LENGTH_SHORT).show();
+        } else {
+            EventBus.getDefault().post(new CollectEvent(false,position),eventBusTag);
+        }
+    }
+
+    @Override
+    public void showCancelCollect(int position) {
+        isCollected = false;
+        collectItem.setIcon(R.drawable.ic_collect_not);
+        if (position < 0) {
+            Toast.makeText(this,R.string.collect_failed,Toast.LENGTH_SHORT).show();
+        } else {
+            EventBus.getDefault().post(new CollectEvent(true, position), eventBusTag);
         }
     }
 

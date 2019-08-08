@@ -50,5 +50,48 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
         return dispatchingAndroidInjector;
     }
 
+    @Override
+    public void showErrorMessage(String message) {
 
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showNoNetwork() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void showContent() {
+
+    }
+
+    @Override
+    public void handleLoginSuccess() {
+
+    }
+
+    @Override
+    public void handleLogoutSuccess() {
+
+    }
 }

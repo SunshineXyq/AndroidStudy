@@ -108,7 +108,15 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     }
 
     private void openArticleDetail(View view, int position) {
-
+        Intent intent = new Intent(_mActivity, ArticleDetailActivity.class);
+        intent.putExtra(Constants.ARTICLE_LINK,adapter.getData().get(position).getLink());
+        intent.putExtra(Constants.ARTICLE_TITLE,adapter.getData().get(position).getTitle());
+        intent.putExtra(Constants.ARTICLE_ID,adapter.getData().get(position).getId());
+        intent.putExtra(Constants.IS_COLLECTED,adapter.getData().get(position).isCollect());
+        intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,false);
+        intent.putExtra(Constants.ARTICLE_ITEM_POSITION,-1);
+        intent.putExtra(Constants.EVENT_BUS_TAG,Constants.TAG_DEFAULT);
+        startActivity(intent);
     }
 
     @Override
