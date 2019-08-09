@@ -3,6 +3,8 @@ package com.sunshinexu.mobilelearn.activity.fragment.homepager.ui;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -75,6 +77,9 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
             }
         });
         hpRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
+        DividerItemDecoration divider = new DividerItemDecoration(_mActivity,DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(_mActivity,R.drawable.shape_hp_rv_line));
+        hpRecyclerView.addItemDecoration(divider);
         hpRecyclerView.setHasFixedSize(true);
         //添加头布局 Banner 支持轮播效果
         LinearLayout mGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.head_banner, null);
