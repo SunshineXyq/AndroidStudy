@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -22,6 +23,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.GlideImageLoa
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageContract;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.presenter.HomepagePresenter;
 import com.sunshinexu.mobilelearn.activity.main.ui.ArticleDetailActivity;
+import com.sunshinexu.mobilelearn.activity.main.ui.LoginActivity;
 import com.sunshinexu.mobilelearn.base.fragment.BaseFragment;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -105,7 +107,16 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
      * @param position 传入点击的位置
      */
     private void collectArticle(int position) {
-
+        if (presenter.getLoginStatus()) {
+            if (adapter.getData().get(position).isCollect()) {
+                presenter.cancelAddCollectArticle(position,adapter.getData().get(position).getId());
+            } else {
+                presenter.addCollectArticle(position,adapter.getData().get(position).getId());
+            }
+        } else {
+            Intent intent = new Intent(_mActivity, LoginActivity.class);
+            startActivity(intent);
+        }
 
     }
 
@@ -146,6 +157,12 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
         });
     }
 
+    /**
+     * 展示文章列表
+     * @param listData  文章列表 list
+     * @param isRefresh 是否刷新
+     */
+
     @Override
     public void showList(ArticleListData listData, boolean isRefresh) {
         if (isRefresh) {
@@ -154,6 +171,11 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
             adapter.addData(listData.getDatas());
         }
     }
+
+    /**
+     * 展示轮播图
+     * @param bannerDataList 轮播图 list
+     */
 
     @Override
     public void showBannerData(List<BannerData> bannerDataList) {
@@ -193,13 +215,26 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
         });
     }
 
+    /**
+     * 收藏成功
+     * @param position  收藏位置
+     */
     @Override
     public void showCollectSuccess(int position) {
-
+        adapter.getData().get(position).setCollect(true);
+        adapter.setData(position,adapter.getData().get(position));
+        Toast.makeText(_mActivity,R.string.collect_success,Toast.LENGTH_SHORT).show();
     }
+
+    /**
+     * 收藏失败
+     * @param position   收藏位置
+     */
 
     @Override
     public void showCancelCollect(int position) {
-
+        adapter.getData().get(position).setCollect(false);
+        adapter.setData(position,adapter.getData().get(position));
+        Toast.makeText(_mActivity,R.string.collect_success,Toast.LENGTH_SHORT).show();
     }
 }

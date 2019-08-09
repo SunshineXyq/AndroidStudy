@@ -65,6 +65,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @Override
     protected void initToolbar() {
         getIntentData();
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.white_smoke));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
