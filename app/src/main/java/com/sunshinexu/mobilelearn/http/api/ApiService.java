@@ -2,6 +2,7 @@ package com.sunshinexu.mobilelearn.http.api;
 
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
+import com.sunshinexu.mobilelearn.activity.fragment.knowledge.bean.KnowledgeSystemData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -46,5 +47,6 @@ public interface ApiService {
     Observable<BaseResponse<ArticleListData>> getPersonalPublicNumData(@Path("id") int id,
                                                                        @Path("page") int page);
 
-
+    @GET("tree/json")
+    Observable<BaseResponse<List<KnowledgeSystemData>>> getKnowledgeData();
 }

@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
-    TextView barTitle;
+    TextView toolbar_title;
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
     @BindView(R.id.bottom_navigation_view)
@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
-            barTitle.setText(R.string.home_page);
+            toolbar_title.setText(R.string.home_page);
         }
         getWindow().setNavigationBarColor(getResources().getColor(R.color.white_smoke));
     }
@@ -135,6 +135,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         lastFgIndex = index;
         switch (index) {
             case Constants.FRAGMENT_HOME_PAGE:
+                toolbar_title.setText(R.string.home_page);
                 if (homePageFragment == null) {
                     homePageFragment = HomePageFragment.newInstance();
                     transaction.add(R.id.fragment_root, this.homePageFragment);
@@ -142,6 +143,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(this.homePageFragment);
                 break;
             case Constants.FRAGMENT_PUBLIC_NUM:
+                toolbar_title.setText(R.string.public_num);
                 if (publicNumFragment == null) {
                     publicNumFragment = PublicNumFragment.newInstance();
                     transaction.add(R.id.fragment_root, this.publicNumFragment);
@@ -149,6 +151,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(this.publicNumFragment);
                 break;
             case Constants.FRAGMENT_KNOWLEDGE:
+                toolbar_title.setText(R.string.knowledge);
                 if (knowledgeFragment == null) {
                     knowledgeFragment = KnowledgeFragment.newInstance();
                     transaction.add(R.id.fragment_root, this.knowledgeFragment);
@@ -156,6 +159,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(this.knowledgeFragment);
                 break;
             case Constants.FRAGMENT_PRPJECT:
+                toolbar_title.setText(R.string.project);
                 if (projectFragment == null) {
                     projectFragment = ProjectFragment.newInstance();
                     transaction.add(R.id.fragment_root, this.projectFragment);
@@ -163,6 +167,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 transaction.show(this.projectFragment);
                 break;
             case Constants.FRAGMENT_NAIVIGATION:
+                toolbar_title.setText(R.string.navigation);
                 if (navigationFragment== null) {
                     navigationFragment = NavigationFragment.newInstance();
                     transaction.add(R.id.fragment_root, this.navigationFragment);

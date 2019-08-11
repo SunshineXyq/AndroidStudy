@@ -41,4 +41,9 @@
     <string name="failed_to_get_public_num">获取公众号列表失败</string>
     <string name="failed_to_get_personal_public_num">获取个人公众号文章失败</string>
 
+    <!--konwledge-->
+    <string name="failed_to_get_knowledge">获取知识体系列表失败</string>
+
+
+
 </resources>

@@ -127,6 +127,12 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     }
 
+    /**
+     * 创建 ToolBar 上的菜单
+     * @param menu 菜单样式
+     * @return
+     */
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

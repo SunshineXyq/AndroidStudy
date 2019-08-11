@@ -5,9 +5,13 @@ import com.sunshinexu.mobilelearn.activity.fragment.homepager.presenter.CollectP
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.contract.PersonalPublicNumContract;
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.base.presenter.Presenter;
+import com.sunshinexu.mobilelearn.core.eventbus.CollectEvent;
 import com.sunshinexu.mobilelearn.core.rxjava.BaseObserver;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.utils.RxJavaUtil;
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
@@ -44,7 +48,9 @@ public class PersonalPublicNumPresenter extends CollectPresenter<PersonalPublicN
 
     @Override
     public void loadMore() {
-
+        currentPage++;
+        isRefresh = false;
+        getPersonalPublicNum(false);
     }
 
     @Override
@@ -53,5 +59,27 @@ public class PersonalPublicNumPresenter extends CollectPresenter<PersonalPublicN
         isRefresh = true;
         this.id = id;
         getPersonalPublicNum(viewStatus);
+    }
+
+    @Override
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscriber(tag = "publicNum")
+    public void getData(CollectEvent collectEvent){
+        if (mView == null) {
+            return;
+        }
+        if (collectEvent.isCancel()) {
+            mView.showCancelCollect(collectEvent.getArticlePosition());
+        } else {
+            mView.showCollectSuccess(collectEvent.getArticlePosition());
+        }
     }
 }

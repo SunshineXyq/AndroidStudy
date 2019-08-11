@@ -36,4 +36,7 @@ public class Constants {
     public static final String TAG_DEFAULT = "tagDefault";
 
 
+    public static final String KNOWLEDGE_DATA = "knowledgeData";
+
+
 }
