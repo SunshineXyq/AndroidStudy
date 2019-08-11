@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.core;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
+import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -75,6 +76,16 @@ public class DataManager implements PreHelper,HttpHelper{
     @Override
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mHttpHelper.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<PublicNumData>>> getPublicNumData() {
+        return mHttpHelper.getPublicNumData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getPersonalPublicNumData(int id,int page) {
+        return mHttpHelper.getPersonalPublicNumData(id,page);
     }
 
 }

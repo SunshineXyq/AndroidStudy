@@ -1,8 +1,8 @@
 package com.sunshinexu.mobilelearn.http.api;
 
 
-
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
+import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
@@ -33,6 +33,18 @@ public interface ApiService {
     @GET("article/top/json")
     Observable<BaseResponse<List<ArticleItemData>>> getUpArticles();
 
+    //获取首页 Banner 数据
     @GET("banner/json")
     Observable<BaseResponse<List<BannerData>>> getBannerData();
+
+    //获取微信公众号列表
+    @GET("wxarticle/chapters/json")
+    Observable<BaseResponse<List<PublicNumData>>> getPublicNumData();
+
+    //获取个人微信公众号发布的文章
+    @GET("wxarticle/list/{id}/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getPersonalPublicNumData(@Path("id") int id,
+                                                                       @Path("page") int page);
+
+
 }

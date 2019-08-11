@@ -27,7 +27,6 @@
     <!--article-->
     <string name="failed_to_get_article">获取文章列表失败</string>
     <string name="failed_to_get_banner">获取首页推广栏内容失败</string>
-
     <string name="failed_to_share_failed">分享文章失败</string>
 
 
@@ -38,5 +37,8 @@
     <string name="item_share">分享</string>
     <string name="item_open_browser">其他浏览器打开</string>
 
+    <!--publicNum-->
+    <string name="failed_to_get_public_num">获取公众号列表失败</string>
+    <string name="failed_to_get_personal_public_num">获取个人公众号文章失败</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.core.http;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
+import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.api.ApiService;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -44,5 +45,15 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mApiService.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<PublicNumData>>> getPublicNumData() {
+        return mApiService.getPublicNumData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getPersonalPublicNumData(int id,int page) {
+        return mApiService.getPersonalPublicNumData(id,page);
     }
 }

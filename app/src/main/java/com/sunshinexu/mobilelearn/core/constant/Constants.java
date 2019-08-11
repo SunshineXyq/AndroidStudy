@@ -34,4 +34,6 @@ public class Constants {
     public static final String KNOWLEDGE_PAGER = "knowledgePager";
     public static final String WX_PAGER = "wxPager";
     public static final String TAG_DEFAULT = "tagDefault";
+
+
 }
