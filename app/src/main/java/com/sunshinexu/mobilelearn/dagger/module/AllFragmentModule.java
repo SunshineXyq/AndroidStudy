@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.dagger.module;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.ui.HomePageFragment;
+import com.sunshinexu.mobilelearn.activity.fragment.knowledge.ui.KnowledgeArticleFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.knowledge.ui.KnowledgeFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.login.ui.LoginFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.navigation.ui.NavigationFragment;
@@ -44,5 +45,8 @@ public abstract class AllFragmentModule {
     @ContributesAndroidInjector(modules = PersonalPublicNumFragmentModule.class)
     abstract PersonalPublicNumFragment contributePersonalPublicNumFragmentInjector();
 
+
+    @ContributesAndroidInjector(modules = KnowledgeArticleFragmentModule.class)
+    abstract KnowledgeArticleFragment contributeKnowledgeArticleFragmentInjector();
 
 }

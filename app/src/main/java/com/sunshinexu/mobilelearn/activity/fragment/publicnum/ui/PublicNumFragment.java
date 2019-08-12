@@ -74,10 +74,6 @@ public class PublicNumFragment extends BaseFragment<PublicNumPresenter> implemen
                 return mPublicNumList == null ? 0 : mPublicNumList.size();
             }
 
-            @Override
-            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
-            }
 
             @Nullable
             @Override

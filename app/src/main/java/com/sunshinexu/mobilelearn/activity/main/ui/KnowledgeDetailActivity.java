@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.activity.main.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -8,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.util.SparseArray;
 import android.widget.TextView;
 
 import com.sunshinexu.mobilelearn.R;
@@ -32,6 +35,8 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
     TabLayout tb_knowledge_detail;
     @BindView(R.id.vp_knowledge_detail)
     ViewPager vp_knowledge_detail;
+
+    private SparseArray<KnowledgeArticleFragment> knowledgeArticleFragmentArray= new SparseArray<>();
 
     @Override
     protected int getLayoutId() {
@@ -68,14 +73,46 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
         vp_knowledge_detail.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("KnowledgeDataId",dataChildren.get(position).getId());
-                return null;
+                KnowledgeArticleFragment knowledgeArticleFragment = knowledgeArticleFragmentArray.get(position);
+                if (knowledgeArticleFragment == null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("KnowledgeDataId",dataChildren.get(position).getId());
+                    knowledgeArticleFragment = KnowledgeArticleFragment.newInstance(bundle);
+                    knowledgeArticleFragmentArray.put(position,knowledgeArticleFragment);
+                    return knowledgeArticleFragment;
+                } else {
+                    return knowledgeArticleFragment;
+                }
             }
 
             @Override
             public int getCount() {
                 return dataChildren.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return Html.fromHtml(dataChildren.get(position).getName());
+            }
+        });
+        vp_knowledge_detail.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tb_knowledge_detail));
+        tb_knowledge_detail.setupWithViewPager(vp_knowledge_detail);
+        tb_knowledge_detail.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(vp_knowledge_detail));
+        tb_knowledge_detail.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                vp_knowledge_detail.setCurrentItem(tab.getPosition(),false);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
     }
