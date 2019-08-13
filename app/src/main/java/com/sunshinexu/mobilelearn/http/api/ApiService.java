@@ -3,6 +3,7 @@ package com.sunshinexu.mobilelearn.http.api;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.knowledge.bean.KnowledgeSystemData;
+import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -14,6 +15,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     String BASE_URL = "https://www.wanandroid.com/";
@@ -47,6 +49,15 @@ public interface ApiService {
     Observable<BaseResponse<ArticleListData>> getPersonalPublicNumData(@Path("id") int id,
                                                                        @Path("page") int page);
 
+    //获取知识体系数据
     @GET("tree/json")
     Observable<BaseResponse<List<KnowledgeSystemData>>> getKnowledgeData();
+
+    //获取项目分类数据
+    @GET("project/tree/json")
+    Observable<BaseResponse<List<ProjectData>>> getProjectData();
+
+    @GET("project/list/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page,
+                                                                       @Query("projectId") int projectId);
 }

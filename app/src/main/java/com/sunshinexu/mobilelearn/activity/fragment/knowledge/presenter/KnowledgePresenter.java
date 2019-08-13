@@ -32,4 +32,9 @@ public class KnowledgePresenter extends Presenter<KnowledgeContract.View> implem
                     }
                 }));
     }
+
+    @Override
+    public void reload() {
+        getKnowledgeSystemData();
+    }
 }

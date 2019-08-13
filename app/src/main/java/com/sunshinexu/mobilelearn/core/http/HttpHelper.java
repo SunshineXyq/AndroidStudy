@@ -3,6 +3,7 @@ package com.sunshinexu.mobilelearn.core.http;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.knowledge.bean.KnowledgeSystemData;
+import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -35,6 +36,12 @@ public interface HttpHelper {
     Observable<BaseResponse<ArticleListData>> getPersonalPublicNumData(int id,int page);
 
     Observable<BaseResponse<List<KnowledgeSystemData>>> getKnowledgeData();
+
+    Observable<BaseResponse<List<ProjectData>>> getProjectData();
+
+    Observable<BaseResponse<ArticleListData>> getProjectListData(int page,int projectId);
+
+
 
 
 }
