@@ -49,5 +49,7 @@
     <string name="failed_to_get_project">获取项目分类失败</string>
     <string name="failed_to_get_project_list">获取项目列表失败</string>
 
+    <!--navigation-->
+    <string name="failed_to_get_navigation_data">获取知识导航失败</string>
 
 </resources>

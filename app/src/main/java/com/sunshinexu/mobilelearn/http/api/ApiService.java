@@ -3,6 +3,7 @@ package com.sunshinexu.mobilelearn.http.api;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.knowledge.bean.KnowledgeSystemData;
+import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationData;
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
@@ -59,5 +60,9 @@ public interface ApiService {
 
     @GET("project/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page,
-                                                                       @Query("projectId") int projectId);
+                                                                 @Query("projectId") int projectId);
+
+    //获取知识导航数据
+    @GET("project/tree/json")
+    Observable<BaseResponse<List<NavigationData>>> getNavigationData();
 }
