@@ -47,7 +47,8 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
         adapter = new NavigationAdapter(R.layout.item_navigation, navigationDataList);
         DividerItemDecoration divider = new DividerItemDecoration(_mActivity, DividerItemDecoration.VERTICAL);
         divider.setDrawable(ContextCompat.getDrawable(_mActivity, R.drawable.shape_hp_rv_line));
-        rv_navigation.setLayoutManager(new LinearLayoutManager(_mActivity));
+        mLinearLayoutManager = new LinearLayoutManager(_mActivity);
+        rv_navigation.setLayoutManager(mLinearLayoutManager);
         rv_navigation.setHasFixedSize(true);
         rv_navigation.setAdapter(adapter);
     }
@@ -79,7 +80,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
             public ITabView.TabTitle getTitle(int i) {
                 return new TabView.TabTitle.Builder()
                         .setContent(navigationData.get(i).getName())
-                        .setTextColor(ContextCompat.getColor(_mActivity, R.color.colorAccent),
+                        .setTextColor(ContextCompat.getColor(_mActivity, R.color.black),
                                 ContextCompat.getColor(_mActivity, R.color.Grey500))
                         .build();
             }

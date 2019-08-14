@@ -58,11 +58,12 @@ public interface ApiService {
     @GET("project/tree/json")
     Observable<BaseResponse<List<ProjectData>>> getProjectData();
 
+    //获取项目列表数据
     @GET("project/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page,
                                                                  @Query("projectId") int projectId);
 
     //获取知识导航数据
-    @GET("project/tree/json")
+    @GET("navi/json")
     Observable<BaseResponse<List<NavigationData>>> getNavigationData();
 }
