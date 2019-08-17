@@ -23,7 +23,7 @@ public class NavigationPresenter extends Presenter<NavigationContract.View> impl
                 .compose(RxJavaUtil.SchedulerTransformer())
                 .filter(navigationListData -> mView != null)
                 .subscribeWith(new BaseObserver<List<NavigationData>>(mView,
-                        MobileLearnApp.getContext().getString(R.string.failed_to_get_navigation_data)) {
+                        MobileLearnApp.getContext().getString(R.string.failed_to_get_navigation_data), true) {
 
                     @Override
                     public void success(List<NavigationData> navigationData) {

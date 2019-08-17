@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_multiple_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <LinearLayout
@@ -14,10 +15,10 @@
             android:id="@+id/vtl_navigation"
             android:layout_width="112dp"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/main_white"
             app:tab_margin="15dp"
             app:tab_height="45dp"
-            app:indicator_color="@color/white"
+            app:indicator_color="@color/main_white"
             app:tab_mode="scrollable"
             >
         </q.rorbin.verticaltablayout.VerticalTabLayout>

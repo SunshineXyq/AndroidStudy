@@ -80,8 +80,8 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
             public ITabView.TabTitle getTitle(int i) {
                 return new TabView.TabTitle.Builder()
                         .setContent(navigationData.get(i).getName())
-                        .setTextColor(ContextCompat.getColor(_mActivity, R.color.black),
-                                ContextCompat.getColor(_mActivity, R.color.Grey500))
+                        .setTextColor(ContextCompat.getColor(_mActivity, R.color.Grey1000),
+                                ContextCompat.getColor(_mActivity, R.color.shanbei_bottom_bar))
                         .build();
             }
 

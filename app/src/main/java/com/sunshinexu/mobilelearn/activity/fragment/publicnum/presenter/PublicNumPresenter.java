@@ -22,7 +22,7 @@ public class PublicNumPresenter extends Presenter<PublicNumContract.View> implem
         addSubscribe(dataManager.getPublicNumData()
         .compose(RxJavaUtil.SchedulerTransformer())
         .filter(publicNumList -> mView != null)
-        .subscribeWith(new BaseObserver<List<PublicNumData>>(mView, MobileLearnApp.getContext().getString(R.string.failed_to_get_public_num)) {
+        .subscribeWith(new BaseObserver<List<PublicNumData>>(mView, MobileLearnApp.getContext().getString(R.string.failed_to_get_public_num),true) {
             @Override
             public void success(List<PublicNumData> publicNumData) {
                 mView.showPublicNumData(publicNumData);

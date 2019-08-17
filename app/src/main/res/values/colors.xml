@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="lightWhite">#cccccc</color>
-    <color name="bottom_select_green">#08C261</color>
+    <!--<color name="bottom_select_green">#08C261</color>-->
+    <color name="bottom_select_green">#28BFA0</color>
 
     <color name="white">#FFFFFF</color>
     <color name="white_smoke">#F7F7F7</color>
@@ -22,10 +23,16 @@
     <color name="Grey800">#3D3D3D</color>
     <color name="Grey900">#212121</color>
     <color name="Grey950">#181818</color>
+    <color name="Grey1100">#333333</color>
+    <color name="Grey1000">#1A1A1A</color>
     <color name="black">#19191B</color>
     <color name="black_pure">#000000</color>
     <color name="navigation_item_ic_color">#616161</color>
     <color name="red">#f44336</color>
 
+    <color name="shanbei_navigation_bar">#F0F0F0</color>
+    <color name="shanbei_bottom_bar">#999999</color>
+    <color name="shanbei_bottom_bar_bg">#FFFFFF</color>
+    <color name="main_white">#FDFDFD</color>
 
 </resources>

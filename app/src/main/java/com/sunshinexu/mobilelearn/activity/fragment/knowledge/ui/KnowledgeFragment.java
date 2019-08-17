@@ -1,6 +1,8 @@
 package com.sunshinexu.mobilelearn.activity.fragment.knowledge.ui;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -43,6 +45,9 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
         mAdapter = new KnowledgeAdapter(R.layout.item_knowledge,
                 knowledgeSystemData);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startKnowledgeDetail(view, position));
+        DividerItemDecoration divider = new DividerItemDecoration(_mActivity,DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(_mActivity,R.drawable.shape_hp_rv_line));
+        rv_knowledge.addItemDecoration(divider);
         rv_knowledge.setHasFixedSize(true);
         rv_knowledge.setLayoutManager(new LinearLayoutManager(_mActivity));
         rv_knowledge.setAdapter(mAdapter);

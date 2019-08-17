@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_multiple_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="#EEEEEE">
 
 
     <LinearLayout
@@ -15,11 +16,11 @@
             android:id="@+id/tb_public_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:tabTextColor="@color/Grey700"
-            app:tabIndicatorColor="@color/black"
+            android:background="@color/main_white"
+            app:tabTextColor="@color/shanbei_bottom_bar"
+            app:tabIndicatorColor="@color/Grey1000"
             app:tabIndicatorHeight="2dp"
-            app:tabSelectedTextColor="@color/black"
+            app:tabSelectedTextColor="@color/Grey900"
             app:tabMode="scrollable"
             />
 
