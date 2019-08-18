@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            app:tabTextColor="@color/shanbei_bottom_bar"
+            app:tabTextColor="@color/bottom_bar"
             app:tabIndicatorColor="@color/Grey1000"
             app:tabIndicatorHeight="2dp"
             app:tabSelectedTextColor="@color/Grey900"

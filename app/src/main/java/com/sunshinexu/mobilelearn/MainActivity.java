@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             actionBar.setDisplayShowTitleEnabled(false);
             toolbar_title.setText(R.string.home_page);
         }
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.shanbei_navigation_bar));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar));
     }
 
     @Override

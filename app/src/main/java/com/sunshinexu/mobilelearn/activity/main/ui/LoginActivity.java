@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.activity.main.ui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
+    @BindView(R.id.status_bar)
+    View status_bar;
 
     @Override
     protected int getLayoutId() {
@@ -34,12 +37,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void initToolbar() {
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.white_smoke));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar));
+        status_bar.setBackgroundColor(getResources().getColor(R.color.white));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.main_white));
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

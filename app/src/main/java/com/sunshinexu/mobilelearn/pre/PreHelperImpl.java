@@ -16,22 +16,22 @@ public class PreHelperImpl implements PreHelper {
     }
     @Override
     public void setLoginStatus(boolean isLogin) {
-
+        sp.edit().putBoolean(Constants.LOGIN_STATUS,isLogin).apply();
     }
 
     @Override
     public boolean getLoginStatus() {
-        return false;
+        return sp.getBoolean(Constants.LOGIN_STATUS,false);
     }
 
     @Override
     public void setLoginAccount(String account) {
-
+        sp.edit().putString(Constants.ACCOUNT,account).apply();
     }
 
     @Override
     public String getLoginAccount() {
-        return null;
+        return sp.getString(Constants.ACCOUNT,"");
     }
 
     @Override

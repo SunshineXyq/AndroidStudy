@@ -1,6 +1,10 @@
 package com.sunshinexu.mobilelearn.dagger.module;
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.sunshinexu.mobilelearn.BuildConfig;
+import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.http.api.ApiService;
 import com.sunshinexu.mobilelearn.http.interceptor.NetCacheInterceptor;
 import com.sunshinexu.mobilelearn.utils.CacheUtils;
@@ -67,6 +71,9 @@ public class HttpModule {
         builder.writeTimeout(15, TimeUnit.SECONDS);
         //设置重新连接
         builder.retryOnConnectionFailure(true);
+        //持久化 Cookie
+        builder.cookieJar(new PersistentCookieJar(new SetCookieCache(),
+                new SharedPrefsCookiePersistor(MobileLearnApp.getContext())));
         return builder.build();
     }
 
@@ -75,7 +82,8 @@ public class HttpModule {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())     //把retrofit的请求转化为RxJava的Observable
+                .addConverterFactory(GsonConverterFactory.create())     //把retrofit的请求转化为RxJava
+                // 的Observable
                 .build();
     }
 

@@ -2,6 +2,7 @@ package com.sunshinexu.mobilelearn.core;
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.knowledge.bean.KnowledgeSystemData;
+import com.sunshinexu.mobilelearn.activity.fragment.login.bean.LoginData;
 import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationData;
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
@@ -26,7 +27,7 @@ public class DataManager implements PreHelper,HttpHelper{
     }
     @Override
     public void setLoginStatus(boolean isLogin) {
-
+        mPreHelper.setLoginStatus(isLogin);
     }
 
     @Override
@@ -111,6 +112,16 @@ public class DataManager implements PreHelper,HttpHelper{
         return mHttpHelper.getNavigationData();
     }
 
+    @Override
+    public Observable<BaseResponse<LoginData>> login(String username, String password) {
+        return mHttpHelper.login(username,password);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> register(String username, String password,
+                                                        String confirmPassword) {
+        return mHttpHelper.register(username,password,confirmPassword);
+    }
 
 }
 

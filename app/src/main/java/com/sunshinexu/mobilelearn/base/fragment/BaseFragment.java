@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.classic.common.MultipleStatusView;
 import com.sunshinexu.mobilelearn.R;
@@ -60,7 +61,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
 
     @Override
     public void showErrorMessage(String message) {
-
+        Toast.makeText(_mActivity,message,Toast.LENGTH_SHORT).show();
     }
 
     @Override

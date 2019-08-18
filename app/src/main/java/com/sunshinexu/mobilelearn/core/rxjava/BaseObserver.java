@@ -44,14 +44,15 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     public void onNext(BaseResponse<T> tBaseResponse) {
-        Log.d(TAG, "onNext: ");
         if (tBaseResponse.getErrorCode() == BaseResponse.Success) {
+            Log.d(TAG,"onSuccess");
             if (isShowStatusView) {
                 view.hideLoading();
                 view.showContent();
             }
             success(tBaseResponse.getData());
         } else {
+            Log.d(TAG,"onFailed");
             if (isShowStatusView) {
                 view.hideLoading();
                 view.showContent();

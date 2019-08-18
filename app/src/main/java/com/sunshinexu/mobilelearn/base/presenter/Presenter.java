@@ -54,7 +54,7 @@ public class Presenter<T extends BaseView> implements BasePresenter<T> {
 
     @Override
     public void setLoginStatus(boolean loginStatus) {
-
+        dataManager.setLoginStatus(loginStatus);
     }
 
     @Override

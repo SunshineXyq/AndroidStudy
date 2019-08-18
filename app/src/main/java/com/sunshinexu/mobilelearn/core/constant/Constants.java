@@ -39,4 +39,18 @@ public class Constants {
     public static final String KNOWLEDGE_DATA = "knowledgeData";
 
 
+    /**
+     * Shared Preference key
+     */
+    public static final String ACCOUNT = "account";
+
+    public static final String PASSWORD = "password";
+
+    public static final String LOGIN_STATUS = "loginStatus";
+
+    public static final String AUTO_CACHE_STATE = "autoCacheState";
+
+    public static final String NO_IMAGE_STATE = "noImageState";
+
+
 }
