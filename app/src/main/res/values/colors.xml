@@ -13,6 +13,7 @@
     <color name="Grey100">#F5F5F5</color>
     <color name="Grey200">#EEEEEE</color>
     <color name="Grey250">#EDEDED</color>
+    <color name="Grey280">#E2E2E2</color>
     <color name="Grey300">#E0E0E0</color>
     <color name="Grey350">#D9D9D9</color>
     <color name="Grey400">#bdbdbd</color>
@@ -27,7 +28,7 @@
     <color name="Grey1000">#1A1A1A</color>
     <color name="black">#19191B</color>
     <color name="black_pure">#000000</color>
-    <color name="navigation_item_ic_color">#616161</color>
+    <color name="navigation_item_ic_color">#999999</color>
     <color name="red">#f44336</color>
 
     <color name="navigation_bar">#F0F0F0</color>

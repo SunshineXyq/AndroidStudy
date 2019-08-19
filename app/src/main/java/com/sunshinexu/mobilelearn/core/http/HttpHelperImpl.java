@@ -91,4 +91,20 @@ public class HttpHelperImpl implements HttpHelper {
                                                         String confirmPassword) {
         return mApiService.register(username,password,confirmPassword);
     }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> logout() {
+        return mApiService.logout();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id,
+                                                                                int originId) {
+        return mApiService.cancelCollectInCollectPage(id,originId);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getCollectList(int page) {
+        return mApiService.getCollectList(page);
+    }
 }

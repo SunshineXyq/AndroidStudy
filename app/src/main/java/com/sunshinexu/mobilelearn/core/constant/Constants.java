@@ -53,4 +53,15 @@ public class Constants {
     public static final String NO_IMAGE_STATE = "noImageState";
 
 
+    /**
+     * Common fragment key
+     */
+    public static final String TYPE_COLLECT = "collect";
+    public static final String TYPE_ABOUT = "about";
+    public static final String TYPE_SET = "set";
+    public static final String TYPE_SEARCH = "search";
+
+
+
+
 }

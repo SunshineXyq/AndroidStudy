@@ -123,5 +123,21 @@ public class DataManager implements PreHelper,HttpHelper{
         return mHttpHelper.register(username,password,confirmPassword);
     }
 
+    @Override
+    public Observable<BaseResponse<LoginData>> logout() {
+        return mHttpHelper.logout();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id,
+                                                                                int originId) {
+        return mHttpHelper.cancelCollectInCollectPage(id, originId);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getCollectList(int page) {
+        return mHttpHelper.getCollectList(page);
+    }
+
 }
 

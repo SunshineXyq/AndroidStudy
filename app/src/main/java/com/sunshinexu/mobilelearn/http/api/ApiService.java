@@ -80,4 +80,17 @@ public interface ApiService {
     @POST("user/register")
     Observable<BaseResponse<LoginData>> register(@Field("username") String username, @Field(
             "password") String password, @Field("confirmPassword") String confirmPassword);
+
+    //注销
+    @POST("user/logout/json")
+    Observable<BaseResponse<LoginData>> logout();
+
+    //收藏列表中取消收藏文章
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(@Path("id") int id,
+                                                                         @Path("originId") int originId);
+    //获取收藏列表数据
+    @GET("lg/collect/list/{page}/json")
+    Observable<BaseResponse<ArticleListData>> getCollectList(@Path("page") int page);
 }

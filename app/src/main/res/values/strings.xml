@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
-    <string name="app_name">AndroidStudy</string>
+    <string name="app_name">移动学习系统</string>
     <string name="home_page">主页</string>
     <string name="down_up_btn_show" translatable="false">com.sunshinexu.mobilelearn.utils.behavior.BottomNavigationBehavior</string>
     <string name="knowledge">知识体系</string>
@@ -21,7 +21,7 @@
     <!-- collect -->
     <string name="collect">收藏</string>
     <string name="cancel_collect">已取消收藏</string>
-    <string name="failed_to_get_collect_list">收藏文章失败</string>
+    <string name="failed_to_get_collect_list">获取收藏文章失败</string>
     <string name="failed_to_cancel_collect">取消收藏失败</string>
     <string name="collect_success">收藏成功</string>
     <string name="collect_failed">收藏失败</string>
@@ -68,6 +68,15 @@
     <string name="twice_password_not_same">两次输入的密码不一致，请重新输入！</string>
     <string name="failed_to_register">注册失败，请重新注册！</string>
     <string name="register_success">注册成功</string>
+    <string name="failed_to_logout">注销失败，请重试！</string>
+
+    <string name="cache_set">缓存设置</string>
+    <string name="clear_cache">清空缓存</string>
+    <string name="set">设置</string>
+    <string name="app_version">Version V1.0</string>
+    <string name="about_version">检查新版本</string>
+    <string name="about_website">关于网站</string>
+    <string name="about_suggest">意见反馈</string>
 
 
 </resources>

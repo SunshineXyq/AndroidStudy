@@ -1,5 +1,6 @@
 package com.sunshinexu.mobilelearn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.ui.HomePageFragment;
@@ -19,6 +21,8 @@ import com.sunshinexu.mobilelearn.activity.fragment.knowledge.ui.KnowledgeFragme
 import com.sunshinexu.mobilelearn.activity.fragment.navigation.ui.NavigationFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.project.ui.ProjectFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.ui.PublicNumFragment;
+import com.sunshinexu.mobilelearn.activity.main.ui.ItemActivity;
+import com.sunshinexu.mobilelearn.activity.main.ui.LoginActivity;
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
 import com.sunshinexu.mobilelearn.activity.main.contract.MainContract;
@@ -32,15 +36,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private static final String TAG = "MainActivity";
     @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
+    DrawerLayout drawer_layout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView toolbar_title;
     @BindView(R.id.navigation_view)
-    NavigationView navigationView;
+    NavigationView navigation_view;
     @BindView(R.id.bottom_navigation_view)
-    BottomNavigationView bottomNavigationView;
+    BottomNavigationView bottom_navigation_view;
 
     private int currentFgIndex = 0;
     private int lastFgIndex = -1;
@@ -84,7 +88,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initBottomNavigationView() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottom_navigation_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
@@ -110,22 +114,41 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initNavigationView() {
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigation_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
+                    case R.id.item_login:
+                        startLoginActivity();
+                        break;
                     case R.id.item_collect:
+                        if (mPresenter.getLoginStatus()) {
+                            Intent intent = new Intent(MainActivity.this, ItemActivity.class);
+                            intent.putExtra("Type", Constants.TYPE_COLLECT);
+                            startActivity(intent);
+                    } else {
+                        startLoginActivity();
+                        Toast.makeText(MainActivity.this, getString(R.string.please_login),Toast.LENGTH_SHORT).show();
+                    }
                         break;
                     case R.id.item_about:
+                        Intent intentAbout = new Intent(MainActivity.this, ItemActivity.class);
+                        intentAbout.putExtra("Type", Constants.TYPE_ABOUT);
+                        startActivity(intentAbout);
                         break;
                     case R.id.item_set:
+                        Intent intent = new Intent(MainActivity.this, ItemActivity.class);
+                        intent.putExtra("Type", Constants.TYPE_SET);
+                        startActivity(intent);
                         break;
                     case R.id.item_logout:
+                        mPresenter.logout();
                         break;
                 }
                 return true;
             }
         });
+        navigation_view.getMenu().findItem(R.id.item_logout).setVisible(mPresenter.getLoginStatus());
     }
 
     private void showFragment(int index) {
@@ -213,10 +236,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initDrawerLayout() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
         toggle.syncState();
-        drawerLayout.addDrawerListener(toggle);
+        drawer_layout.addDrawerListener(toggle);
+    }
+
+    private void startLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
 
@@ -264,11 +292,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void handleLoginSuccess() {
-
+        navigation_view.getMenu().findItem(R.id.item_login).setVisible(false);
+        navigation_view.getMenu().findItem(R.id.item_logout).setVisible(true);
     }
 
     @Override
     public void handleLogoutSuccess() {
-
+        navigation_view.getMenu().findItem(R.id.item_logout).setVisible(true);
+        navigation_view.getMenu().findItem(R.id.item_logout).setVisible(false);
     }
 }

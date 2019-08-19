@@ -49,4 +49,10 @@ public interface HttpHelper {
 
     Observable<BaseResponse<LoginData>> register(String username, String password,String confirmPassword);
 
+    Observable<BaseResponse<LoginData>> logout();
+
+    Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(int id, int originId);
+
+    Observable<BaseResponse<ArticleListData>> getCollectList(int page);
+
 }
