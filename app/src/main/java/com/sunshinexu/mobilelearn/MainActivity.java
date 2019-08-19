@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.project.ui.ProjectFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.ui.PublicNumFragment;
 import com.sunshinexu.mobilelearn.activity.main.ui.ItemActivity;
 import com.sunshinexu.mobilelearn.activity.main.ui.LoginActivity;
+import com.sunshinexu.mobilelearn.activity.main.ui.SearchActivity;
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
 import com.sunshinexu.mobilelearn.core.constant.Constants;
 import com.sunshinexu.mobilelearn.activity.main.contract.MainContract;
@@ -149,6 +151,31 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             }
         });
         navigation_view.getMenu().findItem(R.id.item_logout).setVisible(mPresenter.getLoginStatus());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.action_usage:
+                intent = new Intent(MainActivity.this, ItemActivity.class);
+                intent.putExtra("Type", Constants.TYPE_WEBSITE);
+                startActivity(intent);
+                break;
+            case R.id.action_search:
+                intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     private void showFragment(int index) {

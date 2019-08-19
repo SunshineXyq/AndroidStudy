@@ -5,6 +5,7 @@ import com.sunshinexu.mobilelearn.activity.main.ui.ArticleDetailActivity;
 import com.sunshinexu.mobilelearn.activity.main.ui.ItemActivity;
 import com.sunshinexu.mobilelearn.activity.main.ui.KnowledgeDetailActivity;
 import com.sunshinexu.mobilelearn.activity.main.ui.LoginActivity;
+import com.sunshinexu.mobilelearn.activity.main.ui.SearchActivity;
 import com.sunshinexu.mobilelearn.dagger.component.BaseActivityComponent;
 
 import dagger.Module;
@@ -27,5 +28,8 @@ public abstract class AllActivityModule {
 
     @ContributesAndroidInjector(modules = ItemActivityModule.class)
     abstract ItemActivity contributesItemActivityInjector();
+
+    @ContributesAndroidInjector(modules = SearchActivityModule.class)
+    abstract SearchActivity contributesSearchActivityInjector();
 
 }

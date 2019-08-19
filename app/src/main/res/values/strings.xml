@@ -77,6 +77,9 @@
     <string name="about_version">检查新版本</string>
     <string name="about_website">关于网站</string>
     <string name="about_suggest">意见反馈</string>
+    <string name="search">搜索</string>
+    <string name="use_website">常用网站</string>
+    <string name="failed_to_get_website_data">获取通用网站栏失败</string>
 
 
 </resources>

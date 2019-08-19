@@ -6,6 +6,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.login.bean.LoginData;
 import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationData;
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
+import com.sunshinexu.mobilelearn.activity.fragment.website.bean.WebsiteData;
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -137,6 +138,11 @@ public class DataManager implements PreHelper,HttpHelper{
     @Override
     public Observable<BaseResponse<ArticleListData>> getCollectList(int page) {
         return mHttpHelper.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<WebsiteData>>> getWebsiteList() {
+        return mHttpHelper.getWebsiteList();
     }
 
 }

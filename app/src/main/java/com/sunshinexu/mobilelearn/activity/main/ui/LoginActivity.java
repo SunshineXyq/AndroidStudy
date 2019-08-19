@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowTitleEnabled(true);
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

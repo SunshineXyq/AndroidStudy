@@ -17,6 +17,7 @@ import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.about.ui.AboutFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.collect.ui.CollectFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.setting.ui.SetFragment;
+import com.sunshinexu.mobilelearn.activity.fragment.website.ui.WebsiteFragment;
 import com.sunshinexu.mobilelearn.activity.main.contract.ItemContract;
 import com.sunshinexu.mobilelearn.activity.main.presenter.ItemPresenter;
 import com.sunshinexu.mobilelearn.base.activity.BaseActivity;
@@ -60,12 +61,10 @@ public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemCon
     protected void initView() {
         String type = getIntent().getStringExtra("Type");
         Bundle bundle = getIntent().getExtras();
-        String title = "";
         switch (type) {
-//            case "Collect":
-//                mTargetFragment = UsefulSitesFragment.newInstance();
-//                title = getString(R.string.useful_sites);
-//                break;
+            case Constants.TYPE_WEBSITE:
+                mFragment = WebsiteFragment.newInstance();
+                break;
 //            case Constants.TYPE_SEARCH:
 //                mTargetFragment = SearchFragment.newInstance(extras);
 //                assert extras != null;

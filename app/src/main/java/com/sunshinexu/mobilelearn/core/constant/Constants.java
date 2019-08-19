@@ -59,7 +59,7 @@ public class Constants {
     public static final String TYPE_COLLECT = "collect";
     public static final String TYPE_ABOUT = "about";
     public static final String TYPE_SET = "set";
-    public static final String TYPE_SEARCH = "search";
+    public static final String TYPE_WEBSITE = "website";
 
 
 

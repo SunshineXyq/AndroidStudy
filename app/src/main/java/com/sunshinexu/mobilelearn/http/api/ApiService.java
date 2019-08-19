@@ -7,6 +7,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.login.bean.LoginData;
 import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationData;
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
+import com.sunshinexu.mobilelearn.activity.fragment.website.bean.WebsiteData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
@@ -93,4 +94,8 @@ public interface ApiService {
     //获取收藏列表数据
     @GET("lg/collect/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getCollectList(@Path("page") int page);
+
+    //获取常用网站
+    @GET("friend/json")
+    Observable<BaseResponse<List<WebsiteData>>> getWebsiteList();
 }

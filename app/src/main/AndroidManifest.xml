@@ -27,6 +27,7 @@
         <activity android:name=".activity.main.ui.ArticleDetailActivity" />
         <activity android:name=".activity.main.ui.KnowledgeDetailActivity"/>
         <activity android:name=".activity.main.ui.ItemActivity"/>
+        <activity android:name=".activity.main.ui.SearchActivity"/>
 
     </application>
 
