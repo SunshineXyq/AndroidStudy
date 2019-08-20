@@ -2,8 +2,13 @@ package com.sunshinexu.mobilelearn.activity.main.bean;
 
 import java.io.Serializable;
 
-public class SearchData implements Serializable {
 
+/*
+ * Created by Xu Yuanqiang
+ * Created on 2019/8/20
+ */
+
+public class HotSearchData implements Serializable {
     private int id;
     private String link;
     private String name;
@@ -52,7 +57,7 @@ public class SearchData implements Serializable {
 
     @Override
     public String toString() {
-        return "SearchData{" +
+        return "HotSearchData{" +
                 "id=" + id +
                 ", link='" + link + '\'' +
                 ", name='" + name + '\'' +

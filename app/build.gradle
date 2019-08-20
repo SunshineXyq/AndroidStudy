@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 29
@@ -29,14 +30,18 @@ android {
 
 }
 
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'                             //设置DaoMaster DaoSession Dao目录
+    daoPackage 'com.sunshinexu.mobilelearn.core.greendao'    //设置DaoMaster DaoSession Dao包名
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'androidx.test:runner:1.2.0'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
     //Dagger
     implementation 'com.google.dagger:dagger:2.17'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.17'
@@ -60,7 +65,9 @@ dependencies {
     implementation 'org.simple:androideventbus:1.0.5.1'
     //ui
     implementation 'com.gyf.immersionbar:immersionbar:2.3.3'   //沉浸式状态栏
+    //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.classic.common:multiple-status-view:1.6'  //支持多种自定义View状态
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-20'
@@ -69,9 +76,10 @@ dependencies {
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
     implementation 'com.just.agentweb:agentweb:4.0.2'
     //base
+    //noinspection GradleCompatible
     implementation 'com.android.support:preference-v7:28.0.0'
+    //noinspection GradleCompatible
     implementation 'com.android.support:preference-v14:28.0.0'
-//    implementation 'com.android.support:cardview-v7:29.0.0'
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.2'
@@ -92,5 +100,7 @@ dependencies {
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     //Cookie
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    //GreenDao
+    implementation 'org.greenrobot:greendao:3.2.2'
 
 }

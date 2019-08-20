@@ -37,12 +37,6 @@ public class MobileLearnApp extends Application implements HasActivityInjector{
                 .appModule(new AppModule(this))
                 .httpModule(new HttpModule())
                 .build().inject(this);
-        //夜间模式切换
-        if (mDataManager.isNightMode()) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
         refWatcher = setLeakCanary();
     }
 

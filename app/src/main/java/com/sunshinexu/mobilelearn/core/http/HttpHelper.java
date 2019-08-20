@@ -8,6 +8,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationDa
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.activity.fragment.website.bean.WebsiteData;
+import com.sunshinexu.mobilelearn.activity.main.bean.HotSearchData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
@@ -58,4 +59,5 @@ public interface HttpHelper {
 
     Observable<BaseResponse<List<WebsiteData>>> getWebsiteList();
 
+    Observable<BaseResponse<List<HotSearchData>>> getSearchData();
 }

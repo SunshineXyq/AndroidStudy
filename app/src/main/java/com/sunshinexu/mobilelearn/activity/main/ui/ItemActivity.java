@@ -9,13 +9,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.about.ui.AboutFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.collect.ui.CollectFragment;
+import com.sunshinexu.mobilelearn.activity.fragment.search.SearchFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.setting.ui.SetFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.website.ui.WebsiteFragment;
 import com.sunshinexu.mobilelearn.activity.main.contract.ItemContract;
@@ -33,10 +36,13 @@ public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemCon
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView mTitle;
+    @BindView(R.id.toolbar_back)
+    ImageView toolbar_back;
     Fragment mFragment;
 
    @BindView(R.id.frame_layout)
    FrameLayout mFrameGroup;
+    private ActionBar actionBar;
 
     @Override
     protected int getLayoutId() {
@@ -48,13 +54,15 @@ public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemCon
         setSupportActionBar(toolbar);
         status_bar.setBackgroundColor(getResources().getColor(R.color.main_white));
         toolbar.setBackgroundColor(getResources().getColor(R.color.main_white));
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            toolbar_back.setVisibility(View.VISIBLE);
             actionBar.setDisplayShowTitleEnabled(false);
         }
         getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar));
         toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
+        toolbar_back.setOnClickListener(view -> finish());
     }
 
     @Override
@@ -64,17 +72,21 @@ public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemCon
         switch (type) {
             case Constants.TYPE_WEBSITE:
                 mFragment = WebsiteFragment.newInstance();
+                mTitle.setText(R.string.about_website);
                 break;
-//            case Constants.TYPE_SEARCH:
-//                mTargetFragment = SearchFragment.newInstance(extras);
-//                assert extras != null;
-//                title = extras.getString(Constants.SEARCH_KEY, "");
-//                break;
+            case Constants.TYPE_SEARCH:
+                mFragment = SearchFragment.newInstance(bundle);
+                assert bundle != null;
+                String title = bundle.getString(Constants.TYPE_TITLE, "");
+                mTitle.setText(title);
+                break;
             case Constants.TYPE_COLLECT:
                 mFragment = CollectFragment.newInstance();
+                mTitle.setText(R.string.nav_item_my_collect);
                 break;
             case Constants.TYPE_ABOUT:
                 mFragment = AboutFragment.newInstance();
+                mTitle.setText(R.string.nav_item_about);
                 break;
             default:
                 break;

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +52,8 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
+    @BindView(R.id.toolbar_back)
+    ImageView toolbar_back;
     @BindView(R.id.cl_content)
      CoordinatorLayout cl_content;
     private AgentWeb agentWeb;
@@ -70,7 +73,8 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);     //左上角图标左边加上返回图标
+            actionBar.setDisplayHomeAsUpEnabled(false);     //左上角图标左边加上返回图标
+            toolbar_back.setVisibility(View.VISIBLE);
             actionBar.setDisplayShowTitleEnabled(false);
             toolbarTitle.setText(Html.fromHtml(title));
             toolbarTitle.setSelected(true);
@@ -81,7 +85,12 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
                 onBackPressedSupport();
             }
         }) ;
-
+        toolbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void getIntentData() {

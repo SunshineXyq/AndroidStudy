@@ -7,6 +7,9 @@ import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationDa
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.activity.fragment.website.bean.WebsiteData;
+import com.sunshinexu.mobilelearn.activity.main.bean.HistoryData;
+import com.sunshinexu.mobilelearn.activity.main.bean.HotSearchData;
+import com.sunshinexu.mobilelearn.core.db.DbHelper;
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
@@ -17,14 +20,16 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public class DataManager implements PreHelper,HttpHelper{
+public class DataManager implements PreHelper,HttpHelper,DbHelper {
 
     private HttpHelper mHttpHelper;
     private PreHelper mPreHelper;
+    private DbHelper mDbHelper;
 
-    public DataManager(HttpHelper httpHelper,PreHelper preHelper){
+    public DataManager(HttpHelper httpHelper,PreHelper preHelper,DbHelper dbHelper){
         mHttpHelper = httpHelper;
         mPreHelper = preHelper;
+        mDbHelper = dbHelper;
     }
     @Override
     public void setLoginStatus(boolean isLogin) {
@@ -145,5 +150,29 @@ public class DataManager implements PreHelper,HttpHelper{
         return mHttpHelper.getWebsiteList();
     }
 
+    @Override
+    public Observable<BaseResponse<List<HotSearchData>>> getSearchData() {
+        return mHttpHelper.getSearchData();
+    }
+
+    @Override
+    public List<HistoryData> addHistoryData(String data) {
+        return null;
+    }
+
+    @Override
+    public void clearHistoryData() {
+
+    }
+
+    @Override
+    public void deleteHistoryDataId(Long id) {
+
+    }
+
+    @Override
+    public List<HistoryData> loadAllHistoryData() {
+        return null;
+    }
 }
 

@@ -8,6 +8,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.navigation.bean.NavigationDa
 import com.sunshinexu.mobilelearn.activity.fragment.project.bean.ProjectData;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.bean.PublicNumData;
 import com.sunshinexu.mobilelearn.activity.fragment.website.bean.WebsiteData;
+import com.sunshinexu.mobilelearn.activity.main.bean.HotSearchData;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
 import com.sunshinexu.mobilelearn.http.bean.ArticleItemData;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
@@ -18,6 +19,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -98,4 +100,9 @@ public interface ApiService {
     //获取常用网站
     @GET("friend/json")
     Observable<BaseResponse<List<WebsiteData>>> getWebsiteList();
+
+    //搜索热门数据
+    @GET("hotkey/json")
+    @Headers("Cache-Control: public, max-age=36000")
+    Observable<BaseResponse<List<HotSearchData>>> getSearchData();
 }

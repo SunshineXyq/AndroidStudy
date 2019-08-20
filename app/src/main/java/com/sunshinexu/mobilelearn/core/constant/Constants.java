@@ -27,15 +27,8 @@ public class Constants {
 
 
     public static final String EVENT_BUS_TAG = "eventBusTag";
-    public static final String MAIN_PAGER = "mainPager";
-    public static final String COLLECT_PAGER = "collectPager";
-    public static final String SEARCH_PAGER = "searchPager";
-    public static final String PROJECT_PAGER = "projectPager";
     public static final String KNOWLEDGE_PAGER = "knowledgePager";
-    public static final String WX_PAGER = "wxPager";
     public static final String TAG_DEFAULT = "tagDefault";
-
-
     public static final String KNOWLEDGE_DATA = "knowledgeData";
 
 
@@ -60,8 +53,8 @@ public class Constants {
     public static final String TYPE_ABOUT = "about";
     public static final String TYPE_SET = "set";
     public static final String TYPE_WEBSITE = "website";
-
-
+    public static final String TYPE_SEARCH = "search";
+    public static final String TYPE_TITLE = "title";
 
 
 }

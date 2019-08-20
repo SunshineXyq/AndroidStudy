@@ -65,9 +65,9 @@ public class WebsiteFragment extends BaseFragment<WebsitePresenter> implements W
         });
         tfl_website.setOnTagClickListener((view, position1, parent1) -> {
             Intent intent = new Intent(_mActivity, ArticleDetailActivity.class);
-            intent.putExtra(Constants.ARTICLE_LINK,websiteList.get(position1).getId());
+            intent.putExtra(Constants.ARTICLE_LINK,websiteList.get(position1).getLink().trim());
             intent.putExtra(Constants.ARTICLE_TITLE,websiteList.get(position1).getName().trim());
-            intent.putExtra(Constants.ARTICLE_ID,websiteList.get(position1).getLink().trim());
+            intent.putExtra(Constants.ARTICLE_ID,websiteList.get(position1).getId());
             intent.putExtra(Constants.IS_COLLECTED,false);
             intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,false);
             intent.putExtra(Constants.ARTICLE_ITEM_POSITION,-1);

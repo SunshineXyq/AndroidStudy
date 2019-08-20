@@ -2,6 +2,8 @@ package com.sunshinexu.mobilelearn.dagger.module;
 
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.core.DataManager;
+import com.sunshinexu.mobilelearn.core.db.DbHelper;
+import com.sunshinexu.mobilelearn.core.db.DbHelperImpl;
 import com.sunshinexu.mobilelearn.core.http.HttpHelper;
 import com.sunshinexu.mobilelearn.core.http.HttpHelperImpl;
 import com.sunshinexu.mobilelearn.pre.PreHelper;
@@ -43,10 +45,15 @@ public class AppModule {
     PreHelper providePreferenceHelper(PreHelperImpl preHelper){
         return preHelper;
     }
+    @Provides
+    @Singleton
+    DbHelper provideDbHelper(DbHelperImpl dbHelper){
+        return dbHelper;
+    }
 
     @Provides
     @Singleton
-    DataManager provideDataManager(HttpHelperImpl httpHelper,PreHelper preHelper){
-        return new DataManager(httpHelper,preHelper);
+    DataManager provideDataManager(HttpHelper httpHelper,PreHelper preHelper,DbHelper dbHelper){
+        return new DataManager(httpHelper,preHelper,dbHelper);
     }
 }
