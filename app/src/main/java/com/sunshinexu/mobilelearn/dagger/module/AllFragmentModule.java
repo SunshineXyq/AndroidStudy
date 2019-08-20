@@ -12,6 +12,7 @@ import com.sunshinexu.mobilelearn.activity.fragment.project.ui.ProjectListFragme
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.ui.PersonalPublicNumFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.publicnum.ui.PublicNumFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.register.ui.RegisterFragment;
+import com.sunshinexu.mobilelearn.activity.fragment.search.SearchFragment;
 import com.sunshinexu.mobilelearn.activity.fragment.website.ui.WebsiteFragment;
 import com.sunshinexu.mobilelearn.dagger.component.BaseFragmentComponent;
 
@@ -63,5 +64,8 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = WebsiteFragmentModule.class)
     abstract WebsiteFragment contributeWebsiteFragmentInjector();
+
+    @ContributesAndroidInjector(modules = SearchFragmentModule.class)
+    abstract SearchFragment contributeSearchFragmentInjector();
 
 }

@@ -119,4 +119,9 @@ public class HttpHelperImpl implements HttpHelper {
     public Observable<BaseResponse<List<HotSearchData>>> getSearchData() {
         return mApiService.getSearchData();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String key) {
+        return mApiService.getSearchResultList(pageNum,key);
+    }
 }

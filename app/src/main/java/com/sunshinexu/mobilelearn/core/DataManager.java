@@ -156,23 +156,28 @@ public class DataManager implements PreHelper,HttpHelper,DbHelper {
     }
 
     @Override
+    public Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String key) {
+        return mHttpHelper.getSearchResultList(pageNum,key);
+    }
+
+    @Override
     public List<HistoryData> addHistoryData(String data) {
-        return null;
+        return mDbHelper.addHistoryData(data);
     }
 
     @Override
     public void clearHistoryData() {
-
+        mDbHelper.clearHistoryData();
     }
 
     @Override
     public void deleteHistoryDataId(Long id) {
-
+        mDbHelper.deleteHistoryDataId(id);
     }
 
     @Override
     public List<HistoryData> loadAllHistoryData() {
-        return null;
+        return mDbHelper.loadAllHistoryData();
     }
 }
 

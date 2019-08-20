@@ -28,6 +28,7 @@ public class Constants {
 
     public static final String EVENT_BUS_TAG = "eventBusTag";
     public static final String KNOWLEDGE_PAGER = "knowledgePager";
+    public static final String SEARCH_PAGER = "knowledgePager";
     public static final String TAG_DEFAULT = "tagDefault";
     public static final String KNOWLEDGE_DATA = "knowledgeData";
 

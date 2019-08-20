@@ -101,8 +101,13 @@ public interface ApiService {
     @GET("friend/json")
     Observable<BaseResponse<List<WebsiteData>>> getWebsiteList();
 
-    //搜索热门数据
+    //搜索热词
     @GET("hotkey/json")
     @Headers("Cache-Control: public, max-age=36000")
     Observable<BaseResponse<List<HotSearchData>>> getSearchData();
+
+    //搜索关键词
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListData>> getSearchResultList(@Path("page") int page, @Field("k") String key);
 }

@@ -38,11 +38,12 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.tfl_hot_data)
     TagFlowLayout tfl_hot_data;
     @BindView(R.id.rv_history_search)
     RecyclerView rv_history_search;
+    @BindView(R.id.tv_clear_history)
+    TextView tv_clear_history;
     private List<HotSearchData> mHotSearchDataList;
     private SearchHistoryAdapter mAdapter;
     private List<HistoryData> mSearchHistoryList;
@@ -61,6 +62,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
             actionBar.setDisplayShowTitleEnabled(false);
         }
         getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar));
+        toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
     @Override
@@ -80,12 +82,26 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         rv_history_search.setHasFixedSize(true);
         mAdapter.bindToRecyclerView(rv_history_search);
         mAdapter.setEmptyView(R.layout.search_empty_view);
+        tv_clear_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.clearAllHistoryData();
+                mSearchHistoryList.clear();
+                mAdapter.replaceData(mSearchHistoryList);
+            }
+        });
     }
 
     @Override
     protected void initEventAndData() {
         mHotSearchDataList = new ArrayList<>();
         mPresenter.getSearchData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.loadAllHistoryData();
     }
 
 
@@ -100,7 +116,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                goToSearchResult(query);
+                goToSearchResult(query);
                 return false;
             }
 
@@ -158,6 +174,11 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         }
     }
 
+    /**
+     * 展示热门关键词
+     * @param searchData 关键词
+     */
+
     @Override
     public void showTopSearchData(List<HotSearchData> searchData) {
         mHotSearchDataList = searchData;
@@ -180,10 +201,21 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         });
     }
 
+    /**
+     * 展示搜索历史数据
+     * @param historyDataList 历史数据
+     */
     @Override
     public void showHistoryData(List<HistoryData> historyDataList) {
+        mSearchHistoryList = historyDataList;
+        mAdapter.replaceData(historyDataList);
     }
 
+
+    /**
+     * 随机获取颜色
+     * @return 颜色
+     */
     public static int getRandomColor() {
         Random random = new Random();
         //0-190, 如果颜色值过大,就越接近白色,就看不清了,所以需要限定范围

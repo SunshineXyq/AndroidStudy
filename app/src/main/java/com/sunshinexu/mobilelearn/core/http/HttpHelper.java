@@ -60,4 +60,6 @@ public interface HttpHelper {
     Observable<BaseResponse<List<WebsiteData>>> getWebsiteList();
 
     Observable<BaseResponse<List<HotSearchData>>> getSearchData();
+
+    Observable<BaseResponse<ArticleListData>> getSearchResultList(int pageNum, String key);
 }
