@@ -54,7 +54,7 @@
                         android:layout_alignParentRight="true"
                         android:drawablePadding="6dp"
                         android:text="@string/clear_all"
-                        android:textColor="@color/Grey400" />
+                        android:textColor="@color/Grey500" />
 
                     <TextView
                         android:layout_width="wrap_content"

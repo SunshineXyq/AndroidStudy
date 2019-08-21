@@ -138,11 +138,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         intentAbout.putExtra("Type", Constants.TYPE_ABOUT);
                         startActivity(intentAbout);
                         break;
-                    case R.id.item_set:
-                        Intent intent = new Intent(MainActivity.this, ItemActivity.class);
-                        intent.putExtra("Type", Constants.TYPE_SET);
-                        startActivity(intent);
-                        break;
                     case R.id.item_logout:
                         mPresenter.logout();
                         break;

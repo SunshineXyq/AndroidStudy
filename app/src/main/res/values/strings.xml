@@ -80,7 +80,7 @@
     <string name="search">搜索</string>
     <string name="use_website">常用网站</string>
     <string name="failed_to_get_website_data">获取通用网站栏失败</string>
-    <string name="action_search">搜索</string>
+    <string name="action_search">请输入搜索内容</string>
     <string name="search_more">搜索</string>
     <string name="hot_search">热搜</string>
     <string name="clear_all">清空</string>
