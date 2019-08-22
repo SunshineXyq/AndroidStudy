@@ -16,7 +16,7 @@ public class CollectPresenter<V extends CollectContract.View> extends Presenter<
                 .compose(RxJavaUtil.SchedulerTransformer())   //调度器
                 .filter(articleListData -> mView != null)     //添加过滤
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
-                        MobileLearnApp.getContext().getString(R.string.failed_to_cancel_collect),
+                        MobileLearnApp.getContext().getString(R.string.collect_failed),
                         false) {
 
                     @Override

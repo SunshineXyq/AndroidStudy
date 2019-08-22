@@ -43,7 +43,7 @@ public class ProjectListFragmentPresenter extends CollectPresenter<ProjectListFr
                 .compose(RxJavaUtil.SchedulerTransformer())
                 .filter(articleListData -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
-                        MobileLearnApp.getContext().getString(R.string.failed_to_get_project)) {
+                        MobileLearnApp.getContext().getString(R.string.failed_to_get_project),isShowStatusView) {
                     @Override
                     public void success(ArticleListData articleListData) {
                         if(isShowStatusView && currentPage == 1 &&

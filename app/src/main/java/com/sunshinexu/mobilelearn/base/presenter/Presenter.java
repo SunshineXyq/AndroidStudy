@@ -64,12 +64,12 @@ public class Presenter<T extends BaseView> implements BasePresenter<T> {
 
     @Override
     public String getLoginAccount() {
-        return null;
+        return dataManager.getLoginAccount();
     }
 
     @Override
     public void setLoginAccount(String account) {
-
+        dataManager.setLoginAccount(account);
     }
 
 

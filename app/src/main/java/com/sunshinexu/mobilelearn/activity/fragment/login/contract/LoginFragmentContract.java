@@ -7,12 +7,13 @@ package com.sunshinexu.mobilelearn.activity.fragment.login.contract;
 
 import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
 import com.sunshinexu.mobilelearn.base.view.BaseView;
+import com.sunshinexu.mobilelearn.core.eventbus.RegisterEvent;
 
 public interface LoginFragmentContract {
     interface View extends BaseView {
         void loginSuccess();
 
-        void registerSuccess();
+        void registerSuccess(RegisterEvent registerEvent);
     }
 
     interface Presenter extends BasePresenter<View> {

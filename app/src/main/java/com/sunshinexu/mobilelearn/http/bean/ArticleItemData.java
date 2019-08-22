@@ -241,4 +241,34 @@ public class ArticleItemData {
     public void setOriginId(int originId) {
         this.originId = originId;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleItemData{" +
+                "apkLink='" + apkLink + '\'' +
+                ", author='" + author + '\'' +
+                ", chapterId=" + chapterId +
+                ", chapterName='" + chapterName + '\'' +
+                ", collect=" + collect +
+                ", courseId=" + courseId +
+                ", desc='" + desc + '\'' +
+                ", envelopePic='" + envelopePic + '\'' +
+                ", id=" + id +
+                ", link='" + link + '\'' +
+                ", niceDate='" + niceDate + '\'' +
+                ", origin='" + origin + '\'' +
+                ", projectLink='" + projectLink + '\'' +
+                ", superChapterId=" + superChapterId +
+                ", superChapterName='" + superChapterName + '\'' +
+                ", publishTime=" + publishTime +
+                ", title='" + title + '\'' +
+                ", visible=" + visible +
+                ", zan=" + zan +
+                ", type=" + type +
+                ", fresh=" + fresh +
+                ", tags=" + tags +
+                ", userId=" + userId +
+                ", originId=" + originId +
+                '}';
+    }
 }

@@ -5,10 +5,15 @@ import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageContract;
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
+import com.sunshinexu.mobilelearn.core.eventbus.LoginEvent;
+import com.sunshinexu.mobilelearn.core.eventbus.LogoutEvent;
 import com.sunshinexu.mobilelearn.core.rxjava.BaseObserver;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.utils.RxJavaUtil;
 
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import java.util.List;
 
@@ -92,7 +97,7 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
     public void refreshLayout(boolean isShowStatusView) {
         isRefresh = true;
         currentPage = 0;
-        getHomepageData(true);
+        getHomepageData(isShowStatusView);
     }
 
     @Override
@@ -100,5 +105,33 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
         isRefresh = false;
         currentPage++;
         getArticleData(false);
+    }
+
+    /**
+     * 注销成功后刷新数据
+     * @param logoutEvent
+     */
+    @Subscriber()
+    public void logoutSuccessEvent(LogoutEvent logoutEvent) {
+        getHomepageData(false);
+    }
+
+    /**
+     * 登录成功后刷新数据
+     * @param loginEvent
+     */
+    @Subscriber()
+    public void loginSuccessEvent(LoginEvent loginEvent) {
+        getHomepageData(false);
+    }
+
+    @Override
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void unregisterEventBus() {
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -52,14 +52,14 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
         rv_knowledge.setLayoutManager(new LinearLayoutManager(_mActivity));
         rv_knowledge.setAdapter(mAdapter);
         srl_knowledge.setOnRefreshListener(refreshLayout -> {
-            presenter.getKnowledgeSystemData();
+            presenter.getKnowledgeSystemData(false);
             refreshLayout.finishRefresh();
         });
     }
 
     @Override
     protected void initData() {
-        presenter.getKnowledgeSystemData();
+        presenter.getKnowledgeSystemData(true);
     }
 
     @Override

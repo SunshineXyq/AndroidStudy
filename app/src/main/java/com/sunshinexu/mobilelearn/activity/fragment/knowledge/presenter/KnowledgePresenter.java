@@ -19,12 +19,12 @@ public class KnowledgePresenter extends Presenter<KnowledgeContract.View> implem
     }
 
     @Override
-    public void getKnowledgeSystemData() {
+    public void getKnowledgeSystemData(boolean isShowViewStatus) {
         addSubscribe(dataManager.getKnowledgeData()
                 .compose(RxJavaUtil.SchedulerTransformer())
                 .filter(listBaseResponse -> mView != null)
                 .subscribeWith(new BaseObserver<List<KnowledgeSystemData>>(mView,
-                        MobileLearnApp.getContext().getString(R.string.failed_to_get_knowledge),true) {
+                        MobileLearnApp.getContext().getString(R.string.failed_to_get_knowledge),isShowViewStatus) {
 
                     @Override
                     public void success(List<KnowledgeSystemData> knowledgeSystemData) {
@@ -35,6 +35,6 @@ public class KnowledgePresenter extends Presenter<KnowledgeContract.View> implem
 
     @Override
     public void reload() {
-        getKnowledgeSystemData();
+        getKnowledgeSystemData(false);
     }
 }

@@ -11,13 +11,13 @@
         android:layout_height="match_parent"
         app:srlAccentColor="?attr/colorPrimary"
         app:srlEnablePreviewInEditMode="true"
-        app:srlPrimaryColor="@color/colorPrimary">
+        app:srlPrimaryColor="@color/colorAccent">
 
-        <com.scwang.smartrefresh.header.PhoenixHeader
+        <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </com.scwang.smartrefresh.header.PhoenixHeader>
+        </com.scwang.smartrefresh.header.MaterialHeader>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/hp_recycler_view"
@@ -26,11 +26,11 @@
 
         </android.support.v7.widget.RecyclerView>
 
-        <com.scwang.smartrefresh.header.TaurusHeader
+        <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </com.scwang.smartrefresh.header.TaurusHeader>
+        </com.scwang.smartrefresh.header.MaterialHeader>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

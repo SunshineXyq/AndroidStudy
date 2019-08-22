@@ -13,13 +13,43 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="60dp"
         android:visibility="gone"/>
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/main_white"
         android:layout_centerInParent="true"
-        android:textSize="16sp"
-        android:text="一起学 Android"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_white"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            android:text="@string/welcome"/>
+
+        <TextView
+            android:id="@+id/tv_login_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/main_white"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/main_white"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:text="@string/study"/>
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>

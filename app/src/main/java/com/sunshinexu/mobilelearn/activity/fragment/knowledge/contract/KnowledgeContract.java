@@ -11,6 +11,6 @@ public interface KnowledgeContract {
         void showKnowledgeSystemData(List<KnowledgeSystemData> knowledgeSystems);
     }
     interface Presenter extends BasePresenter<View> {
-        void getKnowledgeSystemData();
+        void getKnowledgeSystemData(boolean isShowViewStatus);
     }
 }

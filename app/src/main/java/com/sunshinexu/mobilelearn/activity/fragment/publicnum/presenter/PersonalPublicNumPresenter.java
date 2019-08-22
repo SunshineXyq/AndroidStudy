@@ -33,7 +33,7 @@ public class PersonalPublicNumPresenter extends CollectPresenter<PersonalPublicN
                 .compose(RxJavaUtil.SchedulerTransformer())
                 .filter(articleListDataBaseResponse -> mView != null)
                 .subscribeWith(new BaseObserver<ArticleListData>(mView,
-                        MobileLearnApp.getContext().getString(R.string.failed_to_get_personal_public_num)) {
+                        MobileLearnApp.getContext().getString(R.string.failed_to_get_personal_public_num),viewStatus) {
                     @Override
                     public void success(ArticleListData listData) {
                         if(viewStatus && currentPage == 1 &&

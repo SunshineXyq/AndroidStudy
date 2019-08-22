@@ -12,6 +12,7 @@ import com.classic.common.MultipleStatusView;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
 import com.sunshinexu.mobilelearn.base.view.BaseView;
+import com.sunshinexu.mobilelearn.utils.dialog.LoadingDialog;
 
 import javax.inject.Inject;
 
@@ -25,6 +26,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
     @Inject
     protected T presenter;
     private MultipleStatusView custom_multiple_view;
+    private LoadingDialog dialog;
 
     @Override
     public void onAttach(Activity activity) {
@@ -40,6 +42,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
         custom_multiple_view = view.findViewById(R.id.custom_multiple_view);
         if (presenter != null) {
             presenter.attachView(this);
+        }
+        if (custom_multiple_view != null) {
+            custom_multiple_view.setOnRetryClickListener(v -> presenter.reload());
         }
     }
 
@@ -61,36 +66,49 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
 
     @Override
     public void showErrorMessage(String message) {
-        Toast.makeText(_mActivity,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(_mActivity, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showLoading() {
+        System.out.println("showdialog");
         if (custom_multiple_view == null) {
             return;
         } else {
-            custom_multiple_view.showLoading();
+            System.out.println("showdialog");
+            if (dialog == null) {
+                dialog = new LoadingDialog(_mActivity, getString(R.string.loading_data),
+                        R.mipmap.ic_dialog_loading);
+            }
+            dialog.show();
         }
     }
 
     @Override
     public void hideLoading() {
-
+        if (dialog != null) {
+            System.out.println("hidedialog");
+            dialog.dismiss();
+            dialog = null;
+        }
     }
 
     @Override
     public void showError() {
-
+        if (custom_multiple_view == null) return;
+        custom_multiple_view.showError();
     }
 
     @Override
     public void showNoNetwork() {
-
+        if (custom_multiple_view == null) return;
+        custom_multiple_view.showNoNetwork();
     }
 
     @Override
     public void showEmpty() {
-
+        if (custom_multiple_view == null) return;
+        custom_multiple_view.showEmpty();
     }
 
     @Override

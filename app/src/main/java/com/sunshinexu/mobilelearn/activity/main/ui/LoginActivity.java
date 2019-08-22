@@ -24,7 +24,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
     @BindView(R.id.status_bar)

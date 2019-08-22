@@ -20,6 +20,8 @@ import com.sunshinexu.mobilelearn.activity.fragment.login.presenter.LoginFragmen
 import com.sunshinexu.mobilelearn.activity.fragment.register.ui.RegisterFragment;
 import com.sunshinexu.mobilelearn.activity.main.ui.LoginActivity;
 import com.sunshinexu.mobilelearn.base.fragment.BaseFragment;
+import com.sunshinexu.mobilelearn.core.eventbus.RegisterEvent;
+import com.sunshinexu.mobilelearn.utils.dialog.LoadingDialog;
 
 import java.util.Objects;
 
@@ -35,7 +37,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     TextView btn_login;
     @BindView(R.id.tv_sign_up)
     TextView tv_sign_up;
-    private AlertDialog dialog;
+    private LoadingDialog dialog;
 
     public static LoginFragment newInstance(){
         return new LoginFragment();
@@ -43,12 +45,14 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
 
     @Override
     public void loginSuccess() {
-
+        Toast.makeText(_mActivity,getString(R.string.login_success),Toast.LENGTH_SHORT).show();
+        _mActivity.finish();
     }
 
     @Override
-    public void registerSuccess() {
-
+    public void registerSuccess(RegisterEvent registerEvent) {
+        et_username.setText(registerEvent.getUsername());
+        et_password.setText(registerEvent.getPassword());
     }
 
     @Override
@@ -101,11 +105,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     @Override
     public void showLoading() {
         if (dialog == null) {
-            View view = LayoutInflater.from(_mActivity).inflate(R.layout.login_progress_bar, null, false);
-            TextView loadingText = view.findViewById(R.id.loading_text);
-            loadingText.setText(getResources().getString(R.string.logining));
-            dialog = new AlertDialog.Builder(_mActivity).setView(view).create();
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+            dialog = new LoadingDialog(_mActivity, getString(R.string.logining), R.mipmap.ic_dialog_loading);
         }
         dialog.show();
     }
@@ -122,4 +122,5 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     protected void initData() {
 
     }
+
 }

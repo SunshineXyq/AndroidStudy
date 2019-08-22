@@ -38,17 +38,17 @@ public class DataManager implements PreHelper,HttpHelper,DbHelper {
 
     @Override
     public boolean getLoginStatus() {
-        return false;
+        return mPreHelper.getLoginStatus();
     }
 
     @Override
     public void setLoginAccount(String account) {
-
+        mPreHelper.setLoginAccount(account);
     }
 
     @Override
     public String getLoginAccount() {
-        return null;
+        return mPreHelper.getLoginAccount();
     }
 
     @Override

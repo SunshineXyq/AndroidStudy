@@ -120,6 +120,11 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     }
 
+    /**
+     * 打开文章详情
+     * @param view
+     * @param position
+     */
     private void openArticleDetail(View view, int position) {
         Intent intent = new Intent(_mActivity, ArticleDetailActivity.class);
         intent.putExtra(Constants.ARTICLE_LINK,adapter.getData().get(position).getLink());
@@ -143,7 +148,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
         hpSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                presenter.refreshLayout(true);
+                presenter.refreshLayout(false);
                 refreshLayout.finishRefresh();
             }
         });
@@ -217,7 +222,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     /**
      * 收藏成功
-     * @param position  收藏位置
+     * @param position 收藏位置
      */
     @Override
     public void showCollectSuccess(int position) {
@@ -227,14 +232,14 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     }
 
     /**
-     * 收藏失败
-     * @param position   收藏位置
+     * 取消收藏
+     * @param position 取消位置
      */
 
     @Override
     public void showCancelCollect(int position) {
         adapter.getData().get(position).setCollect(false);
         adapter.setData(position,adapter.getData().get(position));
-        Toast.makeText(_mActivity,R.string.collect_success,Toast.LENGTH_SHORT).show();
+        Toast.makeText(_mActivity,R.string.cancel_collect,Toast.LENGTH_SHORT).show();
     }
 }

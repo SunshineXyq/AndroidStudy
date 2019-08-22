@@ -1,12 +1,17 @@
 package com.sunshinexu.mobilelearn.core.rxjava;
 
 import android.support.annotation.CallSuper;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.sunshinexu.mobilelearn.R;
+import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.base.view.BaseView;
 import com.sunshinexu.mobilelearn.http.BaseResponse;
+import com.sunshinexu.mobilelearn.http.exception.ServerException;
 
 import io.reactivex.observers.ResourceObserver;
+import retrofit2.HttpException;
 
 public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> {
     private BaseView view;
@@ -44,6 +49,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     public void onNext(BaseResponse<T> tBaseResponse) {
+//        Log.d(TAG, "onResponse" + tBaseResponse.getData().toString());
         if (tBaseResponse.getErrorCode() == BaseResponse.Success) {
             Log.d(TAG,"onSuccess");
             if (isShowStatusView) {
@@ -63,7 +69,32 @@ public abstract class BaseObserver<T> extends ResourceObserver<BaseResponse<T>> 
 
     @Override
     public void onError(Throwable e) {
-
+        Log.d(TAG, "onError: ");
+        if (view == null) {
+            return;
+        }
+        if (isShowStatusView) {
+            view.hideLoading();
+        }
+        if (e instanceof HttpException) {
+            view.showErrorMessage(MobileLearnApp.getContext().getString(R.string.http_error));
+            if (isShowStatusView) {
+                view.showNoNetwork();
+            }
+        } else if (e instanceof ServerException) {
+            view.showErrorMessage(e.toString());
+            if (isShowStatusView) {
+                view.showError();
+            }
+        } else {
+            if (!TextUtils.isEmpty(error)) {
+                view.showErrorMessage(error);
+            }
+            if (isShowStatusView) {
+                view.showError();
+            }
+            Log.e(TAG, e.toString());
+        }
     }
 
     @Override

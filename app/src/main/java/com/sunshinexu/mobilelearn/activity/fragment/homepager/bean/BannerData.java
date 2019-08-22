@@ -90,4 +90,18 @@ public class BannerData {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "BannerData{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", title='" + title + '\'' +
+                ", desc='" + desc + '\'' +
+                ", isVisible=" + isVisible +
+                ", order=" + order +
+                ", type=" + type +
+                '}';
+    }
 }

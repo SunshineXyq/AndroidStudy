@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private KnowledgeFragment knowledgeFragment;
     private PublicNumFragment publicNumFragment;
     private ProjectFragment projectFragment;
+    private TextView tv_welcome;
+    private TextView tv_login_account;
+    private long clickTime;
 
 
     @Override
@@ -128,10 +132,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                             Intent intent = new Intent(MainActivity.this, ItemActivity.class);
                             intent.putExtra("Type", Constants.TYPE_COLLECT);
                             startActivity(intent);
-                    } else {
-                        startLoginActivity();
-                        Toast.makeText(MainActivity.this, getString(R.string.please_login),Toast.LENGTH_SHORT).show();
-                    }
+                        } else {
+                            startLoginActivity();
+                            Toast.makeText(MainActivity.this, getString(R.string.please_login),
+                                    Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case R.id.item_about:
                         Intent intentAbout = new Intent(MainActivity.this, ItemActivity.class);
@@ -145,12 +150,24 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 return true;
             }
         });
-        navigation_view.getMenu().findItem(R.id.item_logout).setVisible(mPresenter.getLoginStatus());
+        tv_welcome = navigation_view.getHeaderView(0).findViewById(R.id.tv_welcome);
+        tv_login_account = navigation_view.getHeaderView(0).findViewById(R.id.tv_login_account);
+        if (mPresenter.getLoginStatus()) {
+            tv_welcome.setVisibility(View.VISIBLE);
+            tv_login_account.setText(mPresenter.getLoginAccount());
+            navigation_view.getMenu().findItem(R.id.item_login).setVisible(false);
+            navigation_view.getMenu().findItem(R.id.item_logout).setVisible(true);
+        } else {
+            tv_welcome.setVisibility(View.INVISIBLE);
+            tv_login_account.setText("");
+            navigation_view.getMenu().findItem(R.id.item_login).setVisible(true);
+            navigation_view.getMenu().findItem(R.id.item_logout).setVisible(false);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -213,7 +230,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 break;
             case Constants.FRAGMENT_NAIVIGATION:
                 toolbar_title.setText(R.string.navigation);
-                if (navigationFragment== null) {
+                if (navigationFragment == null) {
                     navigationFragment = NavigationFragment.newInstance();
                     transaction.add(R.id.fragment_root, this.navigationFragment);
                 }
@@ -264,11 +281,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         drawer_layout.addDrawerListener(toggle);
     }
 
-    private void startLoginActivity(){
+    private void startLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
-
 
 
     @Override
@@ -314,13 +330,35 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void handleLoginSuccess() {
+        tv_welcome.setVisibility(View.VISIBLE);
+        tv_login_account.setText(mPresenter.getLoginAccount());
         navigation_view.getMenu().findItem(R.id.item_login).setVisible(false);
         navigation_view.getMenu().findItem(R.id.item_logout).setVisible(true);
     }
 
     @Override
     public void handleLogoutSuccess() {
-        navigation_view.getMenu().findItem(R.id.item_logout).setVisible(true);
+        tv_welcome.setVisibility(View.INVISIBLE);
+        tv_login_account.setText("");
+        navigation_view.getMenu().findItem(R.id.item_login).setVisible(true);
         navigation_view.getMenu().findItem(R.id.item_logout).setVisible(false);
+        Toast.makeText(this,getString(R.string.logout_success),Toast.LENGTH_SHORT).show();
+    }
+    /**
+     * 处理回退事件
+     */
+    @Override
+    public void onBackPressedSupport() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            pop();
+        } else {
+            long currentTime = System.currentTimeMillis();
+            if ((currentTime - clickTime) > Constants.DOUBLE_INTERVAL_TIME) {
+                Toast.makeText(MainActivity.this, getString(R.string.double_click_exit_toast),Toast.LENGTH_SHORT).show();
+                clickTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+        }
     }
 }

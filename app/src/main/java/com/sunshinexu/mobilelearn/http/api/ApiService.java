@@ -25,6 +25,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
+    /**
+     * @Field 用于Post，表示发送一个表单请求，并加上@FormUrlEncoded，表示使用表单网址编码
+     * @Path  用于Get，表示URL路段中替换指定的参数值
+     * @Query 用于Get，表示添加查询参数
+     */
     String BASE_URL = "https://www.wanandroid.com/";
 
     //获取文章列表
@@ -64,7 +69,7 @@ public interface ApiService {
     @GET("project/tree/json")
     Observable<BaseResponse<List<ProjectData>>> getProjectData();
 
-    //获取项目列表数据,参数在？后用 @Query
+    //获取项目列表数据
     @GET("project/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page,
                                                                  @Query("projectId") int projectId);
@@ -81,11 +86,12 @@ public interface ApiService {
 
     //注册
     @POST("user/register")
+    @FormUrlEncoded
     Observable<BaseResponse<LoginData>> register(@Field("username") String username, @Field(
-            "password") String password, @Field("confirmPassword") String confirmPassword);
+            "password") String password, @Field("repassword") String confirmPassword);
 
     //注销
-    @POST("user/logout/json")
+    @GET("user/logout/json")
     Observable<BaseResponse<LoginData>> logout();
 
     //收藏列表中取消收藏文章
