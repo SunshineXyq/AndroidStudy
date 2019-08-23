@@ -65,6 +65,7 @@ public class ProjectListFragment extends BaseFragment<ProjectListFragmentPresent
 
     @Override
     protected void initData() {
+        assert getArguments() != null;
         int projectId = getArguments().getInt("projectId");
         srl_project_list.setOnRefreshListener(refreshLayout -> {
             presenter.refreshLayout(projectId, false);

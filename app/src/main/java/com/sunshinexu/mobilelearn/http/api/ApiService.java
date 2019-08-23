@@ -72,7 +72,7 @@ public interface ApiService {
     //获取项目列表数据
     @GET("project/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getProjectListData(@Path("page") int page,
-                                                                 @Query("projectId") int projectId);
+                                                                 @Query("cid") int projectId);
 
     //获取知识导航数据
     @GET("navi/json")
@@ -98,7 +98,7 @@ public interface ApiService {
     @POST("lg/uncollect/{id}/json")
     @FormUrlEncoded
     Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(@Path("id") int id,
-                                                                         @Path("originId") int originId);
+                                                                         @Field("originId") int originId);
     //获取收藏列表数据
     @GET("lg/collect/list/{page}/json")
     Observable<BaseResponse<ArticleListData>> getCollectList(@Path("page") int page);

@@ -35,10 +35,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.annotations.Beta;
 
-/**
- * @author ForgetSky
- * @date 19-2-26
- */
+
 public class AboutFragment extends BaseFragment<AboutPresenter> implements AboutContract.View,
         View.OnClickListener {
 

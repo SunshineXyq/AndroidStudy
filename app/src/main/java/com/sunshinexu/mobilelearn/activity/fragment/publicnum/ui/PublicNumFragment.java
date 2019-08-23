@@ -80,6 +80,11 @@ public class PublicNumFragment extends BaseFragment<PublicNumPresenter> implemen
             public CharSequence getPageTitle(int position) {
                 return Html.fromHtml(mPublicNumList.get(position).getName());
             }
+
+            //不添加会内存溢出
+            @Override
+            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            }
         });
         vp_public_num.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tb_public_num));
         tb_public_num.setupWithViewPager(vp_public_num);

@@ -39,7 +39,7 @@ public class KnowledgeArticlePresenter extends CollectPresenter<KnowledgeArticle
                 .compose(RxJavaUtil.SchedulerTransformer())
         .filter(articleListDataBaseResponse -> mView != null)
         .subscribeWith(new BaseObserver<ArticleListData>(mView,
-                MobileLearnApp.getContext().getString(R.string.failed_to_get_article)) {
+                MobileLearnApp.getContext().getString(R.string.failed_to_get_article),isShowStatusView) {
             @Override
             public void success(ArticleListData articleListData) {
                 if(isShowStatusView && currentPage == 0 &&

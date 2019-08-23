@@ -1,6 +1,7 @@
 package com.sunshinexu.mobilelearn.activity.main.ui;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sunshinexu.mobilelearn.R;
@@ -35,8 +39,11 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
     TabLayout tb_knowledge_detail;
     @BindView(R.id.vp_knowledge_detail)
     ViewPager vp_knowledge_detail;
+    @BindView(R.id.toolbar_back)
+    ImageView toolbar_back;
 
     private SparseArray<KnowledgeArticleFragment> knowledgeArticleFragmentArray= new SparseArray<>();
+    private List<KnowledgeSystemData> dataChildren;
 
     @Override
     protected int getLayoutId() {
@@ -49,9 +56,10 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+            toolbar_back.setVisibility(View.VISIBLE);
         }
+        toolbar_back.setOnClickListener(view -> finish());
         getWindow().setNavigationBarColor(getResources().getColor(R.color.white_smoke));
-        toolbar.setNavigationOnClickListener(view -> onBackPressedSupport());
     }
 
     @Override
@@ -69,14 +77,14 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
         KnowledgeSystemData knowledgeSystemData =
                 (KnowledgeSystemData) getIntent().getSerializableExtra(Constants.KNOWLEDGE_DATA);
         toolbar_title.setText(knowledgeSystemData.getName());
-        List<KnowledgeSystemData> dataChildren = knowledgeSystemData.getChildren();
+        dataChildren = knowledgeSystemData.getChildren();
         vp_knowledge_detail.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 KnowledgeArticleFragment knowledgeArticleFragment = knowledgeArticleFragmentArray.get(position);
                 if (knowledgeArticleFragment == null) {
                     Bundle bundle = new Bundle();
-                    bundle.putInt("KnowledgeDataId",dataChildren.get(position).getId());
+                    bundle.putInt("KnowledgeDataId", dataChildren.get(position).getId());
                     knowledgeArticleFragment = KnowledgeArticleFragment.newInstance(bundle);
                     knowledgeArticleFragmentArray.put(position,knowledgeArticleFragment);
                     return knowledgeArticleFragment;
@@ -94,6 +102,11 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
             @Override
             public CharSequence getPageTitle(int position) {
                 return Html.fromHtml(dataChildren.get(position).getName());
+            }
+
+            @Override
+            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+                System.out.println("destory");
             }
         });
         vp_knowledge_detail.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tb_knowledge_detail));
@@ -115,5 +128,18 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
 
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        if (knowledgeArticleFragmentArray != null) {
+            knowledgeArticleFragmentArray.clear();
+            knowledgeArticleFragmentArray = null;
+        }
+        if (dataChildren != null) {
+            dataChildren.clear();
+            dataChildren = null;
+        }
+        super.onDestroy();
     }
 }
