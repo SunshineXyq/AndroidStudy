@@ -37,6 +37,12 @@ public class DbHelperImpl implements DbHelper {
         daoSession = daoMaster.newSession();
     }
 
+    /**
+     * 添加搜索历史
+     * @param data
+     * @return
+     */
+
     @Override
     public List<HistoryData> addHistoryData(String data) {
         this.data = data;
@@ -57,21 +63,35 @@ public class DbHelperImpl implements DbHelper {
         return historyDataList;
     }
 
+    /**
+     * 清空搜索历史
+     */
     @Override
     public void clearHistoryData() {
         daoSession.getHistoryDataDao().deleteAll();
     }
 
+    /**
+     * 删除某一条搜索历史
+     * @param id
+     */
     @Override
     public void deleteHistoryDataId(Long id) {
         daoSession.getHistoryDataDao().deleteByKey(id);
     }
 
+    /**
+     * 加载搜索历史
+     * @return
+     */
     @Override
     public List<HistoryData> loadAllHistoryData() {
         return daoSession.getHistoryDataDao().loadAll();
     }
 
+    /**
+     * 获取历史搜索列表
+     */
     private void getHistoryList() {
         historyDataList = getHistoryDataDao().loadAll();
     }

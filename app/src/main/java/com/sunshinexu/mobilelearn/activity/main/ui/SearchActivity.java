@@ -146,6 +146,11 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * 点击热门关键词
+     * @param searchString
+     */
+
     private void goToSearchResult(String searchString) {
         mPresenter.addHistoryData(searchString);
         Intent intent = new Intent(SearchActivity.this, ItemActivity.class);

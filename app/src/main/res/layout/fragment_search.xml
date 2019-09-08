@@ -13,7 +13,7 @@
         app:srlEnablePreviewInEditMode="true"
         app:srlPrimaryColor="?attr/colorPrimary">
 
-        <com.scwang.smartrefresh.header.PhoenixHeader
+        <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -24,7 +24,7 @@
             android:background="@color/main_white"
             android:visibility="visible" />
 
-        <com.scwang.smartrefresh.header.TaurusHeader
+        <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

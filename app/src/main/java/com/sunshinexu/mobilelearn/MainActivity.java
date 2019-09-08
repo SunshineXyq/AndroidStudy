@@ -171,6 +171,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * ToolBar 两个按钮
+     * @param item
+     * @return
+     */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;

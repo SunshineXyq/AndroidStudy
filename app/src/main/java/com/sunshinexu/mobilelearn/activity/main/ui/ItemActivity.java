@@ -52,8 +52,6 @@ public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemCon
     @Override
     protected void initToolbar() {
         setSupportActionBar(toolbar);
-        status_bar.setBackgroundColor(getResources().getColor(R.color.main_white));
-        toolbar.setBackgroundColor(getResources().getColor(R.color.main_white));
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -85,6 +83,8 @@ public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemCon
                 mTitle.setText(R.string.nav_item_my_collect);
                 break;
             case Constants.TYPE_ABOUT:
+                status_bar.setBackgroundColor(getResources().getColor(R.color.main_white));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.main_white));
                 mFragment = AboutFragment.newInstance();
                 mTitle.setText(R.string.nav_item_about);
                 break;
