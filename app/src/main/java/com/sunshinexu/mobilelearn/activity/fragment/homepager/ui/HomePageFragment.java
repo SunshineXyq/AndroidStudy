@@ -54,7 +54,6 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
     public static HomePageFragment newInstance() {
         HomePageFragment homePageFragment = new HomePageFragment();
         return homePageFragment;
-
     }
 
     @Override

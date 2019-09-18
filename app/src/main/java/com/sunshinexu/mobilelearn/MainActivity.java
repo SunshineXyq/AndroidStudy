@@ -128,12 +128,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         startLoginActivity();
                         break;
                     case R.id.item_collect:
-                        if (mPresenter.getLoginStatus()) {
+                        if (mPresenter.getLoginStatus()) {   //判断当前是否处于登录状态
                             Intent intent = new Intent(MainActivity.this, ItemActivity.class);
                             intent.putExtra("Type", Constants.TYPE_COLLECT);
                             startActivity(intent);
                         } else {
-                            startLoginActivity();
+                            startLoginActivity();            //未登录跳转登录页
                             Toast.makeText(MainActivity.this, getString(R.string.please_login),
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -338,7 +338,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void handleLoginSuccess() {
         tv_welcome.setVisibility(View.VISIBLE);
         tv_login_account.setText(mPresenter.getLoginAccount());
+        //隐藏登录按钮
         navigation_view.getMenu().findItem(R.id.item_login).setVisible(false);
+        //显示注销按钮
         navigation_view.getMenu().findItem(R.id.item_logout).setVisible(true);
     }
 

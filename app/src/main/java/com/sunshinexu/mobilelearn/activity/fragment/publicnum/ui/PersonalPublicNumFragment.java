@@ -47,10 +47,13 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
     protected void initView() {
         ArrayList<ArticleItemData> articleItemData = new ArrayList<>();
         mAdapter = new PersonalPublicNumAdapter(R.layout.item_article, articleItemData);
-        mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetail(view,position));
-        mAdapter.setOnItemChildClickListener((adapter, view, position) -> childOnClick(view,position));
-        DividerItemDecoration divider = new DividerItemDecoration(_mActivity,DividerItemDecoration.VERTICAL);
-        divider.setDrawable(ContextCompat.getDrawable(_mActivity,R.drawable.shape_hp_rv_line));
+        mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetail(view,
+                position));
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> childOnClick(view,
+                position));
+        DividerItemDecoration divider = new DividerItemDecoration(_mActivity,
+                DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(_mActivity, R.drawable.shape_hp_rv_line));
         rv_public_num.addItemDecoration(divider);
         rv_public_num.setLayoutManager(new LinearLayoutManager(_mActivity));
         rv_public_num.setHasFixedSize(true);   //item 固定宽高，避免重复计算大小
@@ -60,9 +63,9 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
     @Override
     protected void initData() {
         int publicNumId = getArguments().getInt("publicNumId");
-        presenter.refreshLayout(publicNumId,true);
+        presenter.refreshLayout(publicNumId, true);
         srl_personal_public_num.setOnRefreshListener(refreshLayout -> {
-            presenter.refreshLayout(publicNumId,false);
+            presenter.refreshLayout(publicNumId, false);
             srl_personal_public_num.finishRefresh();
         });
         srl_personal_public_num.setOnLoadMoreListener(refreshLayout -> {
@@ -71,24 +74,25 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
         });
     }
 
-    private void startArticleDetail(View view,int position){
+    private void startArticleDetail(View view, int position) {
         Intent intent = new Intent(_mActivity, ArticleDetailActivity.class);
-        intent.putExtra(Constants.ARTICLE_LINK,mAdapter.getData().get(position).getLink());
-        intent.putExtra(Constants.ARTICLE_TITLE,mAdapter.getData().get(position).getTitle());
-        intent.putExtra(Constants.ARTICLE_ID,mAdapter.getData().get(position).getId());
-        intent.putExtra(Constants.IS_COLLECTED,mAdapter.getData().get(position).isCollect());
-        intent.putExtra(Constants.IS_SHOW_COLLECT_ICON,true);
-        intent.putExtra(Constants.ARTICLE_ITEM_POSITION,position);
-        intent.putExtra(Constants.EVENT_BUS_TAG,"publicNum");
+        intent.putExtra(Constants.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
+        intent.putExtra(Constants.ARTICLE_TITLE, mAdapter.getData().get(position).getTitle());
+        intent.putExtra(Constants.ARTICLE_ID, mAdapter.getData().get(position).getId());
+        intent.putExtra(Constants.IS_COLLECTED, mAdapter.getData().get(position).isCollect());
+        intent.putExtra(Constants.IS_SHOW_COLLECT_ICON, true);
+        intent.putExtra(Constants.ARTICLE_ITEM_POSITION, position);
+        intent.putExtra(Constants.EVENT_BUS_TAG, "publicNum");
         startActivity(intent);
     }
 
-    private void childOnClick(View view,int position){
+    private void childOnClick(View view, int position) {
         if (presenter.getLoginStatus()) {
             if (mAdapter.getData().get(position).isCollect()) {
-                presenter.cancelAddCollectArticle(position,mAdapter.getData().get(position).getId());
+                presenter.cancelAddCollectArticle(position,
+                        mAdapter.getData().get(position).getId());
             } else {
-                presenter.addCollectArticle(position,mAdapter.getData().get(position).getId());
+                presenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
             }
         } else {
             Intent intent = new Intent(_mActivity, LoginActivity.class);
@@ -110,12 +114,12 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
     @Override
     public void showCollectSuccess(int position) {
         mAdapter.getData().get(position).setCollect(true);
-        mAdapter.setData(position,mAdapter.getData().get(position));
+        mAdapter.setData(position, mAdapter.getData().get(position));
     }
 
     @Override
     public void showCancelCollect(int position) {
         mAdapter.getData().get(position).setCollect(false);
-        mAdapter.setData(position,mAdapter.getData().get(position));
+        mAdapter.setData(position, mAdapter.getData().get(position));
     }
 }

@@ -63,6 +63,7 @@ public class PublicNumFragment extends BaseFragment<PublicNumPresenter> implemen
                     bundle.putInt("publicNumId", publicNumData.get(position).getId());
                     personalPublicNumFragment =
                             PersonalPublicNumFragment.newInstance(bundle);
+                    personalFragment.put(position,personalPublicNumFragment);
                     return personalPublicNumFragment;
                 } else {
                     return personalPublicNumFragment;

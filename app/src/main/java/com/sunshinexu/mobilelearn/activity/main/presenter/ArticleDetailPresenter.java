@@ -19,6 +19,7 @@ public class ArticleDetailPresenter extends CollectPresenter<ArticleDetailContra
 
     @Override
     public void checkSharePermission(RxPermissions rxPermissions) {
+        //检查是否授权
         addSubscribe(rxPermissions
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new Consumer<Boolean>() {

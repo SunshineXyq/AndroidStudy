@@ -24,8 +24,9 @@ public class KnowledgePresenter extends Presenter<KnowledgeContract.View> implem
                 .compose(RxJavaUtil.SchedulerTransformer())
                 .filter(listBaseResponse -> mView != null)
                 .subscribeWith(new BaseObserver<List<KnowledgeSystemData>>(mView,
-                        MobileLearnApp.getContext().getString(R.string.failed_to_get_knowledge),isShowViewStatus) {
-
+                        MobileLearnApp.getContext().getString(R.string.failed_to_get_knowledge),
+                        isShowViewStatus) {
+                 //知识体系数据请求成功后回调函数
                     @Override
                     public void success(List<KnowledgeSystemData> knowledgeSystemData) {
                         mView.showKnowledgeSystemData(knowledgeSystemData);
