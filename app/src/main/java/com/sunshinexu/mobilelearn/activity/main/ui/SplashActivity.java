@@ -10,6 +10,9 @@ import android.widget.RelativeLayout;
 import com.sunshinexu.mobilelearn.MainActivity;
 import com.sunshinexu.mobilelearn.R;
 
+/**
+ * 移动开发学习系统启动页面
+ */
 public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

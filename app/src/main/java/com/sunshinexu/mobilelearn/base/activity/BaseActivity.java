@@ -16,6 +16,10 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import android.support.v4.app.Fragment;
 
+/**
+ * 每个Activity都需要继承此类
+ * @param <T>
+ */
 public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimpleActivity
         implements HasSupportFragmentInjector, BaseView {
     private static final String TAG = "BaseActivity";

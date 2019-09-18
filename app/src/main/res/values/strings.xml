@@ -95,6 +95,7 @@
     <string name="loading_data">正在加载...</string>
     <string name="http_error">网络异常</string>
     <string name="double_click_exit_toast">再按一次退出</string>
+    <string name="welcome_word">欢迎来到移动开发学习系统</string>
 
 
 </resources>

@@ -1,5 +1,8 @@
 package com.sunshinexu.mobilelearn.base.view;
 
+/**
+ * View 基类接口
+ */
 public interface BaseView {
     void showErrorMessage(String message);
     void showLoading();

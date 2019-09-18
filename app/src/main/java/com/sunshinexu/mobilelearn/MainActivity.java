@@ -34,7 +34,9 @@ import com.sunshinexu.mobilelearn.activity.main.presenter.MainPresenter;
 
 import butterknife.BindView;
 
-
+/**
+ * 主页面
+ */
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
     private static final String TAG = "MainActivity";
@@ -72,7 +74,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         return R.layout.activity_main;
     }
 
-
+    /**
+     * 初始化 Toolbar
+     */
     @Override
     protected void initToolbar() {
         setSupportActionBar(toolbar);
@@ -93,6 +97,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
+    /**
+     * 初始化底部导航栏
+     */
     private void initBottomNavigationView() {
         bottom_navigation_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -172,7 +179,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     /**
-     * ToolBar 两个按钮
+     * Toolbar 两个按钮
      * @param item
      * @return
      */
@@ -196,6 +203,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         return true;
     }
 
+    /**
+     * 展示对应 Fragment
+     * @param index
+     */
     private void showFragment(int index) {
         currentFgIndex = index;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
