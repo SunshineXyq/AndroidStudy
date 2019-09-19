@@ -15,6 +15,9 @@ import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
+/**
+ * 个人公众号相关调用
+ */
 public class PersonalPublicNumPresenter extends CollectPresenter<PersonalPublicNumContract.View>
         implements PersonalPublicNumContract.Presenter {
 
@@ -46,6 +49,9 @@ public class PersonalPublicNumPresenter extends CollectPresenter<PersonalPublicN
                 }));
     }
 
+    /**
+     * 加载更多
+     */
     @Override
     public void loadMore() {
         currentPage++;
@@ -53,6 +59,11 @@ public class PersonalPublicNumPresenter extends CollectPresenter<PersonalPublicN
         getPersonalPublicNum(false);
     }
 
+    /**
+     * 刷新列表
+     * @param id id
+     * @param viewStatus 是否刷新
+     */
     @Override
     public void refreshLayout(int id, boolean viewStatus) {
         currentPage = 1;

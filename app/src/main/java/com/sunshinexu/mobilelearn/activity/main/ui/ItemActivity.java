@@ -28,6 +28,9 @@ import com.sunshinexu.mobilelearn.core.constant.Constants;
 
 import butterknife.BindView;
 
+/**
+ * 侧边栏主页面
+ */
 public class ItemActivity extends BaseActivity<ItemPresenter> implements ItemContract.View {
 
     @BindView(R.id.status_bar)

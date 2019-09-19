@@ -34,6 +34,9 @@ import java.util.Random;
 
 import butterknife.BindView;
 
+/**
+ * 搜索主页面
+ */
 public class SearchActivity extends BaseActivity<SearchPresenter> implements SearchContract.View {
 
     @BindView(R.id.toolbar)

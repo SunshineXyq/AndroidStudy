@@ -38,7 +38,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
-
+/**
+ * 在线学习模块 Fragment
+ */
 public class HomePageFragment extends BaseFragment<HomepagePresenter> implements HomepageContract.View {
 
     private static final String TAG = "HomePageFragment";

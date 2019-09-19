@@ -27,6 +27,9 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
+/**
+ * 登录主页面
+ */
 public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implements LoginFragmentContract.View {
 
     @BindView(R.id.et_username)
@@ -122,5 +125,4 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     protected void initData() {
 
     }
-
 }

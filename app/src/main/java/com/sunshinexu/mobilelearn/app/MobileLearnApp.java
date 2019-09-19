@@ -19,6 +19,9 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
+/**
+ * 自定义 Application
+ */
 public class MobileLearnApp extends Application implements HasActivityInjector{
 
     private static Context context;

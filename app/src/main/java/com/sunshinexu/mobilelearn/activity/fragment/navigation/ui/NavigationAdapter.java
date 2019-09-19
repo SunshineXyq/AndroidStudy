@@ -23,6 +23,9 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 学习导航学习内容适配器
+ */
 public class NavigationAdapter extends BaseQuickAdapter<NavigationData, BaseViewHolder> {
 
 
@@ -66,6 +69,10 @@ public class NavigationAdapter extends BaseQuickAdapter<NavigationData, BaseView
         });
     }
 
+    /**
+     * 获取随机颜色
+     * @return
+     */
     public static int getRandomColor() {
         Random random = new Random();
         //0-190, 如果颜色值过大,就越接近白色,就看不清了,所以需要限定范围

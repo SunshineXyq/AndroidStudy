@@ -20,6 +20,9 @@ import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.ITabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
+/**
+ * 学习导航页面
+ */
 public class NavigationFragment extends BaseFragment<NavigationPresenter> implements NavigationContract.View {
 
     @BindView(R.id.rv_navigation)
@@ -58,6 +61,10 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
         presenter.getNavigationData();
     }
 
+    /**
+     * 展示学习导航资源
+     * @param navigationData 导航数据
+     */
     @Override
     public void showNavigationData(List<NavigationData> navigationData) {
         vtl_navigation.setTabAdapter(new TabAdapter() {

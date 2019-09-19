@@ -51,7 +51,7 @@
 
     <!--navigation-->
     <string name="failed_to_get_navigation_data">获取知识导航失败</string>
-    <string name="tv_login_title">欢迎来到移动学习系统</string>
+    <string name="tv_login_title">欢迎来到移动开发学习系统</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="register">注册？</string>

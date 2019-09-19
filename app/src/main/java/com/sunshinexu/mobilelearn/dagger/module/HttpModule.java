@@ -86,5 +86,4 @@ public class HttpModule {
                 // 的Observable
                 .build();
     }
-
 }

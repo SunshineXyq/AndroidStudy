@@ -20,6 +20,9 @@ import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
+/**
+ * 登录页相关调用
+ */
 public class LoginFragmentPresenter extends Presenter<LoginFragmentContract.View> implements LoginFragmentContract.Presenter {
     @Inject
     public LoginFragmentPresenter() {

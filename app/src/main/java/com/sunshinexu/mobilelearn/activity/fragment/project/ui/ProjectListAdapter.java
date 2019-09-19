@@ -20,6 +20,9 @@ import java.util.List;
  * Created on 2019/8/13
  */
 
+/**
+ * 项目列表适配器
+ */
 public class ProjectListAdapter extends BaseQuickAdapter<ArticleItemData, BaseViewHolder> {
 
 

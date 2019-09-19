@@ -37,8 +37,10 @@ import java.lang.reflect.Method;
 
 import butterknife.BindView;
 
+/**
+ * 学习文章详情页
+ */
 public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> implements ArticleDetailContract.View {
-
 
     private String title;
     private String articleLink;
@@ -55,7 +57,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @BindView(R.id.toolbar_back)
     ImageView toolbar_back;
     @BindView(R.id.cl_content)
-     CoordinatorLayout cl_content;
+    CoordinatorLayout cl_content;
     private AgentWeb agentWeb;
     private MenuItem collectItem;
 
@@ -84,7 +86,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
             public void onClick(View view) {
                 onBackPressedSupport();
             }
-        }) ;
+        });
         toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,11 +114,11 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     @Override
     protected void initEventAndData() {
         //集合了影响浏览器的事件到来时的回调方法
-        WebChromeClient webChromeClient = new WebChromeClient(){
+        WebChromeClient webChromeClient = new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-               // toolbar.setTitle(Html.fromHtml(title));
+                // toolbar.setTitle(Html.fromHtml(title));
             }
         };
         CoordinatorLayout.LayoutParams layoutParams = new CoordinatorLayout.LayoutParams(-1, -1);
@@ -124,7 +126,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         NestedScrollAgentWebView nestedScrollAgentWebView = new NestedScrollAgentWebView(this);
         //AgentWeb 是对 WebView 的封装
         agentWeb = AgentWeb.with(this)
-                .setAgentWebParent(cl_content,layoutParams)
+                .setAgentWebParent(cl_content, layoutParams)
                 .useDefaultIndicator()
                 .setWebView(nestedScrollAgentWebView)
                 .setWebChromeClient(webChromeClient)
@@ -138,23 +140,23 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     /**
      * 创建 ToolBar 上的菜单
+     *
      * @param menu 菜单样式
      * @return
      */
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.article_detail_menu,menu);
+        getMenuInflater().inflate(R.menu.article_detail_menu, menu);
         collectItem = menu.findItem(R.id.item_collect);
         collectItem.setVisible(isShowCollectIcon);
         collectItem.setIcon(isCollected ? R.drawable.ic_collect : R.drawable.ic_collect_not);
         return super.onCreateOptionsMenu(menu);
     }
 
-
     /**
      * 可以让打开的菜单同时显示图标和文字
+     *
      * @param featureId
      * @param menu
      * @return
@@ -166,7 +168,8 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
             if ("MenuBuilder".equalsIgnoreCase(menu.getClass().getSimpleName())) {
                 try {
                     @SuppressLint("PrivateApi")
-                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible",
+                            Boolean.TYPE);
                     method.setAccessible(true);
                     method.invoke(menu, true);
                 } catch (Exception e) {
@@ -199,9 +202,9 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     private void dealCollect() {
         if (mPresenter.getLoginStatus()) {
             if (isCollected) {
-                mPresenter.cancelAddCollectArticle(articleItemPosition,articleId);
+                mPresenter.cancelAddCollectArticle(articleItemPosition, articleId);
             } else {
-                mPresenter.addCollectArticle(articleItemPosition,articleId);
+                mPresenter.addCollectArticle(articleItemPosition, articleId);
             }
         } else {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -209,27 +212,31 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         }
     }
 
+    /**
+     * 分享学习资源
+     */
     @Override
     public void shareArticle() {
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.share_type_url, "MobileLearn", title, articleLink));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_type_url, "MobileLearn",
+                title, articleLink));
         intent.setType("text/plain");
         startActivity(intent);
     }
 
     @Override
     public void shareFailed() {
-        Toast.makeText(this,R.string.failed_to_share_failed,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.failed_to_share_failed, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showCollectSuccess(int position) {
         isCollected = true;
         collectItem.setIcon(R.drawable.ic_collect);
-        if (position < 0 ) {
-            Toast.makeText(this,R.string.collect_success,Toast.LENGTH_SHORT).show();
+        if (position < 0) {
+            Toast.makeText(this, R.string.collect_success, Toast.LENGTH_SHORT).show();
         } else {
-            EventBus.getDefault().post(new CollectEvent(false,position),eventBusTag);
+            EventBus.getDefault().post(new CollectEvent(false, position), eventBusTag);
         }
     }
 
@@ -238,7 +245,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         isCollected = false;
         collectItem.setIcon(R.drawable.ic_collect_not);
         if (position < 0) {
-            Toast.makeText(this,R.string.collect_failed,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.collect_failed, Toast.LENGTH_SHORT).show();
         } else {
             EventBus.getDefault().post(new CollectEvent(true, position), eventBusTag);
         }

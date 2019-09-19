@@ -23,6 +23,9 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
+/**
+ * 注册主页面
+ */
 public class RegisterFragment extends BaseFragment<RegisterPresenter> implements RegisterContract.View {
 
     @BindView(R.id.register_username)

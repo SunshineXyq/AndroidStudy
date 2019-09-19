@@ -18,6 +18,9 @@ import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
 
+/**
+ * 注册主页面相关调用
+ */
 public class RegisterPresenter extends Presenter<RegisterContract.View> implements RegisterContract.Presenter {
     @Inject
     public RegisterPresenter() {

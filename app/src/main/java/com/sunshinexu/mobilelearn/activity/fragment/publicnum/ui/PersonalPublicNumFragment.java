@@ -23,6 +23,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
+/**
+ * 个人公众号页面
+ */
 public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPresenter>
         implements PersonalPublicNumContract.View {
 
@@ -74,6 +77,11 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
         });
     }
 
+    /**
+     * 打开学习资源详情
+     * @param view
+     * @param position
+     */
     private void startArticleDetail(View view, int position) {
         Intent intent = new Intent(_mActivity, ArticleDetailActivity.class);
         intent.putExtra(Constants.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
@@ -100,7 +108,11 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
         }
     }
 
-
+    /**
+     * 展示公众号数据
+     * @param articleListData 列表数据
+     * @param isRefresh 是否刷新
+     */
     @Override
     public void showPersonalPublicNum(ArticleListData articleListData, boolean isRefresh) {
         if (isRefresh) {

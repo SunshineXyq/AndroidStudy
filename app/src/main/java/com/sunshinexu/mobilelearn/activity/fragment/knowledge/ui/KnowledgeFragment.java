@@ -21,6 +21,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 知识体系主页面
+ */
 public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implements KnowledgeContract.View {
 
     @BindView(R.id.rv_knowledge)
@@ -67,6 +70,11 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
         mAdapter.replaceData(knowledgeSystems);
     }
 
+    /**
+     * 开启知识体系详情页
+     * @param view
+     * @param position
+     */
     public void startKnowledgeDetail(View view, int position) {
         Intent intent = new Intent(_mActivity, KnowledgeDetailActivity.class);
         intent.putExtra(Constants.KNOWLEDGE_DATA, mAdapter.getData().get(position));

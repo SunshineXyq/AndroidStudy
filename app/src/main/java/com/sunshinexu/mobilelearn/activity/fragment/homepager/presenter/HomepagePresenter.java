@@ -21,6 +21,9 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
+/**
+ * 在线学习模块相关调用
+ */
 public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
         implements HomepageContract.Presenter {
 
@@ -93,6 +96,10 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
                 }));
     }
 
+    /**
+     * 下拉刷新
+     * @param isShowStatusView
+     */
     @Override
     public void refreshLayout(boolean isShowStatusView) {
         isRefresh = true;
@@ -100,6 +107,9 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
         getHomepageData(isShowStatusView);
     }
 
+    /**
+     * 下拉加载更多
+     */
     @Override
     public void loadMore() {
         isRefresh = false;

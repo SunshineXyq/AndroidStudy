@@ -18,7 +18,10 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-
+/**
+ * 每个Fragment都需要继承此类
+ * @param <T>
+ */
 public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimpleFragment implements BaseView {
 
     private static final String TAG = "BaseFragment";
@@ -69,6 +72,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
         Toast.makeText(_mActivity, message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 弹出加载框
+     */
     @Override
     public void showLoading() {
         System.out.println("showdialog");
@@ -84,6 +90,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
         }
     }
 
+    /**
+     * 隐藏加载框
+     */
     @Override
     public void hideLoading() {
         if (dialog != null) {

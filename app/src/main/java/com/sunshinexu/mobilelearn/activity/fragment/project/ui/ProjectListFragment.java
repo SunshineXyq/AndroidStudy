@@ -29,6 +29,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 项目详情页
+ */
 public class ProjectListFragment extends BaseFragment<ProjectListFragmentPresenter> implements ProjectListFragmentContract.View {
 
     @BindView(R.id.srl_project_list)

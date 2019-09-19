@@ -19,6 +19,9 @@ import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
+/**
+ * 项目列表相关调用
+ */
 public class ProjectListFragmentPresenter extends CollectPresenter<ProjectListFragmentContract.View> implements ProjectListFragmentContract.Presenter {
 
     private int currentPage = 1;

@@ -27,8 +27,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 我的收藏主页面
+ */
 public class CollectFragment extends BaseFragment<CollectListPresenter> implements CollectListContract.View {
-
 
     @BindView(R.id.srl_collect_list)
     SmartRefreshLayout srl_collect_list;
@@ -93,7 +95,11 @@ public class CollectFragment extends BaseFragment<CollectListPresenter> implemen
                 mAdapter.getData().get(position).getOriginId());
     }
 
-
+    /**
+     * 展示收藏列表
+     * @param articleListData 列表数据
+     * @param isRefresh 是否刷新
+     */
     @Override
     public void showCollectList(ArticleListData articleListData, boolean isRefresh) {
         if (isRefresh) {

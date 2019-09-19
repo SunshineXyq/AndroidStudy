@@ -19,6 +19,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/**
+ * 数据库实现类
+ */
 public class DbHelperImpl implements DbHelper {
 
     private final DaoMaster daoMaster;

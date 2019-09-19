@@ -12,6 +12,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/**
+ * 学习导航相关调用
+ */
 public class NavigationPresenter extends Presenter<NavigationContract.View> implements NavigationContract.Presenter {
     @Inject
     public NavigationPresenter() {

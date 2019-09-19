@@ -22,6 +22,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 项目模块主页面
+ */
 public class ProjectFragment extends BaseFragment<ProjectPresenter> implements ProjectContract.View {
 
     @BindView(R.id.tb_project)
@@ -51,7 +54,10 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
         presenter.getProjectData();
     }
 
-
+    /**
+     * 加载项目列表
+     * @param projectData 列表数据
+     */
     @Override
     public void showProjectData(List<ProjectData> projectData) {
         mProjectTreeData = projectData;
@@ -118,5 +124,4 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
         }
         super.onDestroyView();
     }
-
 }

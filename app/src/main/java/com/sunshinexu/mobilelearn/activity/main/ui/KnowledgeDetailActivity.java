@@ -29,6 +29,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 知识体系详情页
+ */
 public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresenter> implements KnowledgeDetailContract.View {
 
     @BindView(R.id.toolbar)
@@ -72,6 +75,9 @@ public class KnowledgeDetailActivity extends BaseActivity<KnowledgeDetailPresent
 
     }
 
+    /**
+     * 初始化点击事件和数据
+     */
     @Override
     protected void initEventAndData() {
         KnowledgeSystemData knowledgeSystemData =

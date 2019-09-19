@@ -12,6 +12,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/**
+ * 知识体系相关调用
+ */
 public class KnowledgePresenter extends Presenter<KnowledgeContract.View> implements KnowledgeContract.Presenter {
 
     @Inject
@@ -34,6 +37,9 @@ public class KnowledgePresenter extends Presenter<KnowledgeContract.View> implem
                 }));
     }
 
+    /**
+     * 重新加载
+     */
     @Override
     public void reload() {
         getKnowledgeSystemData(false);

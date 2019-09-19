@@ -12,6 +12,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/**
+ * 公众号相关调用
+ */
 public class PublicNumPresenter extends Presenter<PublicNumContract.View> implements PublicNumContract.Presenter {
     @Inject
     public PublicNumPresenter() {

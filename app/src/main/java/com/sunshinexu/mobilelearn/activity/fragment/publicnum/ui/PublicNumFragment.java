@@ -21,6 +21,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 公众号主页面
+ */
 public class PublicNumFragment extends BaseFragment<PublicNumPresenter> implements PublicNumContract.View {
 
     @BindView(R.id.tb_public_num)
@@ -51,6 +54,10 @@ public class PublicNumFragment extends BaseFragment<PublicNumPresenter> implemen
         presenter.getPublicNumData();
     }
 
+    /**
+     * 展示公众号列表
+     * @param publicNumData 列表数据
+     */
     @Override
     public void showPublicNumData(List<PublicNumData> publicNumData) {
         mPublicNumList = publicNumData;
