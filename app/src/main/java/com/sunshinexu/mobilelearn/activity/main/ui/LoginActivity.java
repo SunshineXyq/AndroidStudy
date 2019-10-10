@@ -21,7 +21,6 @@ import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)

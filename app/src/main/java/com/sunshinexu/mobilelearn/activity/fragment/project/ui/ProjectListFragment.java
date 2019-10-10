@@ -12,6 +12,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sunshinexu.mobilelearn.R;
@@ -118,11 +119,13 @@ public class ProjectListFragment extends BaseFragment<ProjectListFragmentPresent
     public void showCollectSuccess(int position) {
         mAdapter.getData().get(position).setCollect(true);
         mAdapter.setData(position, mAdapter.getData().get(position));
+        Toast.makeText(_mActivity, getString(R.string.collect_success),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showCancelCollect(int position) {
         mAdapter.getData().get(position).setCollect(false);
         mAdapter.setData(position, mAdapter.getData().get(position));
+        Toast.makeText(_mActivity, getString(R.string.cancel_collect),Toast.LENGTH_SHORT).show();
     }
 }

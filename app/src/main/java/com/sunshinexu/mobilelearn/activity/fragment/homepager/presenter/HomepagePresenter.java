@@ -7,11 +7,13 @@ import com.sunshinexu.mobilelearn.activity.fragment.homepager.contract.HomepageC
 import com.sunshinexu.mobilelearn.app.MobileLearnApp;
 import com.sunshinexu.mobilelearn.core.eventbus.LoginEvent;
 import com.sunshinexu.mobilelearn.core.eventbus.LogoutEvent;
+import com.sunshinexu.mobilelearn.core.eventbus.RefreshHomeEvent;
 import com.sunshinexu.mobilelearn.core.rxjava.BaseObserver;
 import com.sunshinexu.mobilelearn.http.bean.ArticleListData;
 import com.sunshinexu.mobilelearn.utils.RxJavaUtil;
 
 
+import org.greenrobot.eventbus.Subscribe;
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
@@ -143,5 +145,15 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
     @Override
     public void unregisterEventBus() {
         EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 刷新列表
+     * @param refreshHomeEvent 刷新事件
+     */
+    @Subscriber()
+    public void refreshHomeEvent(RefreshHomeEvent refreshHomeEvent){
+        System.out.println("刷新事件");
+        getHomepageData(false);
     }
 }

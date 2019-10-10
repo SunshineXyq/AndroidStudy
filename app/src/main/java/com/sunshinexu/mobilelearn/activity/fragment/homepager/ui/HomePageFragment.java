@@ -40,6 +40,10 @@ import butterknife.BindView;
 
 /**
  * 在线学习模块 Fragment
+ * fragment生命周期
+ * onAttach绑定--> onCreate初始化Fragment--> onCreateView初始化布局--> onActivityCreate绑定的Activity onCreate已执行
+ * onStart-->onResume-->onPause-->onSaveInstanceState-->onStop 都是Fragment状态
+ * onDestroyView销毁试图，未解绑--> onDestroy销毁Fragment--> onDetach 解除绑定
  */
 public class HomePageFragment extends BaseFragment<HomepagePresenter> implements HomepageContract.View {
 
@@ -65,6 +69,7 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
 
     @Override
     protected void initView() {
+        Log.d(TAG, "initView: ");
         List<ArticleItemData> articleList = new ArrayList<>();
         adapter = new ArticleListAdapter(R.layout.item_article, articleList);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

@@ -79,6 +79,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
      */
     @Override
     protected void initToolbar() {
+        Log.d(TAG, "initToolbar: ");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -205,9 +206,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     /**
      * 展示对应 Fragment
-     * @param index
+     * @param index 展示Fragment的索引
      */
     private void showFragment(int index) {
+        Log.d(TAG, "showFragment: ");
         currentFgIndex = index;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         hideFragment(transaction);
@@ -259,6 +261,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         transaction.commit();
     }
 
+    /**
+     * 隐藏当前 Fragment
+     * @param transaction 事务
+     */
     private void hideFragment(FragmentTransaction transaction) {
         switch (lastFgIndex) {
             case Constants.FRAGMENT_HOME_PAGE:

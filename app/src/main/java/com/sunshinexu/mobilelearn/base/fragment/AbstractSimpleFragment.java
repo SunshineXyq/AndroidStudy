@@ -31,10 +31,9 @@ public abstract class AbstractSimpleFragment extends SupportFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(),container,false);
-        Log.d(TAG, "onCreateView1: ");
+        Log.d(TAG, "onCreateView: ");
         unbinder = ButterKnife.bind(this,view);
         initView();
-        Log.d(TAG, "onCreateView: ");
         return view;
     }
 

@@ -77,11 +77,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
      */
     @Override
     public void showLoading() {
-        System.out.println("showdialog");
         if (custom_multiple_view == null) {
             return;
         } else {
-            System.out.println("showdialog");
             if (dialog == null) {
                 dialog = new LoadingDialog(_mActivity, getString(R.string.loading_data),
                         R.mipmap.ic_dialog_loading);
@@ -96,7 +94,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
     @Override
     public void hideLoading() {
         if (dialog != null) {
-            System.out.println("hidedialog");
             dialog.dismiss();
             dialog = null;
         }

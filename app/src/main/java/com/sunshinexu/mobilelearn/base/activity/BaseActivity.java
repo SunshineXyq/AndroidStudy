@@ -36,6 +36,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
         Log.d(TAG, "onCreate: ");
     }
 
+
     /**
      * 父类onCreate调用onViewCreate
      * 先执行父类onCreate，在执行子类实现的 onViewCreate
@@ -44,6 +45,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
     @Override
     protected void onViewCreate() {
         Log.d(TAG, "onViewCreate: onViewCreate");
+        //this 指的是继承 BaseActivity 的 Activity
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }

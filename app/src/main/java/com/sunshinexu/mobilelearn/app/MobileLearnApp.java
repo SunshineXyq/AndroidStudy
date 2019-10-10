@@ -36,6 +36,7 @@ public class MobileLearnApp extends Application implements HasActivityInjector{
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        System.out.println("------------------------ app onCreate");
         DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .httpModule(new HttpModule())
