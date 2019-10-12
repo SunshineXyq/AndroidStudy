@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 
+import com.classic.common.MultipleStatusView;
+import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.base.presenter.BasePresenter;
 import com.sunshinexu.mobilelearn.base.view.BaseView;
 
@@ -15,6 +17,8 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * 每个Activity都需要继承此类
@@ -23,6 +27,7 @@ import android.support.v4.app.Fragment;
 public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimpleActivity
         implements HasSupportFragmentInjector, BaseView {
     private static final String TAG = "BaseActivity";
+    private MultipleStatusView mMultipleStatusView;
 
     @Inject
     protected T mPresenter;
@@ -44,6 +49,16 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
      */
     @Override
     protected void onViewCreate() {
+        ViewGroup mNormalView = findViewById(R.id.ll_normal_view);
+        //启动时 mNormalView 为 null
+        if (mNormalView != null) {
+            mNormalView.setVisibility(View.GONE);
+        }
+        mMultipleStatusView = findViewById(R.id.custom_multiple_view);
+        //启动时 mMultipleStatusView 为 null
+        if (mMultipleStatusView != null) {
+            mMultipleStatusView.setOnRetryClickListener(v -> mPresenter.reload());
+        }
         Log.d(TAG, "onViewCreate: onViewCreate");
         //this 指的是继承 BaseActivity 的 Activity
         if (mPresenter != null) {
@@ -63,7 +78,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
 
     @Override
     public void showLoading() {
-
+        if (mMultipleStatusView == null) {
+            return;
+        }
+        mMultipleStatusView.showLoading();
     }
 
     @Override
@@ -73,22 +91,34 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
 
     @Override
     public void showError() {
-
+        if (mMultipleStatusView == null) {
+            return;
+        }
+        mMultipleStatusView.showError();
     }
 
     @Override
     public void showNoNetwork() {
-
-    }
-
-    @Override
-    public void showEmpty() {
-
+        if (mMultipleStatusView == null) {
+            return;
+        }
+        mMultipleStatusView.showNoNetwork();
     }
 
     @Override
     public void showContent() {
+        if (mMultipleStatusView == null) {
+            return;
+        }
+        mMultipleStatusView.showContent();
+    }
 
+    @Override
+    public void showEmpty() {
+        if (mMultipleStatusView == null) {
+            return;
+        }
+        mMultipleStatusView.showEmpty();
     }
 
     @Override
@@ -99,5 +129,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractSimp
     @Override
     public void handleLogoutSuccess() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mPresenter != null) {
+            mPresenter.detachView();
+            mPresenter = null;
+        }
+        hideLoading();
+        super.onDestroy();
     }
 }

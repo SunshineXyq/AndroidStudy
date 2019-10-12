@@ -32,4 +32,9 @@ public class PublicNumPresenter extends Presenter<PublicNumContract.View> implem
             }
         }));
     }
+
+    @Override
+    public void reload() {
+        getPublicNumData();
+    }
 }

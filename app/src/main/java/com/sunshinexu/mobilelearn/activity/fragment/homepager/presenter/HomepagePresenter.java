@@ -156,4 +156,12 @@ public class HomepagePresenter extends CollectPresenter<HomepageContract.View>
         System.out.println("刷新事件");
         getHomepageData(false);
     }
+
+    /**
+     * 重新加载
+     */
+    @Override
+    public void reload() {
+        refreshLayout(true);
+    }
 }

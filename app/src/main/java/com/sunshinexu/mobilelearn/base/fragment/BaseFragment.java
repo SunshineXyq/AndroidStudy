@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.classic.common.MultipleStatusView;
@@ -43,11 +44,14 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
         Log.d(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
         custom_multiple_view = view.findViewById(R.id.custom_multiple_view);
+        ViewGroup ll_normal_view = view.findViewById(R.id.ll_normal_view);
+        if (ll_normal_view != null) {
+            ll_normal_view.setVisibility(View.GONE);
+        }
         if (presenter != null) {
             presenter.attachView(this);
         }
         if (custom_multiple_view != null) {
-            System.out.println("重新加载");
             custom_multiple_view.setOnRetryClickListener(v -> presenter.reload());
         }
     }
