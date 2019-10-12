@@ -47,6 +47,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractSimp
             presenter.attachView(this);
         }
         if (custom_multiple_view != null) {
+            System.out.println("重新加载");
             custom_multiple_view.setOnRetryClickListener(v -> presenter.reload());
         }
     }
