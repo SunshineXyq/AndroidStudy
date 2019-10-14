@@ -180,6 +180,11 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         return super.onMenuOpened(featureId, menu);
     }
 
+    /**
+     * 菜单点击事件
+     * @param item 菜单项
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

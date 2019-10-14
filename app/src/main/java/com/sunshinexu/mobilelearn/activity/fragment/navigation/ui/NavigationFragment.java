@@ -100,6 +100,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
         adapter.replaceData(navigationData);
 
         rv_navigation.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            //滚动状态变化时回调
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -108,11 +109,12 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
                 }
                 rightLinkageLeft(newState);
             }
-
+            //滚动时回调
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (scroll) {
+                    System.out.println("滚动了");
                     scrollRecyclerView();
                 }
             }
@@ -143,8 +145,12 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
         }
     }
 
+    /**
+     * 滑动右侧设置左侧
+     * @param newState 滚动状态
+     */
     private void rightLinkageLeft(int newState) {
-        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+        if (newState == RecyclerView.SCROLL_STATE_IDLE) {     //用户手指拖拽滚动情况
             if (isClickTab) {
                 isClickTab = false;
                 return;
@@ -168,6 +174,11 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
         }
         index = position;
     }
+
+    /**
+     * 选择左侧tab
+     * @param i
+     */
     private void selectTag(int i) {
         index = i;
         rv_navigation.stopScroll();
@@ -175,10 +186,11 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     }
     private void smoothScrollToPosition(int currentPosition) {
         int firstPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
+        System.out.println("firstPosition" + firstPosition);
         int lastPosition = mLinearLayoutManager.findLastVisibleItemPosition();
         if (currentPosition <= firstPosition) {
             rv_navigation.smoothScrollToPosition(currentPosition);
-        } else if (currentPosition <= lastPosition) {
+        } else if (currentPosition <= lastPosition) {           //高度
             int top = rv_navigation.getChildAt(currentPosition - firstPosition).getTop();
             rv_navigation.smoothScrollBy(0, top);
         } else {

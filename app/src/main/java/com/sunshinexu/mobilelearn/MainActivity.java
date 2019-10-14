@@ -127,6 +127,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         });
     }
 
+    /**
+     * DrawerLayout
+     */
     private void initNavigationView() {
         navigation_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

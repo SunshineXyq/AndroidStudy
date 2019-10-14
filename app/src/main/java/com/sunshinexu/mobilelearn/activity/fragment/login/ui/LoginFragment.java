@@ -46,6 +46,9 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
         return new LoginFragment();
     }
 
+    /**
+     * 处理登录成功后
+     */
     @Override
     public void loginSuccess() {
         Toast.makeText(_mActivity,getString(R.string.login_success),Toast.LENGTH_SHORT).show();

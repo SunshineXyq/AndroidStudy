@@ -23,14 +23,28 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Retrofit 配置
+ */
 @Module
 public class HttpModule {
+    /**
+     * 创建网络请求接口实例
+     * @param retrofit
+     * @return
+     */
     @Singleton
     @Provides
     ApiService provideApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 
+    /**
+     * 创建Retrofit实例
+     * @param builder
+     * @param client
+     * @return
+     */
     @Singleton
     @Provides
     Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client) {

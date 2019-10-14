@@ -26,6 +26,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     /**
+     * 网络请求接口，采用注解描述网络请求参数和配置请求参数
      * @Field 用于Post，表示发送一个表单请求，并加上@FormUrlEncoded，表示使用表单网址编码
      * @Path  用于Get，表示URL路段中替换指定的参数值
      * @Query 用于Get，表示添加查询参数
@@ -94,7 +95,7 @@ public interface ApiService {
     @GET("user/logout/json")
     Observable<BaseResponse<LoginData>> logout();
 
-    //收藏列表中取消收藏文章
+    //收藏列表中取消收藏文章,id为文章id，originId为列表页下发
     @POST("lg/uncollect/{id}/json")
     @FormUrlEncoded
     Observable<BaseResponse<ArticleListData>> cancelCollectInCollectPage(@Path("id") int id,

@@ -17,6 +17,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.sunshinexu.mobilelearn.MainActivity;
 import com.sunshinexu.mobilelearn.R;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.BannerData;
 import com.sunshinexu.mobilelearn.activity.fragment.homepager.bean.GlideImageLoader;
@@ -120,6 +121,8 @@ public class HomePageFragment extends BaseFragment<HomepagePresenter> implements
                 presenter.addCollectArticle(position,adapter.getData().get(position).getId());
             }
         } else {
+            Toast.makeText(_mActivity, getString(R.string.please_login),
+                    Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(_mActivity, LoginActivity.class);
             startActivity(intent);
         }

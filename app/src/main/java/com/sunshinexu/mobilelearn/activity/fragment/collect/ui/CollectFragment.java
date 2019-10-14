@@ -90,6 +90,10 @@ public class CollectFragment extends BaseFragment<CollectListPresenter> implemen
         startActivity(intent);
     }
 
+    /**
+     * 取消收藏
+     * @param position 位置索引
+     */
     private void collectArticle(int position){
         presenter.cancelCollectInCollectPage(position, mAdapter.getData().get(position).getId(),
                 mAdapter.getData().get(position).getOriginId());
@@ -114,6 +118,10 @@ public class CollectFragment extends BaseFragment<CollectListPresenter> implemen
         Toast.makeText(_mActivity, getString(R.string.collect_success),Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 删除指定位置数据
+     * @param position  位置索引
+     */
     @Override
     public void showCancelCollect(int position) {
         mAdapter.remove(position);

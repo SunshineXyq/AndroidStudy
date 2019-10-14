@@ -101,6 +101,8 @@ public class ProjectListFragment extends BaseFragment<ProjectListFragmentPresent
                 presenter.addCollectArticle(position,mAdapter.getData().get(position).getId());
             }
         } else {
+            Toast.makeText(_mActivity, getString(R.string.please_login),
+                    Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(_mActivity, LoginActivity.class);
             startActivity(intent);
         }
