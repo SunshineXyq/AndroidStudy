@@ -95,6 +95,11 @@ public class PersonalPublicNumFragment extends BaseFragment<PersonalPublicNumPre
         startActivity(intent);
     }
 
+    /**
+     * 子控件点击事件
+     * @param view
+     * @param position
+     */
     private void childOnClick(View view, int position) {
         if (presenter.getLoginStatus()) {
             if (mAdapter.getData().get(position).isCollect()) {
